@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameLibraryManager", "VideoGameLibraryManager\VideoGameLibraryManager.csproj", "{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IGDB_DatabaseManager", "..\..\Proiect\VGLM\IGDB_DatabaseManager.csproj", "{6D6ED828-EDA4-41EF-B032-4448F97910E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D6ED828-EDA4-41EF-B032-4448F97910E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D6ED828-EDA4-41EF-B032-4448F97910E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D6ED828-EDA4-41EF-B032-4448F97910E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D6ED828-EDA4-41EF-B032-4448F97910E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
