@@ -53,14 +53,13 @@ namespace WFFramework
             this.currForm.Size = this.panel1.Size;
             this.currForm.Show();
             this.panel1.Refresh();
-
         }
 
         private void panel1_SizeChanged(object sender, EventArgs e)
         {
             if (currForm!= null && prevForm != null)
             {
-                applyState();
+                this.currForm.Size = this.panel1.Size;
             }
         }
     }
