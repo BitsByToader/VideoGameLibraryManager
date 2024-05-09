@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.formsViewContainer1 = new WFFramework.FormsViewContainer();
+            this.formNavigationStack1 = new WFFramework.FormNavigationStack();
             this.SuspendLayout();
             // 
             // button1
@@ -43,37 +42,27 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // formNavigationStack1
             // 
-            this.button2.Location = new System.Drawing.Point(13, 76);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(149, 61);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Example2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // formsViewContainer1
-            // 
-            this.formsViewContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.formNavigationStack1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.formsViewContainer1.ColumnCount = 1;
-            this.formsViewContainer1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.formsViewContainer1.Location = new System.Drawing.Point(168, 13);
-            this.formsViewContainer1.Name = "formsViewContainer1";
-            this.formsViewContainer1.RowCount = 1;
-            this.formsViewContainer1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.formsViewContainer1.Size = new System.Drawing.Size(1093, 781);
-            this.formsViewContainer1.TabIndex = 2;
+            this.formNavigationStack1.ColumnCount = 1;
+            this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.formNavigationStack1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.formNavigationStack1.Location = new System.Drawing.Point(168, 12);
+            this.formNavigationStack1.Name = "formNavigationStack1";
+            this.formNavigationStack1.RowCount = 1;
+            this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.formNavigationStack1.Size = new System.Drawing.Size(1093, 782);
+            this.formNavigationStack1.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1273, 806);
-            this.Controls.Add(this.formsViewContainer1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.formNavigationStack1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -84,8 +73,7 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private WFFramework.FormsViewContainer formsViewContainer1;
+        private WFFramework.FormNavigationStack formNavigationStack1;
     }
 }
 

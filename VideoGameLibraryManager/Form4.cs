@@ -14,11 +14,13 @@ namespace VideoGameLibraryManager
     public partial class Form4 : Form, IView
     {
         private IViewContainer _parent;
+        private int _counter = 0;
 
-        public Form4(string text)
+        public Form4(int counter)
         {
             InitializeComponent();
-            label1.Text = text;
+            _counter = counter;
+            label1.Text = counter.ToString();
         }
 
         public void AddToParent(IViewContainer parent)
@@ -54,6 +56,25 @@ namespace VideoGameLibraryManager
         public void WillDisappear()
         {
             // stub
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormNavigationStack nav = _parent as FormNavigationStack;
+            _counter++;
+            nav.PushView(new Form4(_counter));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormNavigationStack nav = _parent as FormNavigationStack;
+            nav.PopView();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormNavigationStack nav = _parent as FormNavigationStack;
+            nav.PopToRoot();
         }
     }
 }

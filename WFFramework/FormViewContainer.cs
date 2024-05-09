@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace WFFramework
 {
-    public class FormsViewContainer : TableLayoutPanel, IViewContainer
+    public class FormViewContainer : TableLayoutPanel, IViewContainer
     {
         private IView _currentView = null;
 
-        public FormsViewContainer(): base()
+        public FormViewContainer(): base()
         {
             ColumnCount = 1;
             RowCount = 1;

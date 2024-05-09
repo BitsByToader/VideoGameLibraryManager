@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormsViewContainer.cs">
+    <Compile Include="FormNavigationStack.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormViewContainer.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="IView.cs" />

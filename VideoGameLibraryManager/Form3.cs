@@ -51,17 +51,23 @@ namespace VideoGameLibraryManager
 
         public void WillBeAddedToParent()
         {
-            throw new NotImplementedException();
+            // stub
         }
 
         public void WillBeRemovedFromParent()
         {
-            throw new NotImplementedException();
+            // stub
         }
 
         public void WillDisappear()
         {
             timer1.Stop();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormNavigationStack nav = _parent as FormNavigationStack;
+            nav.PushView(new Form4(1));
         }
     }
 }
