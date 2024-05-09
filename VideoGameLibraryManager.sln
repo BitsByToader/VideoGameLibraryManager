@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameLibraryManager", "VideoGameLibraryManager\VideoGameLibraryManager.csproj", "{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFFramework", "WFFramework\WFFramework.csproj", "{A0B88BD2-5EB4-458A-8CA6-5092AFD1044A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFFramework", "WFFramework\WFFramework.csproj", "{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0B88BD2-5EB4-458A-8CA6-5092AFD1044A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0B88BD2-5EB4-458A-8CA6-5092AFD1044A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0B88BD2-5EB4-458A-8CA6-5092AFD1044A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0B88BD2-5EB4-458A-8CA6-5092AFD1044A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
