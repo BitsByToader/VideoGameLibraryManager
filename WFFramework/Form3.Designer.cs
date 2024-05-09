@@ -37,14 +37,15 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 25);
+            this.label1.Size = new System.Drawing.Size(197, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Form3 in the house yo";
+            this.label1.Text = "Form3 in the house";
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(445, 416);
+            this.label2.Location = new System.Drawing.Point(222, 256);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(343, 25);
             this.label2.TabIndex = 1;
@@ -54,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1524, 951);
+            this.ClientSize = new System.Drawing.Size(577, 290);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form3";

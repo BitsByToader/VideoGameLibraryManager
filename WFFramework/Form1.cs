@@ -12,8 +12,10 @@ namespace WFFramework
 {
     public partial class Form1 : Form
     {
-        Form2 form2;
-        Form3 form3;
+        Form form2;
+        Form form3;
+        Form prevForm;
+        Form currForm;
 
         public Form1()
         {
@@ -22,24 +24,44 @@ namespace WFFramework
             form2 = new Form2();
             form2.TopLevel = false;
             form2.FormBorderStyle = FormBorderStyle.None;
-            this.panel1.Controls.Add(form2);
 
             form3 = new Form3();
             form3.TopLevel = false;
             form3.FormBorderStyle = FormBorderStyle.None;
-            this.panel1.Controls.Add(form3);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            form3.Hide();
-            form2.Show();
+            currForm = form2;
+            prevForm = form3;
+            applyState();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)  
         {
-            form2.Hide();
-            form3.Show();
+            currForm = form3;
+            prevForm = form2;
+            applyState();
+        }
+
+        private void applyState()
+        {
+            this.prevForm.Hide();
+            this.currForm.Hide();
+            this.panel1.Controls.Clear();
+            this.panel1.Controls.Add(currForm);
+            this.currForm.Size = this.panel1.Size;
+            this.currForm.Show();
+            this.panel1.Refresh();
+
+        }
+
+        private void panel1_SizeChanged(object sender, EventArgs e)
+        {
+            if (currForm!= null && prevForm != null)
+            {
+                applyState();
+            }
         }
     }
 }
