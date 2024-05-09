@@ -12,9 +12,18 @@ namespace WFFramework
 {
     public partial class Form2 : Form
     {
+        int counter = 0;
+
         public Form2()
         {
             InitializeComponent();
+            this.label3.Text = counter.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            counter++;
+            this.label3.Text = counter.ToString();
         }
     }
 }

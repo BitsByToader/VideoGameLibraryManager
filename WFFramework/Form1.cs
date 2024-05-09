@@ -14,8 +14,6 @@ namespace WFFramework
     {
         Form form2;
         Form form3;
-        Form prevForm;
-        Form currForm;
 
         public Form1()
         {
@@ -32,34 +30,35 @@ namespace WFFramework
 
         private void button1_Click(object sender, EventArgs e)
         {
-            currForm = form2;
-            prevForm = form3;
-            applyState();
+            applyState(form2);
         }
 
         private void button2_Click(object sender, EventArgs e)  
         {
-            currForm = form3;
-            prevForm = form2;
-            applyState();
+            applyState(form3);
         }
 
-        private void applyState()
+        private void applyState(Form nextState)
         {
-            this.prevForm.Hide();
-            this.currForm.Hide();
-            this.panel1.Controls.Clear();
-            this.panel1.Controls.Add(currForm);
-            this.currForm.Size = this.panel1.Size;
-            this.currForm.Show();
+            if (this.panel1.Controls.Count == 1)
+            {
+                Form curr = this.panel1.Controls[0] as Form; // we only accept Forms so this shouldn't fail
+                curr.Hide(); // de bun simt (cred? nu stiu daca influneteaza cu ceva un Form scos din ierarhie dar care inca e 'vizibil')
+                // daca se dovedeste ca nu conteaza cu form-uri complete, se poate scoate...
+            }
+            
+            this.panel1.Controls.Clear(); // remove old form
+            this.panel1.Controls.Add(nextState); // add new form
+            nextState.Size = this.panel1.Size;
+            nextState.Show();
             this.panel1.Refresh();
         }
 
         private void panel1_SizeChanged(object sender, EventArgs e)
         {
-            if (currForm!= null && prevForm != null)
+            if ( this.panel1.Controls.Count == 1 )
             {
-                this.currForm.Size = this.panel1.Size;
+                this.panel1.Controls[0].Size = this.panel1.Size;
             }
         }
     }
