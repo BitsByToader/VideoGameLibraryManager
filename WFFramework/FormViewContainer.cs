@@ -7,10 +7,20 @@ using System.Windows.Forms;
 
 namespace WFFramework
 {
+    /// <summary>
+    /// Container view that can hold any type of view, but only one at a time. It's meant to be a simple implementation of IViewContainer interface strictly for Windows Forms which implement IView interface.
+    /// The container will manage the view's lifecycle as well, notifying of any visibility changes. As such, it's able to createa a basic hierarchy and manage compile-time finite state machines by switching
+    /// between views (i.e. states).
+    /// 
+    /// Inherits TableLayoutPanel control from Windows Forms as it's able to house and type of Form or Control and resize them to match the container's size (something which a regular Panel can't do).
+    /// </summary>
     public class FormViewContainer : TableLayoutPanel, IViewContainer
     {
         private IView _currentView = null;
 
+        /// <summary>
+        /// Constructor for the container, which also initializez the TableLayoutPanel.
+        /// </summary>
         public FormViewContainer(): base()
         {
             ColumnCount = 1;
@@ -19,6 +29,10 @@ namespace WFFramework
             RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
         }
 
+        /// <summary>
+        /// Handles resize events from the panel and resizes the current active child.
+        /// </summary>
+        /// <param name="e">Event arguments.</param>
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
@@ -29,6 +43,11 @@ namespace WFFramework
             }
         }
 
+        /// <summary>
+        /// Changes the view which the container displays. Notifies the current view that it will dissapear and notifies the new view it's about to be displayed.
+        /// Efectively changes the state of the container 'view'.
+        /// </summary>
+        /// <param name="view">The new view which will be rendered inside the container.</param>
         public void ChangeView(IView view)
         {
             Form wrappedForm = (Form) view; // will throw if view is not derived from Form
@@ -52,6 +71,10 @@ namespace WFFramework
             Refresh();
         }
 
+        /// <summary>
+        /// Retrieves the currently displayed view/the state the container view is in.
+        /// </summary>
+        /// <returns>The current view.</returns>
         public IView GetCurrentView()
         {
             return _currentView;
