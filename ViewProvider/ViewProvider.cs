@@ -10,13 +10,9 @@ namespace ViewProvider
     {
         private ICustomView _viewSrategy;
         public ViewProvider() { }
-        public void SetView(String type)
+        public void SetView(ICustomView view)
         {
-            switch (type)
-            {
-                case "grid": _viewSrategy = new GridView(); break;
-                case "list": _viewSrategy = new ListView(); break;
-            }
+            _viewSrategy = view;
         }
 
         public void Display()

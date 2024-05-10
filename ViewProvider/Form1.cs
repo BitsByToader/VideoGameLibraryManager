@@ -25,13 +25,13 @@ namespace ViewProvider
 
         private void buttonList_Click(object sender, EventArgs e)
         {
-            _viewProvider.SetView("list");
+            _viewProvider.SetView(new ListView());
             _viewProvider.Display();
         }
 
         private void buttonGrid_Click(object sender, EventArgs e)
         {
-            _viewProvider.SetView("grid");
+            _viewProvider.SetView(new GridView());
             _viewProvider.Display();
         }
     }
