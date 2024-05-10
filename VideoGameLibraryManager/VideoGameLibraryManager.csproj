@@ -46,11 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="GameDisplayFormView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GameDisplayFormView.Designer.cs">
+      <DependentUpon>GameDisplayFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GridGameDisplayFromView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GridGameDisplayFromView.Designer.cs">
+      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListGameDisplayFormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListGameDisplayFormView.Designer.cs">
+      <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuFormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuFormView.Designer.cs">
+      <DependentUpon>MenuFormView.cs</DependentUpon>
     </Compile>
     <Compile Include="Form3.cs">
       <SubType>Form</SubType>
@@ -66,8 +84,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="GameDisplayFormView.resx">
+      <DependentUpon>GameDisplayFormView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GridGameDisplayFromView.resx">
+      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListGameDisplayFormView.resx">
+      <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuFormView.resx">
+      <DependentUpon>MenuFormView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>

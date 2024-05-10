@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}</ProjectGuid>
+    <ProjectGuid>{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WFFramework</RootNamespace>
-    <AssemblyName>WFFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <RootNamespace>Helpers</RootNamespace>
+    <AssemblyName>Helpers</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -33,8 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,35 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BriefGameInfoBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BriefGameInfoBox.Designer.cs">
-      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DetailedGameInfoBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DetailedGameInfoBox.Designer.cs">
-      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormNavigationStack.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FormViewContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IView.cs" />
-    <Compile Include="IViewContainer.cs" />
+    <Compile Include="GameSorter.cs" />
+    <Compile Include="ISortStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="BriefGameInfoBox.resx">
-      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DetailedGameInfoBox.resx">
-      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="SortByName.cs" />
+    <Compile Include="SortByPlaytime.cs" />
+    <Compile Include="SortByPublisher.cs" />
+    <Compile Include="SortByRating.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

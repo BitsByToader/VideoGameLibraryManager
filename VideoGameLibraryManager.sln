@@ -4,10 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameLibraryManager", "VideoGameLibraryManager\VideoGameLibraryManager.csproj", "{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46} = {A6D61B9B-5297-4032-AB76-BAC07F8E5C46}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFFramework", "WFFramework\WFFramework.csproj", "{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewProvider", "ViewProvider\ViewProvider.csproj", "{A0C1B228-4F67-40DB-BC17-B742AE9A4C91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +26,10 @@ Global
 		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
