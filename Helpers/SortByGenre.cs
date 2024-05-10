@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:                                                                            *
+*  File:        SortByGenre.cs                                                      *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -23,22 +23,13 @@ using System.Threading.Tasks;
 namespace Helpers
 {
     /// <summary>
-    /// Provides a way of sorting games using a certain algorithm/strategy that can be changed based on needs;
+    /// Implementation used for sorting games by genre.
     /// </summary>
-    public class GameSorter
+    public class SortByGenre: ISortStyle
     {
-        private ISortStyle _sortStyle;
-
-        public GameSorter() { }
-
-        public void SetSortStyle(ISortStyle style)
-        {
-            _sortStyle = style;
-        }
-
         public List<Game> Sort(List<Game> games)
         {
-           return _sortStyle.Sort(games);
+            return games.OrderBy(game => game.genre).ToList();
         }
     }
 }

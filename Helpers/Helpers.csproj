@@ -44,10 +44,12 @@
     <Compile Include="GameSorter.cs" />
     <Compile Include="ISortStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortByGenre.cs" />
     <Compile Include="SortByName.cs" />
     <Compile Include="SortByPlaytime.cs" />
     <Compile Include="SortByPublisher.cs" />
     <Compile Include="SortByRating.cs" />
+    <Compile Include="UniqueGameSorter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

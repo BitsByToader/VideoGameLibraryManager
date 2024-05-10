@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:                                                                            *
+*  File:        SortByName.cs                                                       *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -22,7 +22,10 @@ using System.Threading.Tasks;
 
 namespace Helpers
 {
-    internal class SortByName: ISortStyle
+    /// <summary>
+    /// Implementation used for sorting games by name.
+    /// </summary>
+    public class SortByName: ISortStyle
     {
         public List<Game> Sort(List<Game> games)
         {

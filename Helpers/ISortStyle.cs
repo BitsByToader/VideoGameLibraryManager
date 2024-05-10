@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:                                                                            *
+*  File:        ISortStyle.cs                                                       *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Helpers
 {
     // added just for test purpose -- NEEDS TO BE REMOVED !!!
@@ -29,16 +30,23 @@ namespace Helpers
         public string name;
         public string publisher;
         // asume rating is int 0 - 100
-        public int rating;
+        public double rating;
         // number in seconds;
         public long playtime;
-        public Game() { }
+        public string genre;
+        public Game(string name, string publisher, double rating, long time, string genre) {
+            this.name = name;
+            this.publisher = publisher;
+            this.rating = rating;
+            this.playtime = time;
+            this.genre = genre;
+        }
     }
 
     /// <summary>
     /// Interface for different sorting styles/strategies that will be implemented and used for sorting games based on some criteria.
     /// </summary>
-    internal interface ISortStyle
+    public interface ISortStyle
     {
         /// <summary>
         /// Sorts games received as parameter.

@@ -1,4 +1,20 @@
-﻿using System;
+﻿/************************************************************************************
+*                                                                                   *
+*  File:        GameDisplayFormView.cs                                              *
+*  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
+*  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
+*  Description:                                                                     *
+*                                                                                   *
+*                                                                                   *
+*  This code and information is provided "as is" without warranty of                *
+*  any kind, either expressed or implied, including but not limited                 *
+*  to the implied warranties of merchantability or fitness for a                    *
+*  particular purpose. You are free to use this source code in your                 *
+*  applications as long as the original copyright notice is included.               *
+*                                                                                   *
+************************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,14 +24,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
+using Helpers;
 
 namespace VideoGameLibraryManager
 {
     public partial class GameDisplayFormView : Form, IView
     {
         private IViewContainer _parent;
-        private IView _gridView = new ListGameDisplayFormView();
-        private IView _listView = new GridGameDisplayFromView();
+        private IView _curentView;
+        private UniqueGameSorter _gameSorter = UniqueGameSorter.Instance();
 
         public GameDisplayFormView()
         {
@@ -39,7 +56,9 @@ namespace VideoGameLibraryManager
 
         void IView.WillAppear()
         {
-            gameDisplayFormNavigationStack.ChangeView(_gridView);
+            _gameSorter.SetSortStyle(new SortByName());
+            _curentView = new GridGameDisplayFromView();
+            gameDisplayFormNavigationStack.ChangeView(_curentView);
         }
 
         void IView.WillBeAddedToParent()
@@ -63,7 +82,8 @@ namespace VideoGameLibraryManager
             gridViewButton.BackColor = Color.LightBlue;
             listViewButton.BackColor = Color.White;
 
-            gameDisplayFormNavigationStack.ChangeView(_gridView);
+            _curentView = new GridGameDisplayFromView();
+            gameDisplayFormNavigationStack.ChangeView(_curentView);
         }
 
         private void listViewButton_Click(object sender, EventArgs e)
@@ -71,13 +91,26 @@ namespace VideoGameLibraryManager
             listViewButton.BackColor = Color.LightBlue;
             gridViewButton.BackColor = Color.White;
 
-            gameDisplayFormNavigationStack.ChangeView(_listView);
+            _curentView = new ListGameDisplayFormView();
+            gameDisplayFormNavigationStack.ChangeView(_curentView);
 
         }
 
         private void sortStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (sortStyleComboBox.SelectedIndex)
+            {
+                case 0: _gameSorter.SetSortStyle(new SortByRating()); break;
+                case 1: _gameSorter.SetSortStyle(new SortByName()); break;
+                case 2: _gameSorter.SetSortStyle(new SortByPublisher()); break;
+                case 3: _gameSorter.SetSortStyle(new SortByPlaytime()); break;
+                case 4: _gameSorter.SetSortStyle(new SortByGenre()); break;
 
+                default: _gameSorter.SetSortStyle(new SortByName()); break;
+            }
+
+            _curentView.WillDisappear();
+            _curentView.WillAppear();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:                                                                            *
+*  File:        SortByPublisher.cs                                                  *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -22,7 +22,10 @@ using System.Threading.Tasks;
 
 namespace Helpers
 {
-    internal class SortByPublisher : ISortStyle
+    /// <summary>
+    /// Implementation used for sorting games by publisher.
+    /// </summary>
+    public class SortByPublisher : ISortStyle
     {
         public List<Game> Sort(List<Game> games)
         {

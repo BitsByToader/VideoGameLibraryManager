@@ -42,7 +42,8 @@
             "Rating",
             "Name",
             "Publisher",
-            "Playtime"});
+            "Playtime",
+            "Genre"});
             this.sortStyleComboBox.Location = new System.Drawing.Point(667, 12);
             this.sortStyleComboBox.Name = "sortStyleComboBox";
             this.sortStyleComboBox.Size = new System.Drawing.Size(121, 21);
@@ -83,11 +84,15 @@
             // gameDisplayFormNavigationStack
             // 
             this.gameDisplayFormNavigationStack.ColumnCount = 1;
+            this.gameDisplayFormNavigationStack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.gameDisplayFormNavigationStack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.gameDisplayFormNavigationStack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.gameDisplayFormNavigationStack.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.gameDisplayFormNavigationStack.Location = new System.Drawing.Point(12, 39);
             this.gameDisplayFormNavigationStack.Name = "gameDisplayFormNavigationStack";
             this.gameDisplayFormNavigationStack.RowCount = 1;
+            this.gameDisplayFormNavigationStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.gameDisplayFormNavigationStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.gameDisplayFormNavigationStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.gameDisplayFormNavigationStack.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.gameDisplayFormNavigationStack.Size = new System.Drawing.Size(776, 399);

@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:                                                                            *
+*  File:        UniqueGameSorter.cs                                                 *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -23,22 +23,23 @@ using System.Threading.Tasks;
 namespace Helpers
 {
     /// <summary>
-    /// Provides a way of sorting games using a certain algorithm/strategy that can be changed based on needs;
+    /// Provides a way to transfer sorting style between different forms/views. By being a singleton,
+    /// multiple views have acces to selected sorting style;
     /// </summary>
-    public class GameSorter
+    public class UniqueGameSorter: GameSorter
     {
-        private ISortStyle _sortStyle;
+        static private UniqueGameSorter _sorter = null;
 
-        public GameSorter() { }
+        private UniqueGameSorter() : base() { }
 
-        public void SetSortStyle(ISortStyle style)
+        static public UniqueGameSorter Instance()
         {
-            _sortStyle = style;
-        }
-
-        public List<Game> Sort(List<Game> games)
-        {
-           return _sortStyle.Sort(games);
+            if (_sorter == null)
+            {
+                _sorter = new UniqueGameSorter();
+            }
+            
+            return _sorter;
         }
     }
 }
