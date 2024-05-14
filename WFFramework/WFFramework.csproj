@@ -43,18 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BriefGameInfoBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BriefGameInfoBox.Designer.cs">
-      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DetailedGameInfoBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DetailedGameInfoBox.Designer.cs">
-      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormNavigationStack.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,14 +52,6 @@
     <Compile Include="IView.cs" />
     <Compile Include="IViewContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="BriefGameInfoBox.resx">
-      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DetailedGameInfoBox.resx">
-      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Helpers\Helpers.csproj">

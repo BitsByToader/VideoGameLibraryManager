@@ -1,4 +1,4 @@
-﻿namespace WFFramework
+﻿namespace Helpers
 {
     partial class DetailedGameInfoBox
     {

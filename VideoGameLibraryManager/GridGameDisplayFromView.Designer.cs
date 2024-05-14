@@ -28,23 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gridFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
-            // 
-            // gridFlowLayoutPanel
-            // 
-            this.gridFlowLayoutPanel.AutoScroll = true;
-            this.gridFlowLayoutPanel.Location = new System.Drawing.Point(2, 2);
-            this.gridFlowLayoutPanel.Name = "gridFlowLayoutPanel";
-            this.gridFlowLayoutPanel.Size = new System.Drawing.Size(796, 445);
-            this.gridFlowLayoutPanel.TabIndex = 0;
             // 
             // GridGameDisplayFromView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.gridFlowLayoutPanel);
             this.Name = "GridGameDisplayFromView";
             this.Text = "GridGameDisplayFromView";
             this.ResumeLayout(false);
@@ -52,7 +42,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel gridFlowLayoutPanel;
     }
 }

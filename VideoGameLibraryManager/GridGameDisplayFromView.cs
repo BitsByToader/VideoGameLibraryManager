@@ -33,9 +33,11 @@ namespace VideoGameLibraryManager
     {
         private IViewContainer _parent;
         private UniqueGameSorter _gameSorter = UniqueGameSorter.Instance();
+        private GameCollectionViewer _gameCollectionViewer = new GameCollectionViewer(new GridViewStyle(), new GameToBriefGameBoxInfo());
         public GridGameDisplayFromView()
         {
             InitializeComponent();
+            this.Controls.Add(_gameCollectionViewer);
         }
 
         public void AddToParent(IViewContainer parent)
@@ -72,6 +74,8 @@ namespace VideoGameLibraryManager
             games.Add(new Game("Forza Motorsport", "Microsoft", 8.5, 16, "Driving Simulator"));
             games = _gameSorter.Sort(games);
 
+            /*
+             * old version:
             foreach (var game in games)
             {
                 BriefGameInfoBox infoBox = new BriefGameInfoBox();
@@ -81,7 +85,9 @@ namespace VideoGameLibraryManager
 
                 gridFlowLayoutPanel.Controls.Add(infoBox);
             }
+            */
 
+            _gameCollectionViewer.AddItems(games);             
         }
 
         public void WillBeAddedToParent()
@@ -96,7 +102,7 @@ namespace VideoGameLibraryManager
 
         public void WillDisappear()
         {
-            gridFlowLayoutPanel.Controls.Clear();
+            _gameCollectionViewer.ClearItems();
         }
     }
 }

@@ -32,9 +32,11 @@ namespace VideoGameLibraryManager
     {
         private IViewContainer _parent;
         private UniqueGameSorter _gameSorter = UniqueGameSorter.Instance();
+        private GameCollectionViewer _gameCollectionViewer = new GameCollectionViewer(new ListViewStyle(), new GameToDetailedGameBoxInfo());
         public ListGameDisplayFormView()
         {
             InitializeComponent();
+            this.Controls.Add(this._gameCollectionViewer);
         }
 
         public void AddToParent(IViewContainer parent)
@@ -73,6 +75,8 @@ namespace VideoGameLibraryManager
 
             games = _gameSorter.Sort(games);
 
+            /*
+             * old version:
             foreach (var game in games)
             {
                 DetailedGameInfoBox infoBox = new DetailedGameInfoBox();
@@ -81,10 +85,13 @@ namespace VideoGameLibraryManager
                 infoBox.GamePlaytime = game.playtime.ToString();
                 infoBox.GameRating = game.rating.ToString();
                 // add image - null for test purpose
-                infoBox.GameImage = null;
+                infoBox.GameImage = game.image;
 
                 listFlowLayoutPanel.Controls.Add(infoBox);
             }
+            */
+
+            _gameCollectionViewer.AddItems(games);
 
         }
 
@@ -100,7 +107,7 @@ namespace VideoGameLibraryManager
 
         public void WillDisappear()
         {
-            listFlowLayoutPanel.Controls.Clear();
+            _gameCollectionViewer.ClearItems();
         }
     }
 }

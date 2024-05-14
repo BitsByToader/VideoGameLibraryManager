@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,8 +43,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BriefGameInfoBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BriefGameInfoBox.Designer.cs">
+      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameCollectionViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ControlIterator.cs" />
+    <Compile Include="DetailedGameInfoBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailedGameInfoBox.Designer.cs">
+      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameSorter.cs" />
+    <Compile Include="GameToBriefGameBoxInfo.cs" />
+    <Compile Include="GameToDetailedGameBoxInfo.cs" />
+    <Compile Include="GridViewStyle.cs" />
+    <Compile Include="ICollectionViewer.cs" />
+    <Compile Include="ICustomIterator.cs" />
+    <Compile Include="IGameToControlConverter.cs" />
     <Compile Include="ISortStyle.cs" />
+    <Compile Include="IViewStyle.cs" />
+    <Compile Include="ListViewStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortByGenre.cs" />
     <Compile Include="SortByName.cs" />
@@ -50,6 +76,14 @@
     <Compile Include="SortByPublisher.cs" />
     <Compile Include="SortByRating.cs" />
     <Compile Include="UniqueGameSorter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BriefGameInfoBox.resx">
+      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedGameInfoBox.resx">
+      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

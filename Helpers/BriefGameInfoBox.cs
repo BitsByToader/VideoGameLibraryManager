@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:        DetailedGameInfoBox.cs                                              *
+*  File:        BriefGameInfoBox.cs                                                 *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -24,24 +24,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WFFramework
+namespace Helpers
 {
     /// <summary>
-    /// Custom UserControl that provides some info about a game.
+    /// Custom User Control that provides limited info about a game - name and artwork; 
     /// </summary>
-    public partial class DetailedGameInfoBox : UserControl
+    public partial class BriefGameInfoBox : UserControl
     {
-        public DetailedGameInfoBox()
+        public BriefGameInfoBox()
         {
             InitializeComponent();
         }
 
         private string _gameName;
-        private string _gameGenre;
-        private string _gameRating;
-        private string _gamePlaytime;
         private Image _gameImage;
-        
 
         [Category("Custom Property")]
         public string GameName
@@ -57,25 +53,5 @@ namespace WFFramework
             set { _gameImage = value; gamePictureBox.Image = value; }
         }
 
-        [Category("Custom Property")]
-        public string GamePlaytime
-        {
-            get { return "Total Playtime : " + _gamePlaytime; }
-            set { _gamePlaytime = value; gamePlaytime.Text = value; }
-        }
-
-        [Category("Custom Property")]
-        public string GameRating
-        {
-            get { return "Rating : " + _gameRating; }
-            set { _gameRating = value; gameRating.Text = value; }
-        }
-
-        [Category("Custom Property")]
-        public string GameGenre
-        {
-            get { return "Genre : " + _gameGenre; }
-            set { _gameGenre = value; gameGenre.Text = value; }
-        }
     }
 }

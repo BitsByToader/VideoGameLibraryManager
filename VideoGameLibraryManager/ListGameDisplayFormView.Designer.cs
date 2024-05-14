@@ -28,25 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
-            // 
-            // listFlowLayoutPanel
-            // 
-            this.listFlowLayoutPanel.AutoScroll = true;
-            this.listFlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.listFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.listFlowLayoutPanel.Name = "listFlowLayoutPanel";
-            this.listFlowLayoutPanel.Size = new System.Drawing.Size(798, 450);
-            this.listFlowLayoutPanel.TabIndex = 0;
-            this.listFlowLayoutPanel.WrapContents = false;
             // 
             // ListGameDisplayFormView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listFlowLayoutPanel);
             this.Name = "ListGameDisplayFormView";
             this.Text = "ListGameDisplayFormView";
             this.ResumeLayout(false);
@@ -54,7 +42,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel listFlowLayoutPanel;
     }
 }

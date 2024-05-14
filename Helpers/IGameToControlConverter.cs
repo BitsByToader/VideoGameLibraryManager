@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:        BriefGameInfoBox.cs                                                 *
+*  File:        IGameToControlConverter.cs                                          *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -16,42 +16,19 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
-namespace WFFramework
+
+namespace Helpers
 {
-    /// <summary>
-    /// Custom User Control that provides limited info about a game - name and artwork; 
-    /// </summary>
-    public partial class BriefGameInfoBox : UserControl
+    public interface IGameToControlConverter
     {
-        public BriefGameInfoBox()
-        {
-            InitializeComponent();
-        }
-
-        private string _gameName;
-        private Image _gameImage;
-
-        [Category("Custom Property")]
-        public string GameName
-        {
-            get { return _gameName; }
-            set { _gameName = value; gameName.Text = value; }
-        }
-
-        [Category("Custom Property")]
-        public Image GameImage
-        {
-            get { return _gameImage; }
-            set { _gameImage = value; gamePictureBox.Image = value; }
-        }
-
+        UserControl Convert(Game game);
     }
 }
