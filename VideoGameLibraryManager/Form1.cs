@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DatabaseManager;
+using UserDB_Manager;
 
 namespace VideoGameLibraryManager
 {
@@ -89,7 +90,7 @@ namespace VideoGameLibraryManager
                         return;
                     }
                     Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
-                    _instance.AddGame(game);
+                    _instance.AddGame(GameLibraryDb.ConvertGame_IGDB(game));
                     _instance.GetAllGames();
                     // Update the picturebox with the cover
                     this.Invoke((MethodInvoker)delegate
@@ -106,6 +107,36 @@ namespace VideoGameLibraryManager
                     });
                 }
             });
+        }
+
+        private void Remove_Click(object sender, EventArgs e)
+        {
+            //Get the id from the textbox and remove the game from the database
+            int id = 0;
+            if (!int.TryParse(removeidx.Text, out id))
+            {
+                MessageBox.Show("Invalid ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Console.WriteLine("Removing game with id: " + id);
+
+            Console.WriteLine(_instance.RemoveGame(id));
+            
+        }
+
+        private void Rename_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+            if (!int.TryParse(removeidx.Text, out id))
+            {
+                MessageBox.Show("Invalid ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Console.WriteLine("Renaming game with id: " + id);
+            Game game = _instance.GetGame(id);
+            game.name = "NewName";
+            Console.WriteLine(_instance.UpdateGame(id, game));
+
         }
     }
 }

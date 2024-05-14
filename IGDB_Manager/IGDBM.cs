@@ -80,16 +80,13 @@ namespace DatabaseManager
         public string publisher { get; set; }            // Game's publisher
         public List<GenreIGDB> genres { get; set; }      // Game's genres
         public List<PlatformIGDB> platforms { get; set; } // Game's platforms
-        public List<int> involved_companies { get; set; } // Assuming this is a list of IDs
-        [JsonPropertyName("involved_companies.company")]
-        public List<CompanyIGDB> developers { get; set; }
-        public double rating { get; set; }        // Global rating
+        public List<int> involved_companies { get; set; }
+        public List<CompanyIGDB> companies { get; set; } // Game's companies
+        public double rating { get; set; }               // Global rating
         public string coverpath { get; set; }            // Path to cover image
         public string summary { get; set; }              // Game summary
         public string executable_path { get; set; }      // Path to executable
-        public bool favorite { get; set; }               // Mark as favorite
         public int playtime { get; set; }                // Playtime in minutes
-        public double personal_rating { get; set; }      // Personal rating
         public List<WebsiteIGDB> websites { get; set; }  // Game's websites
     }
     #region CLASSES FOR GAMEIGDB
@@ -101,11 +98,13 @@ namespace DatabaseManager
     public class InvolvedCompany
     {
         public int id { get; set; }
-        public int company { get; set; } // This is the Reference ID for the Company
+        public CompanyIGDB company { get; set; } // This is now a CompanyIGDB object
     }
+
 
     public class CompanyIGDB
     {
+        public int id { get; set; } // Added id field to match the IGDB API response
         public string name { get; set; }
     }
 
@@ -268,8 +267,9 @@ namespace DatabaseManager
                 HttpResponseMessage response = await client.PostAsync("https://api.igdb.com/v4/companies", content);
 
                 if (response.IsSuccessStatusCode)
-                {//TODO: fix this
+                {
                     string responseBody = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"API response: {responseBody}"); // Print out the API response
                     var companies = JsonSerializer.Deserialize<CompanyIGDB[]>(responseBody);
                     if (companies != null && companies.Length > 0)
                     {
@@ -283,8 +283,10 @@ namespace DatabaseManager
                 }
             }
 
+            Console.WriteLine($"No company found with ID {companyId}"); // Print out the company ID if no company is found
             return null; // Return null if no company is found or an error occurs
         }
+
 
 
         public static async Task<GameIGDB> GetGameByName(string gameName)
@@ -305,23 +307,20 @@ namespace DatabaseManager
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
                     var games = JsonSerializer.Deserialize<GameIGDB[]>(responseBody);
-                    if (games != null && games.Length > 0)
+                    if (games[0].involved_companies != null)
                     {
-                        if (games[0].involved_companies != null)
+                        foreach (var involvedCompany in games[0].involved_companies)
                         {
-                            List<CompanyIGDB> developerCompanies = new List<CompanyIGDB>();
-                            foreach (var companyId in games[0].involved_companies)
+                            // Use 'involvedCompany.company' instead of 'company.id'
+                            CompanyIGDB companyIGDB = await FetchCompanyById(involvedCompany);
+                            if(companyIGDB != null)
                             {
-                                var company = await FetchCompanyById(companyId);
-                                if (company != null)
-                                {
-                                    developerCompanies.Add(company);
-                                }
+                                games[0].companies.Add(companyIGDB);
                             }
-                            games[0].developers = developerCompanies; // Update the developers list with fetched company names
+                           
                         }
-                        return games[0];
                     }
+                    return games[0];
                 }
                 else
                 {

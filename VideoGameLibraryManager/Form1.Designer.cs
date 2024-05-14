@@ -38,6 +38,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.AddButton = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Remove = new System.Windows.Forms.Button();
+            this.removeidx = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -143,12 +146,42 @@
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.TextChanged += new System.EventHandler(this.comboBox1_TextChanged);
             // 
+            // Remove
+            // 
+            this.Remove.Location = new System.Drawing.Point(225, 117);
+            this.Remove.Name = "Remove";
+            this.Remove.Size = new System.Drawing.Size(75, 23);
+            this.Remove.TabIndex = 4;
+            this.Remove.Text = "Remove";
+            this.Remove.UseVisualStyleBackColor = true;
+            this.Remove.Click += new System.EventHandler(this.Remove_Click);
+            // 
+            // removeidx
+            // 
+            this.removeidx.Location = new System.Drawing.Point(119, 119);
+            this.removeidx.Name = "removeidx";
+            this.removeidx.Size = new System.Drawing.Size(100, 20);
+            this.removeidx.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(306, 117);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Rename Rblx";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Rename_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.removeidx);
+            this.Controls.Add(this.Remove);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBox1);
@@ -160,6 +193,7 @@
             this.buttonPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -174,6 +208,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button Remove;
+        private System.Windows.Forms.TextBox removeidx;
+        private System.Windows.Forms.Button button1;
     }
 }
 
