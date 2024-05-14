@@ -75,22 +75,6 @@ namespace VideoGameLibraryManager
 
             games = _gameSorter.Sort(games);
 
-            /*
-             * old version:
-            foreach (var game in games)
-            {
-                DetailedGameInfoBox infoBox = new DetailedGameInfoBox();
-                infoBox.GameName = game.name;
-                infoBox.GameGenre = game.genre;
-                infoBox.GamePlaytime = game.playtime.ToString();
-                infoBox.GameRating = game.rating.ToString();
-                // add image - null for test purpose
-                infoBox.GameImage = game.image;
-
-                listFlowLayoutPanel.Controls.Add(infoBox);
-            }
-            */
-
             _gameCollectionViewer.AddItems(games);
 
         }

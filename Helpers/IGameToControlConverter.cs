@@ -27,8 +27,17 @@ using System.Windows.Forms;
 
 namespace Helpers
 {
+    /// <summary>
+    /// Interface that provides a way of converting from game object to any type of control that needs information
+    /// about a game.
+    /// </summary>
     public interface IGameToControlConverter
     {
-        UserControl Convert(Game game);
+        /// <summary>
+        /// transforms game to desired control.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <returns>Custom control object</returns>
+        Control Convert(Game game);
     }
 }

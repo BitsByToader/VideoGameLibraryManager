@@ -25,7 +25,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
-using Helpers;
 
 namespace VideoGameLibraryManager
 {
@@ -73,19 +72,6 @@ namespace VideoGameLibraryManager
             games.Add(new Game("NBA 2k24", "2k", 8, 17, "Sport"));
             games.Add(new Game("Forza Motorsport", "Microsoft", 8.5, 16, "Driving Simulator"));
             games = _gameSorter.Sort(games);
-
-            /*
-             * old version:
-            foreach (var game in games)
-            {
-                BriefGameInfoBox infoBox = new BriefGameInfoBox();
-                infoBox.GameName = game.name;
-                // add game image - null for test purpose
-                infoBox.GameImage = null;
-
-                gridFlowLayoutPanel.Controls.Add(infoBox);
-            }
-            */
 
             _gameCollectionViewer.AddItems(games);             
         }
