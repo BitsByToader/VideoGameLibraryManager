@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="GameLibraryDb.cs" />
     <Compile Include="GameLibraryMemDB.cs" />
+    <Compile Include="LibraryCommons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionInterface.cs" />
   </ItemGroup>
