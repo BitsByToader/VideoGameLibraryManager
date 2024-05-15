@@ -92,7 +92,7 @@ namespace VideoGameLibraryManager
                         return;
                     }
                     Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
-                    _instance.AddGame(GameLibraryDb.ConvertGame_IGDB(game));
+                    _instance.AddGame(Game.ConvertGame_IGDB(game));
                     _instance.GetAllGames();
                     // Update the picturebox with the cover
                     this.Invoke((MethodInvoker)delegate
@@ -156,7 +156,7 @@ namespace VideoGameLibraryManager
                         return;
                     }
                     Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
-                    _memInstance.AddGame(GameLibraryDb.ConvertGame_IGDB(game));
+                    _memInstance.AddGame(Game.ConvertGame_IGDB(game));
                     _memInstance.GetAllGames();
                     // Update the picturebox with the cover
                     this.Invoke((MethodInvoker)delegate
