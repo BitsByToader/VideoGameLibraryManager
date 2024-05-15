@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DatabaseManager;
+using IGDB_Manager;
 using UserDB_Manager;
 
 namespace VideoGameLibraryManager

@@ -14,7 +14,7 @@
  *                                                                        *
  **************************************************************************/
 
-using DatabaseManager;
+using IGDB_Manager;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -24,7 +24,7 @@ using System.Threading.Tasks;
 
 namespace UserDB_Manager
 {
-    // THIS IS THE CLASS TO USE FOR THE GAME OBJECT. USE CONVERTERS FROM 
+    // THIS IS THE CLASS TO USE FOR THE GAME OBJECT. USE CONVERTER METHOD BELOW TO CONVERT FROM IGDB TO GAME
     public class Game
     {
         public static Game ConvertGame_IGDB(GameIGDB game)
@@ -77,4 +77,6 @@ namespace UserDB_Manager
         public bool favorite { get; set; }
 
     }
+
+    /*-------------------------------------------------------------------------------------------------------*/
 }

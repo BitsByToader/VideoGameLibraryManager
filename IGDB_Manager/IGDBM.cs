@@ -25,40 +25,8 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace DatabaseManager
+namespace IGDB_Manager
 {
-    #region Enums
-    public enum PlatformCategory
-    {
-        Console = 1,
-        Arcade = 2,
-        Platform = 3,
-        OperatingSystem = 4,
-        PortableConsole = 5,
-        Computer = 6
-    }
-    public enum WebsiteCategory
-    {
-        Official = 1,
-        Wikia = 2,
-        Wikipedia = 3,
-        Facebook = 4,
-        Twitter = 5,
-        Twitch = 6,
-        Instagram = 8,
-        YouTube = 9,
-        IPhone = 10,
-        IPad = 11,
-        Android = 12,
-        Steam = 13,
-        Reddit = 14,
-        Itch = 15,
-        EpicGames = 16,
-        GOG = 17,
-        Discord = 18
-    }
-    #endregion
-
     /*========================================STEPS I WENT TO AQUIRE THE ACCESS TOKEN========================================
     PS C:\Users\alexd> $clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7"
     PS C:\Users\alexd> $clientSecret = "wpchia4h43d2yayz6vej0rxvgrhmz6"
@@ -70,60 +38,7 @@ namespace DatabaseManager
                                                                                     in case one of u need it -Alex
     ========================================================================================================================*/
 
-    public class GameIGDB
-    {
-        //https://api-docs.igdb.com/#game
-
-        public int id { get; set; }                      // Game's ID
-        public CoverIGDB cover { get; set; }             // Cover image
-        public string name { get; set; }                 // Game's name
-        public string publisher { get; set; }            // Game's publisher
-        public List<GenreIGDB> genres { get; set; }      // Game's genres
-        public List<PlatformIGDB> platforms { get; set; } // Game's platforms
-        public List<int> involved_companies { get; set; }
-        public List<CompanyIGDB> companies { get; set; } // Game's companies
-        public double rating { get; set; }               // Global rating
-        public string coverpath { get; set; }            // Path to cover image
-        public string summary { get; set; }              // Game summary
-        public string executable_path { get; set; }      // Path to executable
-        public int playtime { get; set; }                // Playtime in minutes
-        public List<WebsiteIGDB> websites { get; set; }  // Game's websites
-    }
-    #region CLASSES FOR GAMEIGDB
-    public class CoverIGDB
-    {
-        public int id { get; set; }
-        public string url { get; set; }
-    }
-    public class InvolvedCompany
-    {
-        public int id { get; set; }
-        public CompanyIGDB company { get; set; } // This is now a CompanyIGDB object
-    }
-
-
-    public class CompanyIGDB
-    {
-        public int id { get; set; } // Added id field to match the IGDB API response
-        public string name { get; set; }
-    }
-
-    public class GenreIGDB
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-    }
-    public class PlatformIGDB
-    {
-        public string abbreviation { get; set; }
-        public PlatformCategory category { get; set; }
-    }
-    public class WebsiteIGDB
-    {
-        public string url { get; set; }
-        public WebsiteCategory category { get; set; }
-    }
-    #endregion
+   
     public class IGDB_API
     {
         private static readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";

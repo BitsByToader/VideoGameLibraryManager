@@ -14,7 +14,7 @@
  *                                                                        *
  **************************************************************************/
 
-using DatabaseManager;
+using IGDB_Manager;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

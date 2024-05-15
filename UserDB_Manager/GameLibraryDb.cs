@@ -13,7 +13,7 @@
  *  applications as long as the original copyright notice is included.    *
  *                                                                        *
  **************************************************************************/
-using DatabaseManager;
+using IGDB_Manager;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -27,39 +27,6 @@ public class GameLibraryDb: SessionInterface
     private static GameLibraryDb _instance;
     private static readonly object _lock = new object();
     private readonly string _connectionString;
-
-    public static Game ConvertGame_IGDB(GameIGDB game)
-    {
-        if(game is null)
-        {
-            throw new ArgumentNullException();
-        }
-
-        //Bitmap gameCover = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
-
-        Task<Bitmap> task = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
-        task.Wait();
-
-        var newGame = new Game
-        {
-            id_igdb = game.id,
-            executable_path = "",
-            platforms = game.platforms.Select(x => x.abbreviation).ToList(),
-            playtime = 0,
-            personal_rating = 0,
-            name = game.name,
-            publisher = game.involved_companies[0].ToString(),
-            genre = game.genres.Select(x => x.name).ToList(),
-            developers = game.involved_companies.Select(x => x.ToString()).ToList(),
-            global_rating = (int)game.rating,
-            coverpath = "",
-            cover = task.Result,
-            summary = game.summary,
-            website = game.websites[0].url,
-            favorite = false       
-        };
-        return newGame;
-    }
 
     /// <summary>
     /// Constructor for the GameLibraryDb
