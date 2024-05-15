@@ -28,6 +28,7 @@ namespace UserDB_Manager
         public string website { get; set; }
         public bool favorite { get; set; }
 
+        // DEPRECATED
         public Game LocalUpdateWithDifferences(Game game, bool ignoreID = true)
         {
             if(this is null || game is null)

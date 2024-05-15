@@ -15,9 +15,11 @@ namespace VideoGameLibraryManager
     public partial class Form1 : Form
     {
         GameLibraryDb _instance;
+        GameLibraryMemDB _memInstance;
         public Form1()
         {
             _instance = GameLibraryDb.GetInstance("MyGameLibrary.db");
+            _memInstance = GameLibraryMemDB.GetInstance();
             InitializeComponent();
         }
 
@@ -136,6 +138,68 @@ namespace VideoGameLibraryManager
             Game game = _instance.GetGame(id);
             game.name = "NewName";
             Console.WriteLine(_instance.UpdateGame(id, game));
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string query = comboBox1.Text;
+            //Add the game in mem
+            Task.Run(async () =>
+            {
+                try
+                {
+                    var game = await IGDB_API.GetGameByName(query);
+                    if (game == null)
+                    {
+                        MessageBox.Show("Game not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
+                    _memInstance.AddGame(GameLibraryDb.ConvertGame_IGDB(game));
+                    _memInstance.GetAllGames();
+                    // Update the picturebox with the cover
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        pictureBox1.Image = cover;
+                    });
+                }
+                catch (Exception ex)
+                {
+                    // Handle the exception, e.g. by logging it or showing an error message
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    });
+                }
+            });
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+            if (!int.TryParse(removeidx.Text, out id))
+            {
+                MessageBox.Show("Invalid ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Console.WriteLine("Removing game with id: " + id);
+
+            Console.WriteLine(_memInstance.RemoveGame(id));
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int id = 0;
+            if (!int.TryParse(removeidx.Text, out id))
+            {
+                MessageBox.Show("Invalid ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Console.WriteLine("Renaming game with id: " + id);
+            Game game = _memInstance.GetGame(id);
+            game.name = "NewName";
+            Console.WriteLine(_memInstance.UpdateGame(id, game));
 
         }
     }
