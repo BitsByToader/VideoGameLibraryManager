@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:        GridGameDisplayFormView.cs                                          *
+*  File:        ListGameDisplayFormView.cs                                          *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -14,7 +14,6 @@
 *                                                                                   *
 ************************************************************************************/
 
-using Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,18 +24,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
+using Helpers;
 
 namespace VideoGameLibraryManager
 {
-    public partial class GridGameDisplayFromView : Form, IView
+    public partial class ListGameDisplayFormView : ListViewCollection, IView
     {
         private IViewContainer _parent;
-        private UniqueGameSorter _gameSorter = UniqueGameSorter.Instance();
-        private GameCollectionViewer _gameCollectionViewer = new GameCollectionViewer(new GridViewStyle(), new GameToBriefGameBoxInfo());
-        public GridGameDisplayFromView()
+        private List<Game> _games;
+        private GameSorter _gameSorter = new GameSorter();
+        
+        public ListGameDisplayFormView()
         {
             InitializeComponent();
-            this.Controls.Add(_gameCollectionViewer);
+            InitGames();
+        }
+
+        public void SetSorter(ref  GameSorter sorter)
+        {
+            _gameSorter = sorter;
         }
 
         public void AddToParent(IViewContainer parent)
@@ -56,39 +62,64 @@ namespace VideoGameLibraryManager
 
         public void WillAppear()
         {
-            /*
-             * ToDo:
-             * get data from the database using the controller as a list of games 
-             * 
-            */
-
-            // this code needs refactoring after controlller and model are done
-            List<Game> games = new List<Game>();
-            // demo data
-            games.Add(new Game("GTa V", "Rockstar Games", 9, 1, "Action"));
-            games.Add(new Game("GTa IV", "Rockstar Games", 6, 13, "Action"));
-            games.Add(new Game("GTa VI", "Rockstar Games", 9.5, 10, "Action"));
-            games.Add(new Game("Fornite", "Epic Games", 8, 15, "Battle Royale"));
-            games.Add(new Game("NBA 2k24", "2k", 8, 17, "Sport"));
-            games.Add(new Game("Forza Motorsport", "Microsoft", 8.5, 16, "Driving Simulator"));
-            games = _gameSorter.Sort(games);
-
-            _gameCollectionViewer.AddItems(games);             
+            InitGames();
+            RefreshViews();
         }
 
         public void WillBeAddedToParent()
         {
-
+            
         }
 
         public void WillBeRemovedFromParent()
         {
-
+            
         }
 
         public void WillDisappear()
         {
-            _gameCollectionViewer.ClearItems();
+        }
+
+        public override int Count()
+        {
+            return _games.Count;
+        }
+
+        // test
+        public override void RefreshViews()
+        {
+            InitGames();
+            base.RefreshViews();
+        }
+
+        public override IView ViewAt(int index)
+        {
+            Game game = _games[index];
+
+            DetailedGameInfoBox detailedGameInfoBox = new DetailedGameInfoBox();
+
+            detailedGameInfoBox.GameGenre = game.genre;
+            detailedGameInfoBox.GameImage = game.image;
+            detailedGameInfoBox.GameName = game.name;
+            detailedGameInfoBox.GamePlaytime = game.playtime.ToString();
+            detailedGameInfoBox.GameRating = game.rating.ToString();
+
+            return detailedGameInfoBox;
+        }
+
+        private void InitGames()
+        {
+            _games = new List<Game>
+            {
+                // demo data
+                new Game("GTa V", "Rockstar Games", 9, 1, "Action"),
+                new Game("GTa IV", "Rockstar Games", 6, 13, "Action"),
+                new Game("GTa VI", "Rockstar Games", 9.5, 10, "Action"),
+                new Game("Fornite", "Epic Games", 8, 15, "Battle Royale"),
+                new Game("NBA 2k24", "2k", 8, 17, "Sport"),
+                new Game("Forza Motorsport", "Microsoft", 8.5, 16, "Driving Simulator")
+            };
+            _games = _gameSorter.Sort(_games);
         }
     }
 }

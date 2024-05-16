@@ -49,8 +49,15 @@
     <Compile Include="FormViewContainer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GridViewCollection.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="IView.cs" />
+    <Compile Include="IViewCollection.cs" />
     <Compile Include="IViewContainer.cs" />
+    <Compile Include="ListViewCollection.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

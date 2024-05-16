@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:        ListViewStyle.cs                                                    *
+*  File:                                                                            *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -19,18 +19,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Helpers
 {
     /// <summary>
-    /// Provides flow direction style for a list of elements - TopDown.
+    /// Provides a way of sorting games using a certain algorithm/strategy that can be changed based on needs;
     /// </summary>
-    public class ListViewStyle : IViewStyle
+    public class GameSorter
     {
-        public FlowDirection GetViewStyle()
+        private ISortStyle _sortStyle = new SortByName(); // Implicit, alegem sortare alfabetica
+
+        public GameSorter() { }
+
+        public void SetSortStyle(ISortStyle style)
         {
-            return FlowDirection.TopDown;
+            _sortStyle = style;
+        }
+
+        public List<Game> Sort(List<Game> games)
+        {
+           return _sortStyle.Sort(games);
         }
     }
 }

@@ -61,22 +61,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameDisplayFormView.cs">
+    <Compile Include="Library\BriefGameInfoBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Library\BriefGameInfoBox.Designer.cs">
+      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\DetailedGameInfoBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Library\DetailedGameInfoBox.Designer.cs">
+      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\GameDisplayFormView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameDisplayFormView.Designer.cs">
+    <Compile Include="Library\GameDisplayFormView.Designer.cs">
       <DependentUpon>GameDisplayFormView.cs</DependentUpon>
     </Compile>
-    <Compile Include="GridGameDisplayFromView.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Library\GridGameDisplayFromView.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GridGameDisplayFromView.Designer.cs">
+    <Compile Include="Library\GridGameDisplayFromView.Designer.cs">
       <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListGameDisplayFormView.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Library\ListGameDisplayFormView.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ListGameDisplayFormView.Designer.cs">
+    <Compile Include="Library\ListGameDisplayFormView.Designer.cs">
       <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
     </Compile>
     <Compile Include="MenuFormView.cs">
@@ -85,36 +97,42 @@
     <Compile Include="MenuFormView.Designer.cs">
       <DependentUpon>MenuFormView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Home\Form3.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
+    <Compile Include="Home\Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
+    <Compile Include="Home\Form4.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
+    <Compile Include="Home\Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GameDisplayFormView.resx">
+    <EmbeddedResource Include="Library\BriefGameInfoBox.resx">
+      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\DetailedGameInfoBox.resx">
+      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\GameDisplayFormView.resx">
       <DependentUpon>GameDisplayFormView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GridGameDisplayFromView.resx">
+    <EmbeddedResource Include="Library\GridGameDisplayFromView.resx">
       <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ListGameDisplayFormView.resx">
+    <EmbeddedResource Include="Library\ListGameDisplayFormView.resx">
       <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuFormView.resx">
       <DependentUpon>MenuFormView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
+    <EmbeddedResource Include="Home\Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
+    <EmbeddedResource Include="Home\Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

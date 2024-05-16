@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:        BriefGameInfoBox.cs                                                 *
+*  File:        DetailedGameInfoBox.cs                                              *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -23,21 +23,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WFFramework;
 
 namespace Helpers
 {
     /// <summary>
-    /// Custom User Control that provides limited info about a game - name and artwork; 
+    /// Custom UserControl that provides some info about a game.
     /// </summary>
-    public partial class BriefGameInfoBox : UserControl
+    public partial class DetailedGameInfoBox : UserControl, IView
     {
-        public BriefGameInfoBox()
+        public DetailedGameInfoBox()
         {
             InitializeComponent();
         }
 
         private string _gameName;
-        private Image _gameImage;
+        private string _gameGenre;
+        private string _gameRating;
+        private string _gamePlaytime;
+        private Image  _gameImage;
+        
 
         [Category("Custom Property")]
         public string GameName
@@ -53,5 +58,60 @@ namespace Helpers
             set { _gameImage = value; gamePictureBox.Image = value; }
         }
 
+        [Category("Custom Property")]
+        public string GamePlaytime
+        {
+            get { return "Total Playtime : " + _gamePlaytime; }
+            set { _gamePlaytime = value; gamePlaytime.Text = value; }
+        }
+
+        [Category("Custom Property")]
+        public string GameRating
+        {
+            get { return "Rating : " + _gameRating; }
+            set { _gameRating = value; gameRating.Text = value; }
+        }
+
+        [Category("Custom Property")]
+        public string GameGenre
+        {
+            get { return "Genre : " + _gameGenre; }
+            set { _gameGenre = value; gameGenre.Text = value; }
+        }
+
+        public void AddToParent(IViewContainer parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void removeFromParent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IViewContainer GetParentContainer()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WillAppear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WillDisappear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WillBeAddedToParent()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WillBeRemovedFromParent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

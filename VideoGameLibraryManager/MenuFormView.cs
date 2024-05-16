@@ -24,6 +24,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
+using ExtensionMethods;
 
 namespace VideoGameLibraryManager
 {
@@ -39,6 +40,7 @@ namespace VideoGameLibraryManager
 
         private void homeButton_Click(object sender, EventArgs e)
         {
+            (form3 as Form).MakeContainerable();
             formNavigationStack1.SetRoot(form3);
         }
 
@@ -49,7 +51,8 @@ namespace VideoGameLibraryManager
 
         private void libraryButton_Click(object sender, EventArgs e)
         {
-            formNavigationStack1.PushView(_gameDisplayFormView);
+            (_gameDisplayFormView as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(_gameDisplayFormView);
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
