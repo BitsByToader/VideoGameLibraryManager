@@ -14,6 +14,7 @@
  *                                                                        *
  **************************************************************************/
 
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,26 +50,17 @@ namespace UserDB_Manager
         }
 
         /// <summary>
-        /// Add a game to the list of games
+        /// Add a game to the list of games based on the game object
         /// </summary>
-        /// <param name="game"></param>
-        /// <returns> 1 if the game was added, 0 if the game was not added </returns>
-        public byte AddGame(Game game)
-        {
-            try
-            {             
-                if (game == null)
-                {
-                    throw new ArgumentNullException();
-                }
-            }
-            catch (ArgumentNullException e)
+        /// <param name="game"> The game object to add </param>
+        public void AddGame(ref Game game)
+        {         
+            if (game == null)
             {
-                Console.WriteLine(e.Message);
-                return 1;
+                throw new ArgumentNullException("Jocul este NULL.");
             }
+            
             _games.Add(game);
-            return 0;
         }
 
         /// <summary>
@@ -81,27 +73,95 @@ namespace UserDB_Manager
         }
 
         /// <summary>
-        /// Get a game from the list of games
+        /// Get a game from the list of games based on the game object.
+        /// This will return the first game found with the same name and id. 
         /// </summary>
-        /// <param name="idx"> The index of the game to get </param>
-        /// <returns></returns>
-        public Game GetGame(int idx)
+        /// <param name="game"> The game object to get based on name or id</param>
+        /// <returns> The game object </returns>
+        /// <exception cref="DatabaseException"> No game was found with the fields specified </exception>
+        public Game GetGame(ref Game game)
         {
-            if(idx < 0 || idx >= _games.Count)
+            Game foundGame = null;
+            Game savedGame = null;
+
+            foreach (Game g in _games)
             {
-                return null;
+                if (g.name == game.name)
+                {
+                    if (g.id == game.id)
+                    {
+                        foundGame = g;
+                        break;
+                    }
+                    else if (savedGame == null)
+                    {
+                        savedGame = g;
+                    }
+                }
             }
-            return _games[idx];
+
+            if (foundGame != null)
+            {
+                return foundGame;
+            }
+            else if (savedGame != null)
+            {
+                return savedGame;
+            }
+            else
+            {
+                throw new DatabaseException("No game was found to return");
+            }
         }
 
-        public byte RemoveGame(int idx)
+        /// <summary>
+        /// Remove a game from the list of games based on the game object.
+        /// This will remove the first game found with the same name and id.
+        /// If no game is found with the same name and id, it will remove the first game found with the same name.
+        /// </summary>
+        /// <param name="game"> The game object to remove </param>
+        /// <example> You want to remove a game with name "Roblox" with id 1
+        /// <code>
+        ///     var game = new Game();
+        ///     game.name = "Roblox";
+        ///     game.id = 1;
+        ///     _instance.RemoveGame(ref game);
+        /// </code>
+        /// </example>
+        /// <exception cref="DatabaseException"> No game was found with the fields specified </exception>
+        public void RemoveGame(ref Game game)
         {
-            if (idx < 0 || idx >= _games.Count)
+            Game foundGame = null;
+            Game savedGame = null;
+
+            foreach (Game g in _games)
             {
-                return 1;
+                if (g.name == game.name)
+                {
+                    if (g.id == game.id)
+                    {
+                        foundGame = g;
+                        break;
+                    }
+                    else if (savedGame == null)
+                    {
+                        savedGame = g;
+                    }
+                }
             }
-            _games.RemoveAt(idx);
-            return 0;
+
+            if (foundGame != null)
+            {
+                _games.Remove(foundGame);
+            }
+            else if (savedGame != null)
+            {
+                _games.Remove(savedGame);
+            }
+            else
+            {
+                throw new DatabaseException("No game was found to remove");
+            }
         }
 
         /// <summary>
@@ -110,14 +170,53 @@ namespace UserDB_Manager
         /// <param name="idx"> The index of the game to update </param>
         /// <param name="game">< The game to update </param>
         /// <returns></returns>
-        public byte UpdateGame(int idx, Game game)
+        public void UpdateGame(ref Game currentGame, ref Game updatedGame)
         {
-            if (idx < 0 || idx >= _games.Count)
+            if (currentGame == null || updatedGame == null)
             {
-                return 1;
+                throw new ArgumentNullException("One of the parrameters is null.");
             }
-            _games[idx] = game;
-            return 0;
+
+            int idx = _games.IndexOf(currentGame);
+            if (idx != -1)
+            {
+                _games[idx].LocalUpdateWithDifferences(ref updatedGame);
+            }
+            else
+            {
+                int idxFoundGame=-1;
+                int idxSavedGame=-1;
+
+                foreach (Game g in _games)
+                {
+                    if (g.name == currentGame.name)
+                    {
+                        if (g.id == currentGame.id)
+                        {
+                            idxFoundGame = _games.IndexOf(g);
+                            break;
+                        }
+                        else if (idxSavedGame == -1)
+                        {
+                            idxSavedGame = _games.IndexOf(g);
+                        }
+                    }
+                }
+
+                if(idxFoundGame != -1)
+                {
+                    _games[idx].LocalUpdateWithDifferences(ref updatedGame);
+                }
+                else if(idxSavedGame != -1)
+                {
+                    _games[idx].LocalUpdateWithDifferences(ref updatedGame);
+                }
+                else
+                {
+                    throw new DatabaseException("No game was found to be updated");
+                }
+            }
+
         }
     }
 }

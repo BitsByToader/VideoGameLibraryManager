@@ -1,0 +1,222 @@
+﻿/**************************************************************************
+ *                                                                        *
+ *  File:        DatabaseManager                                          *
+ *  Copyright:   (c) 2024, Darie Alexandru                                *
+ *  E-mail:      alexandru.darie@student.tuiasi.ro                        *
+ *  Description: Namespace for full control over a database via methods.  *
+ *                                                                        *
+ *                                                                        *
+ *  This code and information is provided "as is" without warranty of     *
+ *  any kind, either expressed or implied, including but not limited      *
+ *  to the implied warranties of merchantability or fitness for a         *
+ *  particular purpose. You are free to use this source code in your      *
+ *  applications as long as the original copyright notice is included.    *
+ *                                                                        *
+ **************************************************************************/
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LibraryCommons
+{
+    public class LibraryCommons
+    {
+        public class GameIGDB
+        {
+            //https://api-docs.igdb.com/#game
+
+            public int id { get; set; }                      // Game's ID
+            public CoverIGDB cover { get; set; }             // Cover image
+            public string name { get; set; }                 // Game's name
+            public string publisher { get; set; }            // Game's publisher
+            public List<GenreIGDB> genres { get; set; }      // Game's genres
+            public List<PlatformIGDB> platforms { get; set; } // Game's platforms
+            public List<int> involved_companies { get; set; }
+            public List<CompanyIGDB> companies { get; set; } // Game's companies
+            public double rating { get; set; }               // Global rating
+            public string coverpath { get; set; }            // Path to cover image
+            public string summary { get; set; }              // Game summary
+            public string executable_path { get; set; }      // Path to executable
+            public int playtime { get; set; }                // Playtime in minutes
+            public List<WebsiteIGDB> websites { get; set; }  // Game's websites
+        }
+        #region CLASSES FOR GAMEIGDB
+        public class CoverIGDB
+        {
+            public int id { get; set; }
+            public string url { get; set; }
+        }
+        public class InvolvedCompany
+        {
+            public int id { get; set; }
+            public CompanyIGDB company { get; set; } // This is now a CompanyIGDB object
+        }
+
+
+        public class CompanyIGDB
+        {
+            public int id { get; set; } // Added id field to match the IGDB API response
+            public string name { get; set; }
+        }
+
+        public class GenreIGDB
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+        }
+        public class PlatformIGDB
+        {
+            public string abbreviation { get; set; }
+            public PlatformCategory category { get; set; }
+        }
+        public class WebsiteIGDB
+        {
+            public string url { get; set; }
+            public WebsiteCategory category { get; set; }
+        }
+        #endregion
+        #region Enums
+        public enum PlatformCategory
+        {
+            Console = 1,
+            Arcade = 2,
+            Platform = 3,
+            OperatingSystem = 4,
+            PortableConsole = 5,
+            Computer = 6
+        }
+        public enum WebsiteCategory
+        {
+            Official = 1,
+            Wikia = 2,
+            Wikipedia = 3,
+            Facebook = 4,
+            Twitter = 5,
+            Twitch = 6,
+            Instagram = 8,
+            YouTube = 9,
+            IPhone = 10,
+            IPad = 11,
+            Android = 12,
+            Steam = 13,
+            Reddit = 14,
+            Itch = 15,
+            EpicGames = 16,
+            GOG = 17,
+            Discord = 18
+        }
+        #endregion
+
+    }
+    // THIS IS THE CLASS TO USE FOR THE GAME OBJECT. USE CONVERTER METHOD BELOW TO CONVERT FROM IGDB TO GAME
+    public class Game
+    {
+        public int id { get; set; }
+        public int id_igdb { get; set; }
+        public string executable_path { get; set; }
+        public List<String> platforms { get; set; }
+        public int playtime { get; set; }
+        public int personal_rating { get; set; }
+        public string name { get; set; }
+        public string publisher { get; set; }
+        public List<string> genre { get; set; }
+        public List<string> developers { get; set; }
+        public int global_rating { get; set; }
+        public string coverpath { get; set; }
+        public Bitmap cover { get; set; }
+        public string summary { get; set; }
+        public string website { get; set; }
+        public bool favorite { get; set; }
+
+        /// <summary>
+        /// Update the game with the differences from another game
+        /// </summary>
+        /// <param name="game"> The game to update from </param>
+        /// <param name="ignoreID"> If true, the ID will not be updated </param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"> Thrown when the game is null </exception>
+        public Game LocalUpdateWithDifferences(ref Game game, bool ignoreID = true)
+        {
+            if (this is null || game is null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (this.id_igdb != null && this.id_igdb != game.id_igdb && ignoreID == false)
+            {
+                this.id_igdb = game.id_igdb;
+            }
+
+            if (this.executable_path != null && this.executable_path != game.executable_path)
+            {
+                this.executable_path = game.executable_path;
+            }
+
+            if (this.platforms != null && game.platforms!=null && !this.platforms.SequenceEqual(game.platforms))
+            {
+                this.platforms = new List<string>(game.platforms);
+            }
+
+            if (this.playtime != null && this.playtime != game.playtime)
+            {
+                this.playtime = game.playtime;
+            }
+
+            if (this.personal_rating != null && this.personal_rating != game.personal_rating)
+            {
+                this.personal_rating = game.personal_rating;
+            }
+
+            if (this.name != null && this.name != game.name)
+            {
+                this.name = game.name;
+            }
+
+            if (this.publisher != null && this.publisher != game.publisher)
+            {
+                this.publisher = game.publisher;
+            }
+
+            if (this.genre != null && game.genre!=null && !this.genre.SequenceEqual(game.genre))
+            {
+                this.genre = new List<string>(game.genre);
+            }
+
+            if (this.developers != null && game.developers != null && !this.developers.SequenceEqual(game.developers))
+            {
+                this.developers = new List<string>(game.developers);
+            }
+
+            if (this.global_rating != null && this.global_rating != game.global_rating)
+            {
+                this.global_rating = game.global_rating;
+            }
+
+            if (this.coverpath != null && this.coverpath != game.coverpath)
+            {
+                this.coverpath = game.coverpath;
+            }
+
+            if (this.summary != null && this.summary != game.summary)
+            {
+                this.summary = game.summary;
+            }
+
+            if (this.website != null && this.website != game.website)
+            {
+                this.website = game.website;
+            }
+
+            if (this.favorite != null && this.favorite != game.favorite)
+            {
+                this.favorite = game.favorite;
+            }
+            return this; // used in special cases
+        }
+    }
+}
+
+    /*-------------------------------------------------------------------------------------------------------*/

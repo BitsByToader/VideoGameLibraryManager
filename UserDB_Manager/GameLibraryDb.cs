@@ -14,6 +14,7 @@
  *                                                                        *
  **************************************************************************/
 using IGDB_Manager;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -99,7 +100,7 @@ public class GameLibraryDb: SessionInterface
     /// </summary>
     /// <param name="game"> Object of type Game that will be added to the database </param>
     /// <returns> 0 if ok, others if nothing updated </returns>
-    public Byte AddGame(Game game)
+    public void AddGame(ref Game game)
     {
         using (var connection = new SQLiteConnection(_connectionString))
         {
@@ -164,9 +165,9 @@ public class GameLibraryDb: SessionInterface
 
                 if(command.ExecuteNonQuery() == 0)
                 {
-                    return 1;
-                }
-                return 0; 
+                    //No updated rows
+                    throw new Exception("No update was made");
+                } 
                 
             }
         }
@@ -220,26 +221,40 @@ public class GameLibraryDb: SessionInterface
     }
 
     /// <summary>
-    /// Get a game from the database by id
+    /// Retrieve a game from the database based on a game object (id / name)
     /// </summary>
-    /// <param name="idx"> The index of the game inside database (idx is NOT THE IGDB_ID) </param>
-    /// <returns> The game with the id = idx inside the database </returns>
-    public Game GetGame(int idx)
+    /// <param name="game"> The game object to be filled with the data from the database </param>
+    /// <returns> Retrieved game object </returns>
+    /// <exception cref="Exception"> Thrown if no id or name is specified </exception>"
+    public Game GetGame(ref Game game)  
     {
+        // create a new object based on what you want to search, if you want to get a game
+        // create a new game with id you want to search and use this, if you want to get it by name, do similarly
         using (var connection = new SQLiteConnection(_connectionString))
         {
             connection.Open();
 
             using (var command = new SQLiteCommand(connection))
             {
-                command.CommandText = "SELECT * FROM games WHERE id = @id";
-                command.Parameters.AddWithValue("@id", idx);
+                if (game.id != null)
+                {
+                    command.CommandText = "SELECT * FROM games WHERE id = @id";
+                }
+                else if (game.name != null)
+                {
+                    command.CommandText = "SELECT * FROM games WHERE name = @name";
+                }
+                else
+                {
+                    throw new Exception("No id or name specified");
+                }
+                command.Parameters.AddWithValue("@id", game.id);
 
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        Game game = new Game
+                        Game tempGame = new Game
                         {
                             id = reader.GetInt32(0),
                             id_igdb = reader.GetInt32(1),
@@ -257,23 +272,23 @@ public class GameLibraryDb: SessionInterface
                             website = reader.GetString(13),
                             favorite = reader.GetBoolean(14)
                         };
-
+                        game = tempGame;
                         return game;
                     }
                 }
             }
         }
-
+        game=null;
         return null; // Return null if no game with the specified id is found
     }
 
     /// <summary>
-    /// Update a game in the database
+    /// Update a game in the database based on another game object
     /// </summary>
-    /// <param name="id"> The id of what game to be updated in the database </param>
-    /// <param name="game"> The new game object that will replace the old one </param>
-    /// <returns></returns>
-    public Byte UpdateGame(int id, Game game)
+    /// <param name="currentGame"> The game to be updated </param>
+    /// <param name="updatedGame"> The game with the updated data </param>
+    /// <exception cref="NoRowsUpdatedException"> Thrown if the function does not update any rows </exception>
+    public void UpdateGame(ref Game currentGame,ref Game updatedGame)
     {
         using (var connection = new SQLiteConnection(_connectionString))
         {
@@ -303,22 +318,22 @@ public class GameLibraryDb: SessionInterface
                 ";
 
                 #region Parameters
-                command.Parameters.AddWithValue("@id_igdb", game.id_igdb);
-                command.Parameters.AddWithValue("@executable_path", game.executable_path);
+                command.Parameters.AddWithValue("@id_igdb", currentGame.id_igdb);
+                command.Parameters.AddWithValue("@executable_path", currentGame.executable_path);
                 string platform = "";
-                foreach (var item in game.platforms)
+                foreach (var item in currentGame.platforms)
                 {
                     platform += item + ", ";
                 }
                 command.Parameters.AddWithValue("@platform", platform);
-                command.Parameters.AddWithValue("@playtime", game.playtime);
-                command.Parameters.AddWithValue("@personal_rating", game.personal_rating);
-                command.Parameters.AddWithValue("@name", game.name);
-                command.Parameters.AddWithValue("@publisher", game.publisher);
+                command.Parameters.AddWithValue("@playtime", currentGame.playtime);
+                command.Parameters.AddWithValue("@personal_rating", currentGame.personal_rating);
+                command.Parameters.AddWithValue("@name", currentGame.name);
+                command.Parameters.AddWithValue("@publisher", currentGame.publisher);
                 string genre = "";
-                if (game.genre != null)
+                if (currentGame.genre != null)
                 {
-                    foreach (var item in game.genre)
+                    foreach (var item in currentGame.genre)
                     {
                         genre += item + ", ";
                     }
@@ -328,10 +343,10 @@ public class GameLibraryDb: SessionInterface
                     genre = "Unknown";
                 }
                 command.Parameters.AddWithValue("@genre", genre);
-                if (game.developers != null)
+                if (currentGame.developers != null)
                 {
                     string developer = "";
-                    foreach (var item in game.developers)
+                    foreach (var item in currentGame.developers)
                     {
                         developer += item + ", ";
                     }
@@ -341,30 +356,32 @@ public class GameLibraryDb: SessionInterface
                 {
                     command.Parameters.AddWithValue("@developer", "-");
                 }
-                command.Parameters.AddWithValue("@global_rating", game.global_rating);
-                command.Parameters.AddWithValue("@personal_rating", game.personal_rating);
-                command.Parameters.AddWithValue("@coverpath", game.coverpath);
-                command.Parameters.AddWithValue("@summary", game.summary);
-                command.Parameters.AddWithValue("@website", game.website);
-                command.Parameters.AddWithValue("@favorite", game.favorite);
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@global_rating", currentGame.global_rating);
+                command.Parameters.AddWithValue("@personal_rating", currentGame.personal_rating);
+                command.Parameters.AddWithValue("@coverpath", currentGame.coverpath);
+                command.Parameters.AddWithValue("@summary", currentGame.summary);
+                command.Parameters.AddWithValue("@website", currentGame.website);
+                command.Parameters.AddWithValue("@favorite", currentGame.favorite);
+                command.Parameters.AddWithValue("@id", currentGame.id);
                 #endregion
 
                 if(command.ExecuteNonQuery() == 0)
                 {
-                    return 1;
+                    throw new NoRowsUpdatedException("No update was made");
                 }
-                return 0;
+
+                currentGame = updatedGame;
             }
         }
     }
 
+
     /// <summary>
-    /// Remove a game from the database based on the id
+    /// Remove a game from the database based on the game object
     /// </summary>
-    /// <param name="idx"> The id of the game to be removed </param>
-    /// <returns> 0 if ok, others if nothing updated </returns>
-    public byte RemoveGame(int idx)
+    /// <param name="game"> the game to be removed </param>
+    /// <exception cref="NoRowsUpdatedException"></exception>
+    public void RemoveGame(ref Game game)
     {
         using (var connection = new SQLiteConnection(_connectionString))
         {
@@ -373,13 +390,12 @@ public class GameLibraryDb: SessionInterface
             using (var command = new SQLiteCommand(connection))
             {
                 command.CommandText = "DELETE FROM games WHERE id = @id";
-                command.Parameters.AddWithValue("@id", idx);
+                command.Parameters.AddWithValue("@id", game.id);
 
                 if (command.ExecuteNonQuery() == 0)
                 {
-                    return 1;
+                    throw new NoRowsUpdatedException("No update was made");
                 }
-                return 0;
             }
         }
     }

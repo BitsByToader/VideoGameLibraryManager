@@ -15,6 +15,7 @@
  **************************************************************************/
 
 using IGDB_Manager;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -25,12 +26,16 @@ using System.Threading.Tasks;
 
 namespace UserDB_Manager
 {
+    /// <summary>
+    /// Interface for the database, file or memory, offering the basic CRUD operations
+    /// </summary>
     interface SessionInterface
     {
-        Byte AddGame(Game game);                     // returns an error code , 0 if successful
-        Byte RemoveGame(int idx);                    // returns an error code , 0 if successful
-        Byte UpdateGame(int idx, Game game);         // returns an error code , 0 if successful
+        //
+        void AddGame(ref Game game);                    
+        void RemoveGame(ref Game game);                    
+        void UpdateGame(ref Game initialGame, ref Game updatedGame);
         List<Game> GetAllGames();
-        Game GetGame(int idx);
+        Game GetGame(ref Game game);
     }
 }

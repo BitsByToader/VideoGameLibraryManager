@@ -77,9 +77,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseException.cs" />
     <Compile Include="GameLibraryDb.cs" />
     <Compile Include="GameLibraryMemDB.cs" />
-    <Compile Include="LibraryCommons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionInterface.cs" />
   </ItemGroup>
@@ -91,6 +91,10 @@
     <ProjectReference Include="..\IGDB_Manager\IGDB_Manager.csproj">
       <Project>{adec45ed-550c-4951-b226-c8e8d7046d6e}</Project>
       <Name>IGDB_Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
+      <Project>{2D92EFAC-49EF-4E44-932B-FE844B01215F}</Project>
+      <Name>LibraryCommons</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

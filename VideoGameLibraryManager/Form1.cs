@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using IGDB_Manager;
+using LibraryCommons;
 using UserDB_Manager;
 
 namespace VideoGameLibraryManager
@@ -92,7 +93,8 @@ namespace VideoGameLibraryManager
                         return;
                     }
                     Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
-                    _instance.AddGame(Game.ConvertGame_IGDB(game));
+                    var game2 = IGDB_API.ConvertGame_IGDB(game: ref game);
+                    _instance.AddGame(ref game2);
                     _instance.GetAllGames();
                     // Update the picturebox with the cover
                     this.Invoke((MethodInvoker)delegate
@@ -121,9 +123,10 @@ namespace VideoGameLibraryManager
                 return;
             }
             Console.WriteLine("Removing game with id: " + id);
+            var game = new Game { id = id, name = "Roblox" };
+            _instance.RemoveGame(ref game);
 
-            Console.WriteLine(_instance.RemoveGame(id));
-            
+
         }
 
         private void Rename_Click(object sender, EventArgs e)
@@ -135,9 +138,10 @@ namespace VideoGameLibraryManager
                 return;
             }
             Console.WriteLine("Renaming game with id: " + id);
-            Game game = _instance.GetGame(id);
-            game.name = "NewName";
-            Console.WriteLine(_instance.UpdateGame(id, game));
+            Game game = new Game { id = id, name = "Roblox" };
+                _instance.GetGame(ref game);
+            var g = new Game { id = id, name = "NewName" };
+            _instance.UpdateGame(ref game, ref g);
 
         }
 
@@ -156,7 +160,8 @@ namespace VideoGameLibraryManager
                         return;
                     }
                     Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
-                    _memInstance.AddGame(Game.ConvertGame_IGDB(game));
+                    var game1 = IGDB_API.ConvertGame_IGDB(game: ref game);
+                    _memInstance.AddGame(ref game1);
                     _memInstance.GetAllGames();
                     // Update the picturebox with the cover
                     this.Invoke((MethodInvoker)delegate
@@ -185,7 +190,8 @@ namespace VideoGameLibraryManager
             }
             Console.WriteLine("Removing game with id: " + id);
 
-            Console.WriteLine(_memInstance.RemoveGame(id));
+            var game = new Game { id = id, name = "Roblox" };
+            _memInstance.RemoveGame(ref game);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -197,9 +203,10 @@ namespace VideoGameLibraryManager
                 return;
             }
             Console.WriteLine("Renaming game with id: " + id);
-            Game game = _memInstance.GetGame(id);
-            game.name = "NewName";
-            Console.WriteLine(_memInstance.UpdateGame(id, game));
+            var game1 = new Game { id = id, name = "Roblox" };
+            Game game2 = _memInstance.GetGame(ref game1);
+            game1.name= "NewName";
+            _memInstance.UpdateGame(ref game2, ref game1);
 
         }
     }

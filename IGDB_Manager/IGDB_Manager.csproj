@@ -86,12 +86,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGDBM.cs" />
-    <Compile Include="LibraryCommons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
+      <Project>{2d92efac-49ef-4e44-932b-fe844b01215f}</Project>
+      <Name>LibraryCommons</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -24,6 +24,8 @@ using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using LibraryCommons;
+using static LibraryCommons.LibraryCommons;
 
 namespace IGDB_Manager
 {
@@ -41,6 +43,38 @@ namespace IGDB_Manager
    
     public class IGDB_API
     {
+        public static Game ConvertGame_IGDB(ref GameIGDB game)
+        {
+            if (game is null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            //Bitmap gameCover = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
+
+            Task<Bitmap> task = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
+            task.Wait();
+
+            var newGame = new Game
+            {
+                id_igdb = game.id,
+                executable_path = "",
+                platforms = game.platforms.Select(x => x.abbreviation).ToList(),
+                playtime = 0,
+                personal_rating = 0,
+                name = game.name,
+                publisher = game.involved_companies[0].ToString(),
+                genre = game.genres.Select(x => x.name).ToList(),
+                developers = game.involved_companies.Select(x => x.ToString()).ToList(),
+                global_rating = (int)game.rating,
+                coverpath = "",
+                cover = task.Result,
+                summary = game.summary,
+                website = game.websites[0].url,
+                favorite = false
+            };
+            return newGame;
+        }
         private static readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";
         private static readonly string _accessToken = "lsx3tr1bazjawk7ahz7ipd4i6uphmy";
         private static HttpClient _httpClient;
