@@ -22,6 +22,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using UserDB_Manager;
+using static LibraryCommons.LibraryCommons;
 
 public class GameLibraryDb: SessionInterface
 {
@@ -114,7 +115,7 @@ public class GameLibraryDb: SessionInterface
             VALUES (@id_igdb, @executable_path, @platform, @playtime, @personal_rating, @name, @publisher, @genre, @developer, @global_rating, @coverpath, @summary, @website, @favorite);
         ";
                 #region Parameters
-                command.Parameters.AddWithValue("@id_igdb", game.id);
+                command.Parameters.AddWithValue("@id_igdb", game.id_igdb);
                 command.Parameters.AddWithValue("@executable_path", game.executable_path);
                 string platform = "";
                 foreach (var item in game.platforms)
@@ -192,24 +193,22 @@ public class GameLibraryDb: SessionInterface
                     while (reader.Read())
                     {
 
-                        Game game = new Game
-                        {
-                            id = reader.GetInt32(0),
-                            id_igdb = reader.GetInt32(1),
-                            executable_path = reader.GetString(2),
-                            platforms = reader.GetString(3).Split(',').ToList(),
-                            playtime = reader.GetInt32(4),
-                            personal_rating = reader.GetInt32(5),
-                            name = reader.GetString(6),
-                            publisher = reader.GetString(7),
-                            genre = reader.GetString(8).Split(',').ToList(),
-                            developers = reader.GetString(9).Split(',').ToList(),
-                            global_rating = reader.GetInt32(10),
-                            coverpath = reader.GetString(11),
-                            summary = reader.GetString(12),
-                            website = reader.GetString(13),
-                            favorite = reader.GetBoolean(14)
-                        };
+                        Game game = new Game();
+                        game.id = reader.GetInt32(0);
+                        game.id_igdb = reader.GetInt32(1);
+                        game.executable_path = reader.GetString(2);
+                        game.platforms = reader.GetString(3).Split(',').ToList();
+                        game.playtime = reader.GetInt32(4);
+                        game.personal_rating = reader.GetInt32(5);
+                        game.name = reader.GetString(6);
+                        game.publisher = reader.GetString(7);
+                        game.genre = reader.GetString(8).Split(',').ToList();
+                        game.developers = reader.GetString(9).Split(',').ToList();
+                        game.global_rating = reader.GetInt32(10);
+                        game.coverpath = reader.GetString(11);
+                        game.summary = reader.GetString(12);
+                        game.website = reader.GetString(13);
+                        game.favorite = reader.GetBoolean(14);
 
                         games.Add(game);
                     }
@@ -293,6 +292,7 @@ public class GameLibraryDb: SessionInterface
         using (var connection = new SQLiteConnection(_connectionString))
         {
             connection.Open();
+            currentGame.LocalUpdateWithDifferences(ref updatedGame);
 
             using (var command = new SQLiteCommand(connection))
             {

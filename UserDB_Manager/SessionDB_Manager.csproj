@@ -93,7 +93,7 @@
       <Name>IGDB_Manager</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
-      <Project>{2D92EFAC-49EF-4E44-932B-FE844B01215F}</Project>
+      <Project>{2d92efac-49ef-4e44-932b-fe844b01215f}</Project>
       <Name>LibraryCommons</Name>
     </ProjectReference>
   </ItemGroup>

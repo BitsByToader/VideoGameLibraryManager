@@ -41,7 +41,7 @@ namespace IGDB_Manager
     ========================================================================================================================*/
 
    
-    public class IGDB_API
+    public class IGDB_API : IGDB_Abstract
     {
         public static Game ConvertGame_IGDB(ref GameIGDB game)
         {
@@ -77,7 +77,6 @@ namespace IGDB_Manager
         }
         private static readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";
         private static readonly string _accessToken = "lsx3tr1bazjawk7ahz7ipd4i6uphmy";
-        private static HttpClient _httpClient;
 
         /// <summary>
         /// Task that searches for games by name (query) and returns a list of game names.
@@ -236,8 +235,11 @@ namespace IGDB_Manager
             return null; // Return null if no company is found or an error occurs
         }
 
-
-
+        /// <summary>
+        /// Searches for a game by name and returns the first game found.
+        /// </summary>
+        /// <param name="gameName"> Name of the game inside the IGDB </param>
+        /// <returns> The first result that comes up with the name</returns>
         public static async Task<GameIGDB> GetGameByName(string gameName)
         {
             using (HttpClient client = new HttpClient())

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using IGDB_Manager;
 using LibraryCommons;
 using UserDB_Manager;
+using static LibraryCommons.LibraryCommons;
 
 namespace VideoGameLibraryManager
 {
@@ -139,7 +140,7 @@ namespace VideoGameLibraryManager
             }
             Console.WriteLine("Renaming game with id: " + id);
             Game game = new Game { id = id, name = "Roblox" };
-                _instance.GetGame(ref game);
+            game = _instance.GetGame(ref game);
             var g = new Game { id = id, name = "NewName" };
             _instance.UpdateGame(ref game, ref g);
 
