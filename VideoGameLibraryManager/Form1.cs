@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using IGDB_Manager;
+using API_Manager;
 using LibraryCommons;
 using UserDB_Manager;
 using static LibraryCommons.LibraryCommons;
@@ -18,10 +18,12 @@ namespace VideoGameLibraryManager
     {
         GameLibraryDb _instance;
         GameLibraryMemDB _memInstance;
+        IGDB_Abstract _igdbInstance;
         public Form1()
         {
             _instance = GameLibraryDb.GetInstance("MyGameLibrary.db");
             _memInstance = GameLibraryMemDB.GetInstance();
+            _igdbInstance = IGDB_API.GetInstance("p5fnw9ncdtxnzhc0krntyxipfzr8h7", "lsx3tr1bazjawk7ahz7ipd4i6uphmy");
             InitializeComponent();
         }
 
@@ -52,7 +54,7 @@ namespace VideoGameLibraryManager
             {
                 try
                 {
-                    string result = await IGDB_API.SearchGameNames(query);
+                    string result = await _igdbInstance.SearchGameNames(query);
                     // Update the listbox with the results
                     this.Invoke((MethodInvoker)delegate
                     {
@@ -87,14 +89,14 @@ namespace VideoGameLibraryManager
             {
                 try
                 {
-                    var game = await IGDB_API.GetGameByName(query);
+                    var game = await _igdbInstance.GetGameByName(query);
                     if(game == null)
                     {
                         MessageBox.Show("Game not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
-                    var game2 = IGDB_API.ConvertGame_IGDB(game: ref game);
+                    Bitmap cover = await _igdbInstance.GetGameCoverBitmap_byID(game.id);
+                    var game2 = ((IGDB_API)_igdbInstance).ConvertGame_IGDB(game: ref game);
                     _instance.AddGame(ref game2);
                     _instance.GetAllGames();
                     // Update the picturebox with the cover
@@ -154,14 +156,14 @@ namespace VideoGameLibraryManager
             {
                 try
                 {
-                    var game = await IGDB_API.GetGameByName(query);
+                    var game = await _igdbInstance.GetGameByName(query);
                     if (game == null)
                     {
                         MessageBox.Show("Game not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    Bitmap cover = await IGDB_API.GetGameCoverBitmap_byID_Async(game.id);
-                    var game1 = IGDB_API.ConvertGame_IGDB(game: ref game);
+                    Bitmap cover = await _igdbInstance.GetGameCoverBitmap_byID(game.id);
+                    var game1 = ( (IGDB_API)_igdbInstance).ConvertGame_IGDB(game: ref game);
                     _memInstance.AddGame(ref game1);
                     _memInstance.GetAllGames();
                     // Update the picturebox with the cover

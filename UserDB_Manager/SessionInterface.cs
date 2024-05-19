@@ -14,7 +14,7 @@
  *                                                                        *
  **************************************************************************/
 
-using IGDB_Manager;
+using API_Manager;
 using LibraryCommons;
 using System;
 using System.Collections.Generic;

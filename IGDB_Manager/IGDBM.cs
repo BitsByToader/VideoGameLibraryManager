@@ -27,7 +27,7 @@ using System.Text.Json.Serialization;
 using LibraryCommons;
 using static LibraryCommons.LibraryCommons;
 
-namespace IGDB_Manager
+namespace API_Manager
 {
     /*========================================STEPS I WENT TO AQUIRE THE ACCESS TOKEN========================================
     PS C:\Users\alexd> $clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7"
@@ -43,7 +43,22 @@ namespace IGDB_Manager
    
     public class IGDB_API : IGDB_Abstract
     {
-        public static Game ConvertGame_IGDB(ref GameIGDB game)
+
+        private readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";
+        private readonly string _accessToken = "lsx3tr1bazjawk7ahz7ipd4i6uphmy";
+        private static IGDB_API _instance;
+        private IGDB_API(string clientId, string accessToken) : base(clientId, accessToken) { }
+
+        public static IGDB_API GetInstance(string clientId, string accessToken)
+        {
+            if (_instance == null)
+            {
+                _instance = new IGDB_API(clientId, accessToken);
+            }
+            return _instance;
+        }
+
+        public Game ConvertGame_IGDB(ref GameIGDB game)
         {
             if (game is null)
             {
@@ -52,7 +67,7 @@ namespace IGDB_Manager
 
             //Bitmap gameCover = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
 
-            Task<Bitmap> task = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
+            Task<Bitmap> task = this.GetGameCoverBitmap_byID(game.cover.id);
             task.Wait();
 
             var newGame = new Game
@@ -75,8 +90,6 @@ namespace IGDB_Manager
             };
             return newGame;
         }
-        private static readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";
-        private static readonly string _accessToken = "lsx3tr1bazjawk7ahz7ipd4i6uphmy";
 
         /// <summary>
         /// Task that searches for games by name (query) and returns a list of game names.
@@ -84,7 +97,7 @@ namespace IGDB_Manager
         /// <param name="query">The search query.</param>
         /// <returns> A list of game names that match the search query. USE GetGameByName to get game info</returns>
         /// <exception cref="Exception"></exception>
-        public static async Task<string> SearchGameNames(string query, bool appendID = false)
+        public override async Task<string> SearchGameNames(string query, bool appendID = false)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -128,7 +141,7 @@ namespace IGDB_Manager
         /// <param name="gameId"> The ID of the game you want to get the cover image of.</param>
         /// <returns> A Bitmap of the game's cover image.</returns>
         /// <exception cref="Exception"> Throws an exception if the request fails.</exception>
-        public static async Task<Bitmap> GetGameCoverBitmap_byID_Async(int gameId)
+        public override async Task<Bitmap> GetGameCoverBitmap_byID(int gameId)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -179,7 +192,7 @@ namespace IGDB_Manager
 
             return null;
         }
-        public static async Task<Bitmap> GetGameCoverBitmapByUrlAsync(string imageUrl)
+        public override async Task<Bitmap> GetGameCoverBitmapByUrl(string imageUrl)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -202,7 +215,7 @@ namespace IGDB_Manager
                 }
             }
         }
-        public static async Task<CompanyIGDB> FetchCompanyById(int companyId)
+        public override async Task<CompanyIGDB> FetchCompanyById(int companyId)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -240,7 +253,7 @@ namespace IGDB_Manager
         /// </summary>
         /// <param name="gameName"> Name of the game inside the IGDB </param>
         /// <returns> The first result that comes up with the name</returns>
-        public static async Task<GameIGDB> GetGameByName(string gameName)
+        public override async Task<GameIGDB> GetGameByName(string gameName)
         {
             using (HttpClient client = new HttpClient())
             {
