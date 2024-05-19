@@ -3,12 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameLibraryManager", "VideoGameLibraryManager\VideoGameLibraryManager.csproj", "{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46} = {A6D61B9B-5297-4032-AB76-BAC07F8E5C46}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WFFramework", "WFFramework\WFFramework.csproj", "{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGDB_Manager", "IGDB_Manager\IGDB_Manager.csproj", "{ADEC45ED-550C-4951-B226-C8E8D7046D6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SessionDB_Manager", "UserDB_Manager\SessionDB_Manager.csproj", "{0627D170-991B-42B3-BFE7-A415CC24394F}"
@@ -20,24 +16,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryCommons", "LibraryCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameLibraryManager", "VideoGameLibraryManager\VideoGameLibraryManager.csproj", "{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ADEC45ED-550C-4951-B226-C8E8D7046D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ADEC45ED-550C-4951-B226-C8E8D7046D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADEC45ED-550C-4951-B226-C8E8D7046D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +40,14 @@ Global
 		{2D92EFAC-49EF-4E44-932B-FE844B01215F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D92EFAC-49EF-4E44-932B-FE844B01215F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D92EFAC-49EF-4E44-932B-FE844B01215F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

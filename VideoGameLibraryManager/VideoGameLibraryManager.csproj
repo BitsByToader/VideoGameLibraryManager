@@ -145,23 +145,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuFormView.resx">
       <DependentUpon>MenuFormView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Home\Form3.resx">
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -184,6 +172,7 @@
     <ProjectReference Include="..\WFFramework\WFFramework.csproj">
       <Project>{74d6dd38-ffb5-405e-a700-b44dede8ace7}</Project>
       <Name>WFFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IGDB_Manager\IGDB_Manager.csproj">
       <Project>{adec45ed-550c-4951-b226-c8e8d7046d6e}</Project>
       <Name>IGDB_Manager</Name>
