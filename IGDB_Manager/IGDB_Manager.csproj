@@ -87,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGDBM.cs" />
-    <Compile Include="IGDB_Abstract.cs" />
     <Compile Include="API_INTERFACE.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -41,18 +41,23 @@ namespace API_Manager
     ========================================================================================================================*/
 
    
-    public class IGDB_API : IGDB_Abstract
+    public class IGDB_API : API_INTERFACE
     {
 
         private readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";
         private readonly string _accessToken = "lsx3tr1bazjawk7ahz7ipd4i6uphmy";
         private static IGDB_API _instance;
+        
         /// <summary>
         /// Constructor for IGDB_API. Requires a client ID and an access token.
         /// </summary>
         /// <param name="clientId"> The client ID for the IGDB API.</param>
         /// <param name="accessToken"> The access token for the IGDB API.</param>
-        private IGDB_API(string clientId, string accessToken) : base(clientId, accessToken) { }
+        private IGDB_API(string clientId, string accessToken)
+        {
+            _clientId = clientId;
+            _accessToken = accessToken;
+        }
 
         /// <summary>
         /// Get an instance of the IGDB_API class.
@@ -108,7 +113,7 @@ namespace API_Manager
         /// <param name="query">The search query.</param>
         /// <returns> A list of game names that match the search query. USE GetGameByName to get game info</returns>
         /// <exception cref="Exception"></exception>
-        public override async Task<string> SearchGameNames(string query, bool appendID = false)
+        public async Task<string> SearchGameNames(string query, bool appendID = false)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -152,7 +157,7 @@ namespace API_Manager
         /// <param name="gameId"> The ID of the game you want to get the cover image of.</param>
         /// <returns> A Bitmap of the game's cover image.</returns>
         /// <exception cref="Exception"> Throws an exception if the request fails.</exception>
-        public override async Task<Bitmap> GetGameCoverBitmap_byID(int gameId)
+        public async Task<Bitmap> GetGameCoverBitmap_byID(int gameId)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -203,7 +208,7 @@ namespace API_Manager
 
             return null;
         }
-        public override async Task<Bitmap> GetGameCoverBitmapByUrl(string imageUrl)
+        public async Task<Bitmap> GetGameCoverBitmapByUrl(string imageUrl)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -226,7 +231,7 @@ namespace API_Manager
                 }
             }
         }
-        public override async Task<CompanyIGDB> FetchCompanyById(int companyId)
+        public async Task<CompanyIGDB> FetchCompanyById(int companyId)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -264,7 +269,7 @@ namespace API_Manager
         /// </summary>
         /// <param name="gameName"> Name of the game inside the IGDB </param>
         /// <returns> The first result that comes up with the name</returns>
-        public override async Task<GameIGDB> GetGameByName(string gameName)
+        public async Task<GameIGDB> GetGameByName(string gameName)
         {
             using (HttpClient client = new HttpClient())
             {
