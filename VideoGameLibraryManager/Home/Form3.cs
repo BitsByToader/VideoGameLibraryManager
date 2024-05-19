@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExtensionMethods;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -67,7 +68,9 @@ namespace VideoGameLibraryManager
         private void button1_Click(object sender, EventArgs e)
         {
             FormNavigationStack nav = _parent as FormNavigationStack;
-            nav.PushView(new Form4(1));
+            Form4 newView = new Form4(1);
+            newView.MakeContainerable();
+            nav.PushView(newView);
         }
     }
 }

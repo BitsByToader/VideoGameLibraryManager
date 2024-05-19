@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{74D6DD38-FFB5-405E-A700-B44DEDE8ACE7}</ProjectGuid>
+    <ProjectGuid>{A6D61B9B-5297-4032-AB76-BAC07F8E5C46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WFFramework</RootNamespace>
-    <AssemblyName>WFFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <RootNamespace>Helpers</RootNamespace>
+    <AssemblyName>Helpers</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -43,28 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormNavigationStack.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FormViewContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GridViewCollection.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="IView.cs" />
-    <Compile Include="IViewCollection.cs" />
-    <Compile Include="IViewContainer.cs" />
-    <Compile Include="ListViewCollection.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GameSorter\GameSorter.cs" />
+    <Compile Include="GameSorter\Sorters\ISortStyle.cs" />
+    <Compile Include="GameSorter\Sorters\SortByGenre.cs" />
+    <Compile Include="GameSorter\Sorters\SortByName.cs" />
+    <Compile Include="GameSorter\Sorters\SortByPlaytime.cs" />
+    <Compile Include="GameSorter\Sorters\SortByPublisher.cs" />
+    <Compile Include="GameSorter\Sorters\SortByRating.cs" />
+    <Compile Include="GameSorter\UniqueGameSorter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Helpers\Helpers.csproj">
-      <Project>{a6d61b9b-5297-4032-ab76-bac07f8e5c46}</Project>
-      <Name>Helpers</Name>
-    </ProjectReference>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

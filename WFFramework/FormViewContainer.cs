@@ -63,17 +63,15 @@ namespace WFFramework
         /// Changes the view which the container displays. Notifies the current view that it will dissapear and notifies the new view it's about to be displayed.
         /// Efectively changes the state of the container 'view'.
         /// </summary>
-        /// <param name="view">The new view which will be rendered inside the container.</param>
+        /// <param name="view">The new view which will be rendered inside the container. NOTE: This implementation of IViewContainer *requires* that views implement Windows.Forms.Control also!</param>
         public void ChangeView(IView view)
         {
-            Form wrappedForm = (Form) view; // will throw if view is not derived from Form
-            wrappedForm.TopLevel = false;
-            wrappedForm.FormBorderStyle = FormBorderStyle.None;
+            Control wrappedForm = (Control) view; // will throw if view is not derived from Form
 
             if (Controls.Count == 1 && _currentView != null) // We already have a view in the container
             {
                 _currentView.WillDisappear();
-                Form curr = Controls[0] as Form; // we only accept Forms so this shouldn't fail, can also use currentView cast as Form which should also not fail
+                Control curr = Controls[0]; // we only accept Forms so this shouldn't fail, can also use currentView cast as Form which should also not fail
                 curr.Hide(); // not necessary (from limited testing), but intuition says this should be done
             }
 

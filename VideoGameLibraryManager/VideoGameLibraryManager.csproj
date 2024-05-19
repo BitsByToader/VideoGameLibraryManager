@@ -13,8 +13,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,47 +78,78 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Library\BriefGameInfoBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Library\BriefGameInfoBox.Designer.cs">
+      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\DetailedGameInfoBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Library\DetailedGameInfoBox.Designer.cs">
+      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\GameDisplayFormView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Library\GameDisplayFormView.Designer.cs">
+      <DependentUpon>GameDisplayFormView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Library\GridGameDisplayFromView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Library\GridGameDisplayFromView.Designer.cs">
+      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library\ListGameDisplayFormView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Library\ListGameDisplayFormView.Designer.cs">
+      <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuFormView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
+    <Compile Include="MenuFormView.Designer.cs">
+      <DependentUpon>MenuFormView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
+    <Compile Include="Home\Form4.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
+    <Compile Include="Home\Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Library\BriefGameInfoBox.resx">
+      <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="Library\DetailedGameInfoBox.resx">
+      <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="Library\GameDisplayFormView.resx">
+      <DependentUpon>GameDisplayFormView.cs</DependentUpon>
     </EmbeddedResource>
-=======
->>>>>>> database_branch
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Include="Library\GridGameDisplayFromView.resx">
+      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Library\ListGameDisplayFormView.resx">
+      <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuFormView.resx">
+      <DependentUpon>MenuFormView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Home\Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -121,11 +165,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+    <ProjectReference Include="..\Helpers\Helpers.csproj">
+      <Project>{a6d61b9b-5297-4032-ab76-bac07f8e5c46}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WFFramework\WFFramework.csproj">
       <Project>{74d6dd38-ffb5-405e-a700-b44dede8ace7}</Project>
       <Name>WFFramework</Name>
-=======
+    </ProjectReference>
     <ProjectReference Include="..\IGDB_Manager\IGDB_Manager.csproj">
       <Project>{adec45ed-550c-4951-b226-c8e8d7046d6e}</Project>
       <Name>IGDB_Manager</Name>
@@ -137,8 +184,19 @@
     <ProjectReference Include="..\UserDB_Manager\SessionDB_Manager.csproj">
       <Project>{0627d170-991b-42b3-bfe7-a415cc24394f}</Project>
       <Name>SessionDB_Manager</Name>
->>>>>>> database_branch
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
