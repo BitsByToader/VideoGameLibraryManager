@@ -47,8 +47,19 @@ namespace API_Manager
         private readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";
         private readonly string _accessToken = "lsx3tr1bazjawk7ahz7ipd4i6uphmy";
         private static IGDB_API _instance;
+        /// <summary>
+        /// Constructor for IGDB_API. Requires a client ID and an access token.
+        /// </summary>
+        /// <param name="clientId"> The client ID for the IGDB API.</param>
+        /// <param name="accessToken"> The access token for the IGDB API.</param>
         private IGDB_API(string clientId, string accessToken) : base(clientId, accessToken) { }
 
+        /// <summary>
+        /// Get an instance of the IGDB_API class.
+        /// </summary>
+        /// <param name="clientId"> The client ID for the IGDB API.</param>
+        /// <param name="accessToken"> The access token for the IGDB API.</param>
+        /// <returns> An instance of the IGDB_API class.</returns>
         public static IGDB_API GetInstance(string clientId, string accessToken)
         {
             if (_instance == null)
