@@ -56,5 +56,11 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
+      <Project>{2D92EFAC-49EF-4E44-932B-FE844B01215F}</Project>
+      <Name>LibraryCommons</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

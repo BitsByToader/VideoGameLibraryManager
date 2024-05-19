@@ -15,6 +15,7 @@
 ************************************************************************************/
 
 using Helpers;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,7 +82,6 @@ namespace VideoGameLibraryManager
             _games.Clear();
         }
 
-        // test
         public override void RefreshViews()
         {
             InitGames();
@@ -99,25 +99,15 @@ namespace VideoGameLibraryManager
 
             BriefGameInfoBox userControl = new BriefGameInfoBox();
 
-            userControl.GameImage = game.image;
+            userControl.GameImage = game.cover;
             userControl.GameName = game.name;
 
             return userControl;
         }
 
-        // TODO: Remove me later...
         private void InitGames()
         {
-            _games = new List<Game>
-            {
-                // demo data
-                new Game("GTa V", "Rockstar Games", 9, 1, "Action"),
-                new Game("GTa IV", "Rockstar Games", 6, 13, "Action"),
-                new Game("GTa VI", "Rockstar Games", 9.5, 10, "Action"),
-                new Game("Fornite", "Epic Games", 8, 15, "Battle Royale"),
-                new Game("NBA 2k24", "2k", 8, 17, "Sport"),
-                new Game("Forza Motorsport", "Microsoft", 8.5, 16, "Driving Simulator")
-            };
+            // TODO: Get list of games here from data layer...
             _games = _gameSorter.Sort(_games);
         }
     }

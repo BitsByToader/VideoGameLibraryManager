@@ -14,6 +14,7 @@
 *                                                                                   *
 ************************************************************************************/
 
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Helpers
     {
         public List<Game> Sort(List<Game> games)
         {
-            return games.OrderBy(game => game.rating).ToList();
+            return games.OrderBy(game => game.global_rating).ToList();
         }
     }
 }

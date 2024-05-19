@@ -169,6 +169,10 @@
       <Project>{a6d61b9b-5297-4032-ab76-bac07f8e5c46}</Project>
       <Name>Helpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
+      <Project>{2d92efac-49ef-4e44-932b-fe844b01215f}</Project>
+      <Name>LibraryCommons</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WFFramework\WFFramework.csproj">
       <Project>{74d6dd38-ffb5-405e-a700-b44dede8ace7}</Project>
       <Name>WFFramework</Name>
@@ -176,10 +180,6 @@
     <ProjectReference Include="..\IGDB_Manager\IGDB_Manager.csproj">
       <Project>{adec45ed-550c-4951-b226-c8e8d7046d6e}</Project>
       <Name>IGDB_Manager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
-      <Project>{2D92EFAC-49EF-4E44-932B-FE844B01215F}</Project>
-      <Name>LibraryCommons</Name>
     </ProjectReference>
     <ProjectReference Include="..\UserDB_Manager\SessionDB_Manager.csproj">
       <Project>{0627d170-991b-42b3-bfe7-a415cc24394f}</Project>

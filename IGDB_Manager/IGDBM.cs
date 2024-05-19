@@ -25,7 +25,6 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using LibraryCommons;
-using static LibraryCommons.LibraryCommons;
 
 namespace API_Manager
 {
