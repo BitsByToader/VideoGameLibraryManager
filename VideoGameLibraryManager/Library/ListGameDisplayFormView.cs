@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
 using Helpers;
+using LibraryCommons;
 
 namespace VideoGameLibraryManager
 {
@@ -85,7 +86,6 @@ namespace VideoGameLibraryManager
             return _games.Count;
         }
 
-        // test
         public override void RefreshViews()
         {
             InitGames();
@@ -98,27 +98,19 @@ namespace VideoGameLibraryManager
 
             DetailedGameInfoBox detailedGameInfoBox = new DetailedGameInfoBox();
 
-            detailedGameInfoBox.GameGenre = game.genre;
-            detailedGameInfoBox.GameImage = game.image;
+            detailedGameInfoBox.GameGenre = String.Join(", ", game.genre);
+            detailedGameInfoBox.GameImage = game.cover;
             detailedGameInfoBox.GameName = game.name;
             detailedGameInfoBox.GamePlaytime = game.playtime.ToString();
-            detailedGameInfoBox.GameRating = game.rating.ToString();
+            detailedGameInfoBox.GameRating = game.global_rating.ToString();
 
             return detailedGameInfoBox;
         }
 
         private void InitGames()
         {
-            _games = new List<Game>
-            {
-                // demo data
-                new Game("GTa V", "Rockstar Games", 9, 1, "Action"),
-                new Game("GTa IV", "Rockstar Games", 6, 13, "Action"),
-                new Game("GTa VI", "Rockstar Games", 9.5, 10, "Action"),
-                new Game("Fornite", "Epic Games", 8, 15, "Battle Royale"),
-                new Game("NBA 2k24", "2k", 8, 17, "Sport"),
-                new Game("Forza Motorsport", "Microsoft", 8.5, 16, "Driving Simulator")
-            };
+            // TODO: Get list of games here from data layer...
+            _games = new List<Game>();
             _games = _gameSorter.Sort(_games);
         }
     }
