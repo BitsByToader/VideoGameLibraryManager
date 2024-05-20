@@ -54,7 +54,6 @@ namespace VideoGameLibraryManager
 
         private void libraryButton_Click(object sender, EventArgs e)
         {
-            _gameDisplayFormView = new GameDisplayFormView();
             (_gameDisplayFormView as Form).MakeContainerable();
             formNavigationStack1.SetRoot(_gameDisplayFormView);
         }
