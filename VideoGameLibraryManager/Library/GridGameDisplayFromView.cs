@@ -108,7 +108,7 @@ namespace VideoGameLibraryManager
         private void InitGames()
         {
             // TODO: Get list of games here from data layer...
-            _games = new List<Game>();
+            _games = GameLibraryDb.GetInstance("user_library.db").GetAllGames();
             _games = _gameSorter.Sort(_games);
         }
     }

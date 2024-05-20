@@ -29,7 +29,7 @@ namespace UserDB_Manager
     /// <summary>
     /// Interface for the database, file or memory, offering the basic CRUD operations
     /// </summary>
-    interface SessionInterface
+    public interface SessionInterface
     {
         //
         void AddGame(ref Game game);                    

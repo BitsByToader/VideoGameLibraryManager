@@ -25,13 +25,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
 using ExtensionMethods;
+using VideoGameLibraryManager.AddGame;
 
 namespace VideoGameLibraryManager
 {
     public partial class MenuFormView : Form
     {
-        IView form3 = new Form3();
+        private IView form3 = new Form3();
         private IView _gameDisplayFormView = new GameDisplayFormView();
+        private IView _addGameFormView = new AddGameFormView();
 
         public MenuFormView()
         {
@@ -46,11 +48,13 @@ namespace VideoGameLibraryManager
 
         private void addGameButton_Click(object sender, EventArgs e)
         {
-            
+            (_addGameFormView as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(_addGameFormView);
         }
 
         private void libraryButton_Click(object sender, EventArgs e)
         {
+            _gameDisplayFormView = new GameDisplayFormView();
             (_gameDisplayFormView as Form).MakeContainerable();
             formNavigationStack1.SetRoot(_gameDisplayFormView);
         }

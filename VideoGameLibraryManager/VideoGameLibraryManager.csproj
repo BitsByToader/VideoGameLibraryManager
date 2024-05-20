@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddGame\AddGameFormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddGame\AddGameFormView.Designer.cs">
+      <DependentUpon>AddGameFormView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Library\BriefGameInfoBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddGame\AddGameFormView.resx">
+      <DependentUpon>AddGameFormView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Library\BriefGameInfoBox.resx">
       <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,9 +207,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AddGame\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
