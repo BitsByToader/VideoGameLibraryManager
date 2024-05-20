@@ -87,7 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IGDBM.cs" />
-    <Compile Include="API_INTERFACE.cs" />
+    <Compile Include="IGameAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
