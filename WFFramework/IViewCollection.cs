@@ -18,6 +18,12 @@ namespace WFFramework
         /// Instructs the collection view that the dataset has changed and needs to redraw its contents.
         /// </summary>
         void RefreshViews();
+
+        /// <summary>
+        /// Provides refreshed data to the collection view, than redraws its contents.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
         void RefreshViews<T>(List<T> data);
 
         /// <summary>
