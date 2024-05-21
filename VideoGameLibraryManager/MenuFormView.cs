@@ -56,7 +56,7 @@ namespace VideoGameLibraryManager
         private void libraryButton_Click(object sender, EventArgs e)
         {
             _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel());
-            (_gameLibraryView as GameLibraryView).SetController(ref _libraryController);
+            (_gameLibraryView as IGameLibraryView).SetController(ref _libraryController);
 
             (_gameLibraryView as Form).MakeContainerable();
             formNavigationStack1.SetRoot(_gameLibraryView);

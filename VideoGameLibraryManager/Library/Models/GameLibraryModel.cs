@@ -15,6 +15,7 @@ namespace VideoGameLibraryManager.Library.Models
         private SessionInterface _userDB = GameLibraryDb.GetInstance("user_library.db");
         private GameSorter _sorter = new GameSorter();
         private ISortStyle _sortStyle;
+        private DisplayType _libraryDisplayType;
 
         public GameLibraryModel()
         {
@@ -51,5 +52,20 @@ namespace VideoGameLibraryManager.Library.Models
         }
 
         public ISortStyle GetSortStyle() => _sortStyle;
+
+        public void SetDisplayType(DisplayType type)
+        {
+            _libraryDisplayType = type;
+        }
+
+        public DisplayType GetDisplayType()
+        {
+            switch (_libraryDisplayType)
+            {
+                case DisplayType.List: return DisplayType.List;
+                case DisplayType.Grid: return DisplayType.Grid;
+                default: return DisplayType.Grid;
+            }
+        }
     }
 }

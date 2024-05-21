@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace VideoGameLibraryManager.Library
 {
     public interface IGameLibraryView: IView
     {
-        void ChangeView(IViewCollection viewCollection);
+        void ChangeView(DisplayType type);
+        void SetController(ref IGameLibraryController controller);
     }
 }

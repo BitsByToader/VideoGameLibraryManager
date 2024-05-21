@@ -18,6 +18,10 @@ namespace VideoGameLibraryManager.Library.Models
         /// <param name="style"></param>
         void SetSortStyle(ISortStyle style);
 
+        void SetDisplayType(DisplayType type);
+
+        DisplayType GetDisplayType();
+
         List<Game> GetAllGames();
 
         /// <summary>

@@ -59,8 +59,6 @@ namespace VideoGameLibraryManager
         void IView.WillAppear()
         {
             _controller.SetDisplayType(DisplayType.Grid);
-
-            ChangeView(new GridGameDisplayFormView(_controller.GetGames()));
         }
 
         void IView.WillBeAddedToParent()
@@ -85,9 +83,6 @@ namespace VideoGameLibraryManager
             listViewButton.BackColor = Color.White;
 
             _controller.SetDisplayType(DisplayType.Grid);
-            
-            ChangeView(new GridGameDisplayFormView(_controller.GetGames()));
-
         }
 
         private void listViewButton_Click(object sender, EventArgs e)
@@ -96,8 +91,6 @@ namespace VideoGameLibraryManager
             gridViewButton.BackColor = Color.White;
 
             _controller.SetDisplayType(DisplayType.List);
-            
-            ChangeView(new ListGameDisplayFormView(_controller.GetGames()));
 
         }
 
@@ -114,12 +107,17 @@ namespace VideoGameLibraryManager
                 default: _controller.SetSortStyle(new SortByName()); break;
             }
 
-            _viewCollection.RefreshViews<Game>(_controller.GetGames());
+            //_viewCollection.RefreshViews<Game>(_controller.GetGames());
+            _controller.SetDisplayType(_controller.GetDisplayType());   
         }
 
-        public void ChangeView(IViewCollection viewCollection)
+        public void ChangeView(DisplayType type)
         {
-            _viewCollection = (viewCollection != null) ? viewCollection : new GridGameDisplayFormView(_controller.GetGames());
+            switch (type)
+            {
+                case DisplayType.Grid: _viewCollection = new GridGameDisplayFormView(_controller.GetGames()); break;
+                case DisplayType.List: _viewCollection = new ListGameDisplayFormView(_controller.GetGames()); break;
+            }
 
             gameDisplayViewContainer.ChangeView(_viewCollection as IView);
         }

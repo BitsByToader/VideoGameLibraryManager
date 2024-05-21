@@ -14,18 +14,19 @@ namespace VideoGameLibraryManager.Library
     {
         private IGameLibraryView _view;
         private IGameLibraryModel _model;
-        private DisplayType _libraryDisplayType;
 
         public GameLibraryController(ref IView view, IGameLibraryModel model)
         {
             _view = view as IGameLibraryView;
             _model = model;
-            _libraryDisplayType = DisplayType.Grid;
+            _model.SetDisplayType(DisplayType.Grid);
         }
 
         public void SetDisplayType(DisplayType type)
         {
-            _libraryDisplayType = type;
+            _model.SetDisplayType(type);
+
+            _view.ChangeView(type);
         }
 
         public void SetSortStyle(ISortStyle style)
@@ -40,7 +41,7 @@ namespace VideoGameLibraryManager.Library
         }
 
         public ISortStyle GetSortStyle() => _model.GetSortStyle();
-        public DisplayType GetDisplayType() => _libraryDisplayType;
+        public DisplayType GetDisplayType() => _model.GetDisplayType();
 
         public List<Game> GetGames() => _model.GetAllGames();
     }

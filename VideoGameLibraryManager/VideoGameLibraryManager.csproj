@@ -91,6 +91,7 @@
       <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Library\Controllers\GameLibraryController.cs" />
+    <Compile Include="Library\Models\DisplayType.cs" />
     <Compile Include="Library\Views\GameLibraryView.cs">
       <SubType>Form</SubType>
     </Compile>
