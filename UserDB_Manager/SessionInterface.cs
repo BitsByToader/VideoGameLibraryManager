@@ -23,7 +23,6 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using static LibraryCommons.LibraryCommons;
 
 namespace UserDB_Manager
 {
@@ -37,7 +36,6 @@ namespace UserDB_Manager
         /// </summary>
         /// <param name="game"> The game to be added </param>
         void AddGame(ref Game game);                    
-
         /// <summary>
         /// This method is used to remove a game from the database
         /// </summary>
