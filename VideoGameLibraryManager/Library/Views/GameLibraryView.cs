@@ -25,17 +25,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
 using Helpers;
+using VideoGameLibraryManager.Library;
 
 namespace VideoGameLibraryManager
 {
-    public partial class GameDisplayFormView : Form, IView
+    public partial class GameLibraryView : Form, IGameLibraryView
     {
         private FormNavigationStack _parent;
         // TODO: De setat aici style-ul in functie de ce are combobox-ul implicit
         private GameSorter _sorter = new GameSorter();
         private IViewCollection _viewCollection;
 
-        public GameDisplayFormView()
+        public GameLibraryView()
         {
             InitializeComponent();
         }
@@ -117,6 +118,11 @@ namespace VideoGameLibraryManager
             }
 
             _viewCollection.RefreshViews();
+        }
+
+        void IGameLibraryView.SetController(IGameLibraryController controller)
+        {
+            throw new NotImplementedException();
         }
     }
 }
