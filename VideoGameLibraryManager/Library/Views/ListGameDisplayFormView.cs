@@ -26,6 +26,7 @@ using System.Windows.Forms;
 using WFFramework;
 using Helpers;
 using LibraryCommons;
+using VideoGameLibraryManager.Library;
 
 namespace VideoGameLibraryManager
 {
@@ -33,17 +34,11 @@ namespace VideoGameLibraryManager
     {
         private IViewContainer _parent;
         private List<Game> _games;
-        private GameSorter _gameSorter = new GameSorter();
-        
-        public ListGameDisplayFormView()
+
+        public ListGameDisplayFormView(List<Game> games)
         {
             InitializeComponent();
-            InitGames();
-        }
-
-        public void SetSorter(ref  GameSorter sorter)
-        {
-            _gameSorter = sorter;
+            _games = games;
         }
 
         public void AddToParent(IViewContainer parent)
@@ -63,8 +58,7 @@ namespace VideoGameLibraryManager
 
         public void WillAppear()
         {
-            InitGames();
-            RefreshViews();
+            this.RefreshViews();
         }
 
         public void WillBeAddedToParent()
@@ -88,8 +82,13 @@ namespace VideoGameLibraryManager
 
         public override void RefreshViews()
         {
-            InitGames();
             base.RefreshViews();
+        }
+
+        public override void RefreshViews<T>(List<T> data)
+        {
+            _games = data as List<Game>;
+            this.RefreshViews();
         }
 
         public override IView ViewAt(int index)
@@ -105,13 +104,6 @@ namespace VideoGameLibraryManager
             detailedGameInfoBox.GameRating = game.global_rating.ToString();
 
             return detailedGameInfoBox;
-        }
-
-        private void InitGames()
-        {
-            // TODO: Get list of games here from data layer...
-            _games = new List<Game>();
-            _games = _gameSorter.Sort(_games);
         }
     }
 }

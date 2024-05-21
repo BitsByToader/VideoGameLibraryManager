@@ -25,25 +25,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VideoGameLibraryManager.Library;
 using WFFramework;
 
 namespace VideoGameLibraryManager
 {
-    public partial class GridGameDisplayFromView : GridViewCollection, IView
+    public partial class GridGameDisplayFormView : GridViewCollection, IView
     {
         private IViewContainer _parent;
         private List<Game> _games;
-        private GameSorter _gameSorter = new GameSorter();
 
-        public GridGameDisplayFromView()
+        public GridGameDisplayFormView(List<Game> games)
         {
             InitializeComponent();
-            InitGames();
-        }
 
-        public void SetSorter(ref GameSorter sorter)
-        {
-            _gameSorter = sorter;
+            _games = games;
         }
 
         public void AddToParent(IViewContainer parent)
@@ -63,7 +59,6 @@ namespace VideoGameLibraryManager
 
         public void WillAppear()
         {
-            InitGames();
             this.RefreshViews();
         }
 
@@ -74,23 +69,28 @@ namespace VideoGameLibraryManager
 
         public void WillBeRemovedFromParent()
         {
-
+            _games.Clear(); 
         }
 
         public void WillDisappear()
         {
-            _games.Clear();
+            RefreshViews();
         }
 
         public override void RefreshViews()
         {
-            InitGames();
             base.RefreshViews();
+        }
+
+        public override void RefreshViews<T>(List<T> data)
+        {
+            _games = data as List<Game>;
+            this.RefreshViews();
         }
 
         public override int Count()
         {
-            return _games.Count;
+            return _games.Count();
         }
 
         public override IView ViewAt(int index)
@@ -103,13 +103,6 @@ namespace VideoGameLibraryManager
             userControl.GameName = game.name;
 
             return userControl;
-        }
-
-        private void InitGames()
-        {
-            // TODO: Get list of games here from data layer...
-            _games = new List<Game>();
-            _games = _gameSorter.Sort(_games);
         }
     }
 }

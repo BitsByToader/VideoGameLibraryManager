@@ -30,7 +30,7 @@ namespace UserDB_Manager
     /// <summary>
     /// Interface for the database, file or memory, offering the basic CRUD operations
     /// </summary>
-    interface SessionInterface
+    public interface SessionInterface
     {
         /// <summary>
         /// This method is used to add a new game to the database

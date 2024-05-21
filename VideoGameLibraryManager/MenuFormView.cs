@@ -25,17 +25,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
 using ExtensionMethods;
+using VideoGameLibraryManager.Library;
+using VideoGameLibraryManager.Library.Models;
 
 namespace VideoGameLibraryManager
 {
     public partial class MenuFormView : Form
     {
         IView form3 = new Form3();
-        private IView _gameDisplayFormView = new GameDisplayFormView();
+        private IView _gameLibraryView = new GameLibraryView();
+        private IGameLibraryController _libraryController;
 
         public MenuFormView()
         {
             InitializeComponent();
+          
         }
 
         private void homeButton_Click(object sender, EventArgs e)
@@ -51,8 +55,11 @@ namespace VideoGameLibraryManager
 
         private void libraryButton_Click(object sender, EventArgs e)
         {
-            (_gameDisplayFormView as Form).MakeContainerable();
-            formNavigationStack1.SetRoot(_gameDisplayFormView);
+            _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel());
+            (_gameLibraryView as IGameLibraryView).SetController(ref _libraryController);
+
+            (_gameLibraryView as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(_gameLibraryView);
         }
 
         private void settingsButton_Click(object sender, EventArgs e)

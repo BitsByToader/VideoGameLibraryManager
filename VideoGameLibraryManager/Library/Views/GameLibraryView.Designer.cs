@@ -1,6 +1,6 @@
 ﻿namespace VideoGameLibraryManager
 {
-    partial class GameDisplayFormView
+    partial class GameLibraryView
     {
         /// <summary>
         /// Required designer variable.

@@ -90,24 +90,30 @@
     <Compile Include="Library\DetailedGameInfoBox.Designer.cs">
       <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Library\GameDisplayFormView.cs">
+    <Compile Include="Library\Controllers\GameLibraryController.cs" />
+    <Compile Include="Library\Models\DisplayType.cs" />
+    <Compile Include="Library\Views\GameLibraryView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Library\GameDisplayFormView.Designer.cs">
-      <DependentUpon>GameDisplayFormView.cs</DependentUpon>
+    <Compile Include="Library\Views\GameLibraryView.Designer.cs">
+      <DependentUpon>GameLibraryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Library\GridGameDisplayFromView.cs">
+    <Compile Include="Library\Views\GridGameDisplayFormView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Library\GridGameDisplayFromView.Designer.cs">
-      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    <Compile Include="Library\Views\GridGameDisplayFormView.Designer.cs">
+      <DependentUpon>GridGameDisplayFormView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Library\ListGameDisplayFormView.cs">
+    <Compile Include="Library\Controllers\IGameLibraryController.cs" />
+    <Compile Include="Library\Views\IGameLibraryView.cs" />
+    <Compile Include="Library\Views\ListGameDisplayFormView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Library\ListGameDisplayFormView.Designer.cs">
+    <Compile Include="Library\Views\ListGameDisplayFormView.Designer.cs">
       <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Library\Models\GameLibraryModel.cs" />
+    <Compile Include="Library\Models\IGameLibraryModel.cs" />
     <Compile Include="MenuFormView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,13 +140,13 @@
     <EmbeddedResource Include="Library\DetailedGameInfoBox.resx">
       <DependentUpon>DetailedGameInfoBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Library\GameDisplayFormView.resx">
-      <DependentUpon>GameDisplayFormView.cs</DependentUpon>
+    <EmbeddedResource Include="Library\Views\GameLibraryView.resx">
+      <DependentUpon>GameLibraryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Library\GridGameDisplayFromView.resx">
-      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    <EmbeddedResource Include="Library\Views\GridGameDisplayFormView.resx">
+      <DependentUpon>GridGameDisplayFormView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Library\ListGameDisplayFormView.resx">
+    <EmbeddedResource Include="Library\Views\ListGameDisplayFormView.resx">
       <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuFormView.resx">

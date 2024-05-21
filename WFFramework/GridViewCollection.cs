@@ -34,6 +34,11 @@ namespace WFFramework
             }
         }
 
+        public virtual void RefreshViews<T> (List<T> data)
+        {
+
+        }
+
         public abstract IView ViewAt(int index);
     }
 }

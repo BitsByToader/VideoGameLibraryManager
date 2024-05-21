@@ -20,6 +20,13 @@ namespace WFFramework
         void RefreshViews();
 
         /// <summary>
+        /// Provides refreshed data to the collection view, than redraws its contents.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        void RefreshViews<T>(List<T> data);
+
+        /// <summary>
         /// Accessor for the collection to retrieve a view at the specified index.
         /// </summary>
         /// <param name="index">Index of the view in the collection.</param>
