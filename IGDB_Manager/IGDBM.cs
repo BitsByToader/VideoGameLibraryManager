@@ -86,7 +86,6 @@ namespace API_Manager
             Task<Bitmap> task = this.GetGameCoverBitmap_byID(game.id);
             task.Wait();
             var newGame = new Game();
-            DB_Helper _Helper = DB_Helper.GetHelper();
             newGame.id_igdb = game.id;
             newGame.executable_path = "";
             if (game.platforms != null)
@@ -110,15 +109,15 @@ namespace API_Manager
             }
             newGame.global_rating = (int)game.rating;
             newGame.cover = task.Result;
-            try
-            {
-                newGame.coverpath = _Helper.SaveBitmapAsPng(newGame.cover, newGame.name + "_" + newGame.id_igdb);
-            }
-            catch
-            {
-                newGame.coverpath = "";
-            }
-
+            //try
+            //{
+            //    newGame.coverpath = _Helper.SaveBitmapAsPng(newGame.cover, newGame.name + "_" + newGame.id_igdb);
+            //}
+            //catch
+            //{
+            //    newGame.coverpath = "";
+            //}
+            newGame.coverpath="";
             newGame.summary = game.summary;
             if (game.websites != null)
             {
