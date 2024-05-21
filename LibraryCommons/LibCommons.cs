@@ -252,7 +252,37 @@ namespace LibraryCommons
             this.favorite = false;
         }
     }
-    // THIS IS THE CLASS TO USE FOR THE GAME OBJECT. USE CONVERTER METHOD BELOW TO CONVERT FROM IGDB TO GAME
+
+    public class GameTODO
+    {
+        public int id { get; set; }
+        public int game_id { get; set; }
+        public string todo { get; set; }
+        private bool done { get; set; }
+        public GameTODO()
+        {
+            this.id = -1;
+            this.game_id = -1;
+            this.todo = "";
+            this.done = false;
+        }
+        public GameTODO(int id, int game_id, string todo, bool done)
+        {
+            this.id = id;
+            this.game_id = game_id;
+            this.todo = todo;
+            this.done = done;
+        }
+
+        public void toggleDone()
+        {
+            done = !done;
+        }
+        public bool isDone()
+        {
+            return done;
+        }
+    }
 }
 
 /*-------------------------------------------------------------------------------------------------------*/

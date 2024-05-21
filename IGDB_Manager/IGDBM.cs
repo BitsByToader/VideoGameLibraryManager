@@ -25,6 +25,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using LibraryCommons;
+using System.Runtime.ConstrainedExecution;
 
 namespace API_Manager
 {
@@ -82,27 +83,49 @@ namespace API_Manager
 
             //Bitmap gameCover = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
 
-            Task<Bitmap> task = this.GetGameCoverBitmap_byID(game.cover.id);
+            Task<Bitmap> task = this.GetGameCoverBitmap_byID(game.id);
             task.Wait();
-
-            var newGame = new Game
+            var newGame = new Game();
+            DB_Helper _Helper = DB_Helper.GetHelper();
+            newGame.id_igdb = game.id;
+            newGame.executable_path = "";
+            if (game.platforms != null)
             {
-                id_igdb = game.id,
-                executable_path = "",
-                platforms = game.platforms.Select(x => x.abbreviation).ToList(),
-                playtime = 0,
-                personal_rating = 0,
-                name = game.name,
-                publisher = game.involved_companies[0].ToString(),
-                genre = game.genres.Select(x => x.name).ToList(),
-                developers = game.involved_companies.Select(x => x.ToString()).ToList(),
-                global_rating = (int)game.rating,
-                coverpath = "",
-                cover = task.Result,
-                summary = game.summary,
-                website = game.websites[0].url,
-                favorite = false
-            };
+                newGame.platforms = game.platforms.Select(x => x.abbreviation).ToList();
+            }
+            newGame.playtime = 0;
+            newGame.personal_rating = 0;
+            newGame.name = game.name;
+            if (game.involved_companies != null)
+            {
+                newGame.publisher = game.involved_companies[0].ToString();
+            }
+            if (game.genres != null)
+            {
+                newGame.genre = game.genres.Select(x => x.name).ToList();
+            }
+            if (game.involved_companies != null)
+            {
+                newGame.developers = game.involved_companies.Select(x => x.ToString()).ToList();
+            }
+            newGame.global_rating = (int)game.rating;
+            newGame.cover = task.Result;
+            try
+            {
+                newGame.coverpath = _Helper.SaveBitmapAsPng(newGame.cover, newGame.name + "_" + newGame.id_igdb);
+            }
+            catch
+            {
+                newGame.coverpath = "";
+            }
+
+            newGame.summary = game.summary;
+            if (game.websites != null)
+            {
+                newGame.website = game.websites[0].url;
+            }
+            newGame.favorite = false;
+
             return newGame;
         }
 

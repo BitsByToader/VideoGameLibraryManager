@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB_Helper.cs" />
     <Compile Include="LibCommons.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
