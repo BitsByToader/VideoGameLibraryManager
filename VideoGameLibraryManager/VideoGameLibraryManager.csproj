@@ -97,11 +97,11 @@
     <Compile Include="Library\Views\GameLibraryView.Designer.cs">
       <DependentUpon>GameLibraryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Library\Views\GridGameDisplayFromView.cs">
+    <Compile Include="Library\Views\GridGameDisplayFormView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Library\Views\GridGameDisplayFromView.Designer.cs">
-      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    <Compile Include="Library\Views\GridGameDisplayFormView.Designer.cs">
+      <DependentUpon>GridGameDisplayFormView.cs</DependentUpon>
     </Compile>
     <Compile Include="Library\Controllers\IGameLibraryController.cs" />
     <Compile Include="Library\Views\IGameLibraryView.cs" />
@@ -142,8 +142,8 @@
     <EmbeddedResource Include="Library\Views\GameLibraryView.resx">
       <DependentUpon>GameLibraryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Library\Views\GridGameDisplayFromView.resx">
-      <DependentUpon>GridGameDisplayFromView.cs</DependentUpon>
+    <EmbeddedResource Include="Library\Views\GridGameDisplayFormView.resx">
+      <DependentUpon>GridGameDisplayFormView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Library\Views\ListGameDisplayFormView.resx">
       <DependentUpon>ListGameDisplayFormView.cs</DependentUpon>

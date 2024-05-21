@@ -1,4 +1,5 @@
 ﻿using Helpers;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace VideoGameLibraryManager.Library
 {
-    internal interface IGameLibraryController
+    public interface IGameLibraryController
     {
         void SortGames();
         void SetSortStyle(ISortStyle style);
-        void SetDisplayType();
+        ISortStyle GetSortStyle();
+        void SetDisplayType(DisplayType type);
+        DisplayType GetDisplayType();
 
-        void RefreshView();
+        List<Game> GetGames();
     }
 }

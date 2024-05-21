@@ -13,23 +13,43 @@ namespace VideoGameLibraryManager.Library.Models
     {
         private List<Game> _games;
         private SessionInterface _userDB = GameLibraryDb.GetInstance("user_library.db");
+        private GameSorter _sorter = new GameSorter();
         private ISortStyle _sortStyle;
 
         public GameLibraryModel()
         {
-            _games = _userDB.GetAllGames();
+            RefreshData();
         }
 
         public void SetSortStyle(ISortStyle style)
         {
             _sortStyle = style;
+            _sorter.SetSortStyle(style);
         }
 
         public void SortGames()
         {
-            _games = _sortStyle.Sort(_games);
+            if(_games.Count > 1)
+                _games = _sorter.Sort(_games);
         }
 
-        public List<Game> GetAllGames() => _games;
+        public List<Game> GetAllGames()
+        {
+            List<Game> games = new List<Game> ();
+
+            foreach (Game game in _games)
+            {
+                games.Add(new Game());
+            }
+
+            return games;
+        }
+
+        public void RefreshData()
+        {
+            _games = _userDB.GetAllGames();
+        }
+
+        public ISortStyle GetSortStyle() => _sortStyle;
     }
 }

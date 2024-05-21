@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace VideoGameLibraryManager.Library.Models
 {
-    internal interface IGameLibraryModel
+    public interface IGameLibraryModel
     {
         void SortGames();
         void SetSortStyle(ISortStyle style);
 
         List<Game> GetAllGames();
+
+        void RefreshData();
+        ISortStyle GetSortStyle();
 
     }
 }

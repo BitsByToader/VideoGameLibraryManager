@@ -7,9 +7,8 @@ using WFFramework;
 
 namespace VideoGameLibraryManager.Library
 {
-    internal interface IGameLibraryView: IView
+    public interface IGameLibraryView: IView
     {
-        void Refresh();
-        void SetController(IGameLibraryController controller);
+        void ChangeView(IViewCollection viewCollection);
     }
 }
