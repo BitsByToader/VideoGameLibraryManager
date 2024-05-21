@@ -26,12 +26,6 @@ namespace VideoGameLibraryManager.Library
         public void SetDisplayType(DisplayType type)
         {
             _libraryDisplayType = type;
-
-            switch (_libraryDisplayType)
-            {
-                case DisplayType.Grid: _view.ChangeView(new GridGameDisplayFormView(this)); break;
-                case DisplayType.List: _view.ChangeView(new ListGameDisplayFormView(this)); break;
-            }
         }
 
         public void SetSortStyle(ISortStyle style)

@@ -34,12 +34,11 @@ namespace VideoGameLibraryManager
     {
         private IViewContainer _parent;
         private List<Game> _games;
-        private IGameLibraryController _controller;
 
-        public ListGameDisplayFormView(IGameLibraryController controller)
+        public ListGameDisplayFormView(List<Game> games)
         {
             InitializeComponent();
-            _controller = controller;
+            _games = games;
         }
 
         public void AddToParent(IViewContainer parent)
@@ -83,8 +82,13 @@ namespace VideoGameLibraryManager
 
         public override void RefreshViews()
         {
-            _games = _controller.GetGames();
             base.RefreshViews();
+        }
+
+        public override void RefreshViews<T>(List<T> data)
+        {
+            _games = data as List<Game>;
+            this.RefreshViews();
         }
 
         public override IView ViewAt(int index)

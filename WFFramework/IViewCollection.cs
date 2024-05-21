@@ -18,6 +18,7 @@ namespace WFFramework
         /// Instructs the collection view that the dataset has changed and needs to redraw its contents.
         /// </summary>
         void RefreshViews();
+        void RefreshViews<T>(List<T> data);
 
         /// <summary>
         /// Accessor for the collection to retrieve a view at the specified index.

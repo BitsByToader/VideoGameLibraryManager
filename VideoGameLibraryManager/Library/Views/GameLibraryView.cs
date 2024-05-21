@@ -26,6 +26,7 @@ using System.Windows.Forms;
 using WFFramework;
 using Helpers;
 using VideoGameLibraryManager.Library;
+using LibraryCommons;
 
 namespace VideoGameLibraryManager
 {
@@ -58,6 +59,8 @@ namespace VideoGameLibraryManager
         void IView.WillAppear()
         {
             _controller.SetDisplayType(DisplayType.Grid);
+
+            ChangeView(new GridGameDisplayFormView(_controller.GetGames()));
         }
 
         void IView.WillBeAddedToParent()
@@ -82,6 +85,8 @@ namespace VideoGameLibraryManager
             listViewButton.BackColor = Color.White;
 
             _controller.SetDisplayType(DisplayType.Grid);
+            
+            ChangeView(new GridGameDisplayFormView(_controller.GetGames()));
 
         }
 
@@ -91,6 +96,9 @@ namespace VideoGameLibraryManager
             gridViewButton.BackColor = Color.White;
 
             _controller.SetDisplayType(DisplayType.List);
+            
+            ChangeView(new ListGameDisplayFormView(_controller.GetGames()));
+
         }
 
         private void sortStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,12 +114,12 @@ namespace VideoGameLibraryManager
                 default: _controller.SetSortStyle(new SortByName()); break;
             }
 
-            _viewCollection.RefreshViews();
+            _viewCollection.RefreshViews<Game>(_controller.GetGames());
         }
 
         public void ChangeView(IViewCollection viewCollection)
         {
-            _viewCollection = (viewCollection != null) ? viewCollection : new GridGameDisplayFormView(_controller);
+            _viewCollection = (viewCollection != null) ? viewCollection : new GridGameDisplayFormView(_controller.GetGames());
 
             gameDisplayViewContainer.ChangeView(_viewCollection as IView);
         }

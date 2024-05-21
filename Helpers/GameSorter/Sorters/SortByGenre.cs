@@ -30,7 +30,7 @@ namespace Helpers
     {
         public List<Game> Sort(List<Game> games)
         {
-            return games.OrderBy(game => game.genre).ToList();
+            return games.OrderBy(game => game.genre[0]).ToList();
         }
     }
 }

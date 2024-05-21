@@ -39,7 +39,7 @@ namespace VideoGameLibraryManager.Library.Models
 
             foreach (Game game in _games)
             {
-                games.Add(new Game());
+                games.Add(new Game(game));
             }
 
             return games;

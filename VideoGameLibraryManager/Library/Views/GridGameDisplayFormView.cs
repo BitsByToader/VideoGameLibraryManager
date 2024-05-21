@@ -33,14 +33,13 @@ namespace VideoGameLibraryManager
     public partial class GridGameDisplayFormView : GridViewCollection, IView
     {
         private IViewContainer _parent;
-        private IGameLibraryController _controller;
         private List<Game> _games;
 
-        public GridGameDisplayFormView(IGameLibraryController controller)
+        public GridGameDisplayFormView(List<Game> games)
         {
             InitializeComponent();
 
-            _controller = controller;
+            _games = games;
         }
 
         public void AddToParent(IViewContainer parent)
@@ -80,13 +79,18 @@ namespace VideoGameLibraryManager
 
         public override void RefreshViews()
         {
-            _games = _controller.GetGames();
             base.RefreshViews();
+        }
+
+        public override void RefreshViews<T>(List<T> data)
+        {
+            _games = data as List<Game>;
+            this.RefreshViews();
         }
 
         public override int Count()
         {
-            return _controller.GetGames().Count();
+            return _games.Count();
         }
 
         public override IView ViewAt(int index)
