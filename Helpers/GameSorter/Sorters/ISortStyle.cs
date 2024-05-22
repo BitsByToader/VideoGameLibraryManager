@@ -35,8 +35,6 @@ namespace Helpers
         /// </summary>
         /// <param name="games"> list of games that need to be sorted</param>
         /// <returns>A new list with sorted games</returns>
-
-        //TODO : replace Game with proper class from the model !!!
         List<Game> Sort(List<Game> games);
     }
 }

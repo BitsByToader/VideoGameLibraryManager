@@ -98,7 +98,6 @@ namespace VideoGameLibraryManager
             Game game = _games[index];
 
             BriefGameInfoBox userControl = new BriefGameInfoBox();
-
             userControl.GameImage = game.cover;
             userControl.GameName = game.name;
 

@@ -8,35 +8,35 @@ using LibraryCommons;
 
 namespace API_Manager
 {
-    public interface API_INTERFACE
+    public interface IGameAPI
     {
         /// <summary>
         /// This method should fetch a game by its ID.
         /// </summary>
         /// <param name="companyId"></param>
         /// <returns></returns>
-        Task<CompanyIGDB> FetchCompanyById(int companyId);
+        //Task<CompanyIGDB> FetchCompanyById(int companyId); //TODO: make private/internal
 
         /// <summary>
         /// This method should fetch a game by its name.
         /// </summary>
         /// <param name="gameName"> The name of the game to be fetched.</param>
         /// <returns> A GameIGDB object.</returns>
-        Task<GameIGDB> GetGameByName(string gameName);
+        Task<Game> GetGameByName(string gameName);
 
         /// <summary>
         /// This method should fetch a game's cover image by its URL.
         /// </summary>
         /// <param name="imageUrl"> The URL of the game's cover image.</param>
         /// <returns> A Bitmap object representing the game's cover image.</returns>
-        Task<Bitmap> GetGameCoverBitmapByUrl(string imageUrl);
+        //Task<Bitmap> GetGameCoverBitmapByUrl(string imageUrl); // TODO: make private/internal
 
         /// <summary>
         /// This method should fetch a game's cover image by its ID.
         /// </summary>
         /// <param name="gameId">Game ID</param>
         /// <returns> A Bitmap object representing the game's cover image.</returns>
-        Task<Bitmap> GetGameCoverBitmap_byID(int gameId);
+        //Task<Bitmap> GetGameCoverBitmap_byID(int gameId); // TODO: make private/internal
 
         /// <summary>
         /// This method should search for games by name, given a query.

@@ -63,37 +63,47 @@ public class GameLibraryDb: SessionInterface
     /// Private function to initialize the database
     /// </summary>
     private void InitializeDatabase()
-{
-    using (var connection = new SQLiteConnection(_connectionString))
     {
-        connection.Open();
-
-        using (var command = new SQLiteCommand(connection))
+        using (var connection = new SQLiteConnection(_connectionString))
         {
-            command.CommandText =
-            @"
-            CREATE TABLE IF NOT EXISTS games (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                id_igdb INTEGER,
-                executable_path TEXT,
-                platform TEXT,
-                playtime INTEGER,
-                personal_rating INTEGER,
-                name TEXT,
-                publisher TEXT,
-                genre TEXT,
-                developer TEXT,
-                global_rating INTEGER,
-                coverpath TEXT,
-                summary TEXT,
-                website TEXT,
-                favorite BOOLEAN
-            );
-        ";
-            command.ExecuteNonQuery();
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText =
+                @"
+                CREATE TABLE IF NOT EXISTS games (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id_igdb INTEGER,
+                    executable_path TEXT,
+                    platform TEXT,
+                    playtime INTEGER,
+                    personal_rating INTEGER,
+                    name TEXT,
+                    publisher TEXT,
+                    genre TEXT,
+                    developer TEXT,
+                    global_rating INTEGER,
+                    coverpath TEXT,
+                    summary TEXT,
+                    website TEXT,
+                    favorite BOOLEAN
+                );
+            ";
+                command.ExecuteNonQuery();
+
+                command.CommandText =
+                @"
+                CREATE TABLE IF NOT EXISTS todos (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    game_id INTEGER,
+                    todo TEXT
+                );
+            ";
+                command.ExecuteNonQuery();
+            }
         }
     }
-}
 
     /// <summary>
     /// Add a game to the database
@@ -157,6 +167,7 @@ public class GameLibraryDb: SessionInterface
 
                 command.Parameters.AddWithValue("@global_rating", game.global_rating);
                 command.Parameters.AddWithValue("@personal_rating", game.personal_rating);
+                game.coverpath = DB_Helper.SaveBitmapAsPng(game.cover, game.name+"_"+game.id_igdb);
                 command.Parameters.AddWithValue("@coverpath", game.coverpath);
                 command.Parameters.AddWithValue("@summary", game.summary);
                 command.Parameters.AddWithValue("@website", game.website);
@@ -208,6 +219,21 @@ public class GameLibraryDb: SessionInterface
                         game.summary = reader.GetString(12);
                         game.website = reader.GetString(13);
                         game.favorite = reader.GetBoolean(14);
+
+                        if(game.coverpath != null && game.coverpath.Length>2)
+                        {
+                            //convert image to Bitmap
+
+                            try
+                            {
+                                game.cover = DB_Helper.LoadBitmapFromPng(game.coverpath);
+                            }
+                            catch(Exception)
+                            {
+                                game.cover=null;
+                            }
+                            
+                        }
 
                         games.Add(game);
                     }
@@ -270,6 +296,7 @@ public class GameLibraryDb: SessionInterface
                             website = reader.GetString(13),
                             favorite = reader.GetBoolean(14)
                         };
+                        tempGame.cover = DB_Helper.LoadBitmapFromPng(tempGame.coverpath);
                         game = tempGame;
                         return game;
                     }
@@ -374,6 +401,97 @@ public class GameLibraryDb: SessionInterface
         }
     }
 
+    /// <summary>
+    /// Update a game in the database based on the game id
+    /// </summary>
+    /// <param name="game_id"> The id of the game to be updated </param>
+    /// <param name="updatedGame"> The game with the updated data </param>
+    /// <exception cref="NoRowsUpdatedException"> Thrown if the function does not update any rows </exception>
+    public void UpdateGame(int game_id, ref Game updatedGame)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+
+                // Update the game in the database
+                command.CommandText = @"
+                    UPDATE games
+                    SET id_igdb = @id_igdb,
+                        executable_path = @executable_path,
+                        platform = @platform,
+                        playtime = @playtime,
+                        personal_rating = @personal_rating,
+                        name = @name,
+                        publisher = @publisher,
+                        genre = @genre,
+                        developer = @developer,
+                        global_rating = @global_rating,
+                        coverpath = @coverpath,
+                        summary = @summary,
+                        website = @website,
+                        favorite = @favorite
+                    WHERE id = @id
+                ";
+
+                #region Parameters
+                command.Parameters.AddWithValue("@id_igdb", updatedGame.id_igdb);
+                command.Parameters.AddWithValue("@executable_path", updatedGame.executable_path);
+                string platform = "";
+                foreach (var item in updatedGame.platforms)
+                {
+                    platform += item + ", ";
+                }
+                command.Parameters.AddWithValue("@platform", platform);
+                command.Parameters.AddWithValue("@playtime", updatedGame.playtime);
+                command.Parameters.AddWithValue("@personal_rating", updatedGame.personal_rating);
+                command.Parameters.AddWithValue("@name", updatedGame.name);
+                command.Parameters.AddWithValue("@publisher", updatedGame.publisher);
+                string genre = "";
+                if (updatedGame.genre != null)
+                {
+                    foreach (var item in updatedGame.genre)
+                    {
+                        genre += item + ", ";
+                    }
+                }
+                else
+                {
+                    genre = "Unknown";
+                }
+                command.Parameters.AddWithValue("@genre", genre);
+                if (updatedGame.developers != null)
+                {
+                    string developer = "";
+                    foreach (var item in updatedGame.developers)
+                    {
+                        developer += item + ", ";
+                    }
+                    command.Parameters.AddWithValue("@developer", developer);
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@developer", "-");
+                }
+                command.Parameters.AddWithValue("@global_rating", updatedGame.global_rating);
+                command.Parameters.AddWithValue("@personal_rating", updatedGame.personal_rating);
+                command.Parameters.AddWithValue("@coverpath", updatedGame.coverpath);
+                command.Parameters.AddWithValue("@summary", updatedGame.summary);
+                command.Parameters.AddWithValue("@website", updatedGame.website);
+                command.Parameters.AddWithValue("@favorite", updatedGame.favorite);
+                command.Parameters.AddWithValue("@id", game_id);
+                #endregion
+
+                if (command.ExecuteNonQuery() == 0)
+                {
+                    throw new NoRowsUpdatedException("No update was made");
+                }
+            }
+        }
+    }
+
 
     /// <summary>
     /// Remove a game from the database based on the game object
@@ -398,4 +516,112 @@ public class GameLibraryDb: SessionInterface
             }
         }
     }
+    /// <summary>
+    /// Add a todo to the database
+    /// </summary>
+    /// <param name="gameId"> The id of the game associated with the todo </param>
+    /// <param name="todo"> The todo text </param>
+    /// <returns> The id of the inserted todo </returns>
+
+
+    /*----------------------TODO TABLE OPERATIONS----------------------*/
+    public int AddTodo(int gameId, string todo)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText =
+                @"
+                INSERT INTO todos (game_id, todo)
+                VALUES (@game_id, @todo);
+                SELECT last_insert_rowid();
+            ";
+                command.Parameters.AddWithValue("@game_id", gameId);
+                command.Parameters.AddWithValue("@todo", todo);
+
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Get all todos for a specific game
+    /// </summary>
+    /// <param name="gameId"> The id of the game </param>
+    /// <returns> List of todos </returns>
+    public List<string> GetTodos(int gameId)
+    {
+        List<string> todos = new List<string>();
+
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "SELECT todo FROM todos WHERE game_id = @game_id";
+                command.Parameters.AddWithValue("@game_id", gameId);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        todos.Add(reader.GetString(0));
+                    }
+                }
+            }
+        }
+
+        return todos;
+    }
+
+    /// <summary>
+    /// Update a todo in the database
+    /// </summary>
+    /// <param name="todoId"> The id of the todo </param>
+    /// <param name="updatedTodo"> The updated todo text </param>
+    public void UpdateTodo(int todoId, string updatedTodo)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "UPDATE todos SET todo = @updatedTodo WHERE id = @todoId";
+                command.Parameters.AddWithValue("@updatedTodo", updatedTodo);
+                command.Parameters.AddWithValue("@todoId", todoId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Remove a todo from the database
+    /// </summary>
+    /// <param name="todoId"> The id of the todo </param>
+    public void RemoveTodo(int todoId)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "DELETE FROM todos WHERE id = @todoId";
+                command.Parameters.AddWithValue("@todoId", todoId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+
+   
+    
+
 }

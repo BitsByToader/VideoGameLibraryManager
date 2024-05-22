@@ -25,6 +25,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using LibraryCommons;
+using System.Runtime.ConstrainedExecution;
 
 namespace API_Manager
 {
@@ -40,7 +41,7 @@ namespace API_Manager
     ========================================================================================================================*/
 
    
-    public class IGDB_API : API_INTERFACE
+    public class IGDB_API : IGameAPI
     {
 
         private readonly string _clientId = "p5fnw9ncdtxnzhc0krntyxipfzr8h7";
@@ -82,27 +83,48 @@ namespace API_Manager
 
             //Bitmap gameCover = IGDB_API.GetGameCoverBitmap_byID_Async(game.cover.id);
 
-            Task<Bitmap> task = this.GetGameCoverBitmap_byID(game.cover.id);
+            Task<Bitmap> task = this.GetGameCoverBitmap_byID(game.id);
             task.Wait();
-
-            var newGame = new Game
+            var newGame = new Game();
+            newGame.id_igdb = game.id;
+            newGame.executable_path = "";
+            if (game.platforms != null)
             {
-                id_igdb = game.id,
-                executable_path = "",
-                platforms = game.platforms.Select(x => x.abbreviation).ToList(),
-                playtime = 0,
-                personal_rating = 0,
-                name = game.name,
-                publisher = game.involved_companies[0].ToString(),
-                genre = game.genres.Select(x => x.name).ToList(),
-                developers = game.involved_companies.Select(x => x.ToString()).ToList(),
-                global_rating = (int)game.rating,
-                coverpath = "",
-                cover = task.Result,
-                summary = game.summary,
-                website = game.websites[0].url,
-                favorite = false
-            };
+                newGame.platforms = game.platforms.Select(x => x.abbreviation).ToList();
+            }
+            newGame.playtime = 0;
+            newGame.personal_rating = 0;
+            newGame.name = game.name;
+            if (game.involved_companies != null)
+            {
+                newGame.publisher = game.involved_companies[0].ToString();
+            }
+            if (game.genres != null)
+            {
+                newGame.genre = game.genres.Select(x => x.name).ToList();
+            }
+            if (game.involved_companies != null)
+            {
+                newGame.developers = game.involved_companies.Select(x => x.ToString()).ToList();
+            }
+            newGame.global_rating = (int)game.rating;
+            newGame.cover = task.Result;
+            //try
+            //{
+            //    newGame.coverpath = _Helper.SaveBitmapAsPng(newGame.cover, newGame.name + "_" + newGame.id_igdb);
+            //}
+            //catch
+            //{
+            //    newGame.coverpath = "";
+            //}
+            newGame.coverpath="";
+            newGame.summary = game.summary;
+            if (game.websites != null)
+            {
+                newGame.website = game.websites[0].url;
+            }
+            newGame.favorite = false;
+
             return newGame;
         }
 
@@ -156,7 +178,7 @@ namespace API_Manager
         /// <param name="gameId"> The ID of the game you want to get the cover image of.</param>
         /// <returns> A Bitmap of the game's cover image.</returns>
         /// <exception cref="Exception"> Throws an exception if the request fails.</exception>
-        public async Task<Bitmap> GetGameCoverBitmap_byID(int gameId)
+        private async Task<Bitmap> GetGameCoverBitmap_byID(int gameId)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -207,7 +229,7 @@ namespace API_Manager
 
             return null;
         }
-        public async Task<Bitmap> GetGameCoverBitmapByUrl(string imageUrl)
+        private async Task<Bitmap> GetGameCoverBitmapByUrl(string imageUrl)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -230,7 +252,7 @@ namespace API_Manager
                 }
             }
         }
-        public async Task<CompanyIGDB> FetchCompanyById(int companyId)
+        private async Task<CompanyIGDB> FetchCompanyById(int companyId)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -268,7 +290,7 @@ namespace API_Manager
         /// </summary>
         /// <param name="gameName"> Name of the game inside the IGDB </param>
         /// <returns> The first result that comes up with the name</returns>
-        public async Task<GameIGDB> GetGameByName(string gameName)
+        public async Task<Game> GetGameByName(string gameName)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -299,7 +321,7 @@ namespace API_Manager
                            
                         }
                     }
-                    return games[0];
+                    return ConvertGame_IGDB(ref games[0]);
                 }
                 else
                 {
