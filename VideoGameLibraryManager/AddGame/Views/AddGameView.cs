@@ -17,10 +17,16 @@ namespace VideoGameLibraryManager.AddGame
 {
     public partial class AddGameView : Form, IAddGameView
     {
-        FormNavigationStack _parent = null;
-        IGameAPI _gameAPI = IGDB_API.GetInstance("p5fnw9ncdtxnzhc0krntyxipfzr8h7", "lsx3tr1bazjawk7ahz7ipd4i6uphmy");
-        SessionInterface _userDb = GameLibraryDb.GetInstance("user_library.db");
+        private FormNavigationStack _parent = null;
+        private IAddGameController _controller;
 
+        public AddGameView(IAddGameController controller)
+        {
+            InitializeComponent();
+            _controller = controller;
+        }
+
+        // necessary for windows forms designer...
         public AddGameView()
         {
             InitializeComponent();
@@ -61,58 +67,107 @@ namespace VideoGameLibraryManager.AddGame
             // stub
         }
 
-        private void comboBox1_TextChanged(object sender, EventArgs e)
+        private void comboBoxSearchGames_TextChanged(object sender, EventArgs e)
         {
-            //Every time the text changes, we want to update the list of games
-            //This is done by calling the IGDB_API.Search() method
-            //The method will return a list of games that match the search query
-            //The list will be displayed in the listbox
-            //The listbox will be cleared before the new list is added
-
-            //Get the search query from the combobox
-            string query = comboBox1.Text;
-
-            //Run  public async Task<string> SearchGames(string query)
-            //from DatabaseManager and update the listbox with the results
-            Task.Run(async () =>
+            _controller.SetSuggestedGamesQuery(comboBoxSearchGames.Text);
+            
+            if (comboBoxSearchGames.Text == "" )
             {
-                try
-                {
-                    string result = await _gameAPI.SearchGameNames(query);
-                    // Update the listbox with the results
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        comboBox1.Items.Clear();
-                        comboBox1.SelectionStart = comboBox1.Text.Length;
-                        comboBox1.SelectionLength = 0;
-                        if (result.Contains('\n'))
-                            comboBox1.Items.AddRange(result.Split('\n'));
-                        else
-                            comboBox1.Items.Add(result);
-                    });
-                }
-                catch (Exception ex)
-                {
-                    // Handle the exception, e.g. by logging it or showing an error message
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    });
-                }
-            });
-
+                buttonRetrieveGame.Enabled = false;
+                buttonGameSuggestions.Enabled = false;
+            } else
+            {
+                buttonRetrieveGame.Enabled = true;
+                buttonGameSuggestions.Enabled = true;
+            }
         }
 
-        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        private void comboBoxSearchGames_SelectedValueChanged(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
             string gameName = (string)comboBox.SelectedItem;
+            _controller.PickGameToRetrieve(gameName);    
+        }
 
-            Task.Run(async () =>
+        private void buttonRetrieveGame_Click(object sender, EventArgs e)
+        {
+            _controller.RetrieveGameFromAPI();
+        }
+
+        private void buttonUploadLocalCover_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            //TODO: Change dialog to only allow pictures.
+            if ( dialog.ShowDialog() == DialogResult.OK )
             {
-                Game game = await _gameAPI.GetGameByName(gameName);
-                _userDb.AddGame(ref game);
-            });
+                pictureBoxGameCover.Image = new Bitmap(dialog.FileName);
+            }
+        }
+
+        private void buttonPickExecutable_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog() {
+                FileName = "Select an executable file.",
+                Filter = "Executable files (*.exe)|*.exe",
+                Title = "Open executable file"
+            };
+            if (dialog.ShowDialog() == DialogResult.OK )
+            {
+                textBoxExecutablePath.Text = dialog.FileName;
+            }
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            _parent.PopToRoot();
+        }
+
+        private void buttonSaveGame_Click(object sender, EventArgs e)
+        {
+            Game gameToSave = new Game();
+            
+            gameToSave.name = textBoxName.Text;
+            gameToSave.platforms = textBoxPlatforms.Text.Split(',').ToList();
+            gameToSave.summary = richTextBoxDescription.Text;
+            gameToSave.genre = textBoxGenres.Text.Split(',').ToList();
+            gameToSave.publisher = textBoxPublisher.Text;
+            gameToSave.cover = (Bitmap)pictureBoxGameCover.Image;
+            gameToSave.developers = textBoxDevelopers.Text.Split(',').ToList();
+            gameToSave.executable_path = textBoxExecutablePath.Text;
+            gameToSave.website = textBoxWebsite.Text;
+            gameToSave.personal_rating = int.Parse(textBoxRating.Text);
+            
+            _controller.SaveGame(gameToSave);
+        }
+
+        private void buttonGameSuggestions_Click(object sender, EventArgs e)
+        {
+            _controller.RetrieveSuggestions();
+        }
+
+        public void SetSearchResult(string result)
+        {
+            comboBoxSearchGames.Items.Clear();
+            comboBoxSearchGames.SelectionStart = comboBoxSearchGames.Text.Length;
+            comboBoxSearchGames.SelectionLength = 0;
+            if (result.Contains('\n'))
+                comboBoxSearchGames.Items.AddRange(result.Split('\n'));
+            else
+                comboBoxSearchGames.Items.Add(result);
+        }
+
+        public void UpdateFieldsUsingGame(Game game)
+        {
+            textBoxName.Text = game.name;
+            textBoxPlatforms.Text = string.Join(",", game.platforms);
+            richTextBoxDescription.Text = game.summary;
+            textBoxGenres.Text = string.Join(",", game.genre);
+            textBoxPublisher.Text = game.publisher;
+            pictureBoxGameCover.Image = game.cover;
+            textBoxDevelopers.Text = string.Join(",", game.developers);
+            textBoxExecutablePath.Text = game.executable_path;
+            textBoxWebsite.Text = game.website;
+            textBoxRating.Text = game.global_rating.ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryCommons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,7 @@ namespace VideoGameLibraryManager.AddGame
 {
     public interface IAddGameView: IView
     {
+        void SetSearchResult(string result);
+        void UpdateFieldsUsingGame(Game game);
     }
 }
