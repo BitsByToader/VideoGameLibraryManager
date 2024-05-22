@@ -78,12 +78,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddGame\AddGameFormView.cs">
+    <Compile Include="AddGame\Controllers\AddGameController.cs" />
+    <Compile Include="AddGame\Controllers\IAddGameController.cs" />
+    <Compile Include="AddGame\Models\AddGameModel.cs" />
+    <Compile Include="AddGame\Models\IAddGameModel.cs" />
+    <Compile Include="AddGame\Views\AddGameView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddGame\AddGameFormView.Designer.cs">
-      <DependentUpon>AddGameFormView.cs</DependentUpon>
+    <Compile Include="AddGame\Views\AddGameView.Designer.cs">
+      <DependentUpon>AddGameView.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddGame\Views\IAddGameView.cs" />
     <Compile Include="Library\BriefGameInfoBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -140,8 +145,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddGame\AddGameFormView.resx">
-      <DependentUpon>AddGameFormView.cs</DependentUpon>
+    <EmbeddedResource Include="AddGame\Views\AddGameView.resx">
+      <DependentUpon>AddGameView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Library\BriefGameInfoBox.resx">
       <DependentUpon>BriefGameInfoBox.cs</DependentUpon>

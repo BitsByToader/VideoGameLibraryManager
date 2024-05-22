@@ -33,11 +33,6 @@ namespace VideoGameLibraryManager
 {
     public partial class MenuFormView : Form
     {
-        IView form3 = new Form3();
-        private IView _gameLibraryView = new GameLibraryView();
-        private IGameLibraryController _libraryController;
-        private IView _addGameView = new AddGameFormView();
-
         public MenuFormView()
         {
             InitializeComponent();
@@ -46,19 +41,23 @@ namespace VideoGameLibraryManager
 
         private void homeButton_Click(object sender, EventArgs e)
         {
+            Form3 form3 = new Form3();
             (form3 as Form).MakeContainerable();
             formNavigationStack1.SetRoot(form3);
         }
 
         private void addGameButton_Click(object sender, EventArgs e)
         {
-            (_addGameView as Form).MakeContainerable();
-            formNavigationStack1.SetRoot(_addGameView);
+            IAddGameController _addGameController = new AddGameController();
+            IView view = _addGameController.GetView();
+            (view as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(view);
         }
 
         private void libraryButton_Click(object sender, EventArgs e)
         {
-            _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel());
+            IView _gameLibraryView = new GameLibraryView();
+            IGameLibraryController _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel());
             (_gameLibraryView as IGameLibraryView).SetController(ref _libraryController);
 
             (_gameLibraryView as Form).MakeContainerable();
@@ -68,6 +67,11 @@ namespace VideoGameLibraryManager
         private void settingsButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            formNavigationStack1.PopView();
         }
     }
 }

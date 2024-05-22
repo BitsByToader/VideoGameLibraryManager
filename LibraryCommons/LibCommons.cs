@@ -258,13 +258,13 @@ namespace LibraryCommons
             this.id_igdb = -1;
             this.executable_path = "";
             this.platforms = new List<string>();
-            this.playtime = -1;
-            this.personal_rating = -1;
+            this.playtime = 0;
+            this.personal_rating = 0;
             this.name = "";
             this.publisher = "";
             this.genre = new List<string>();
             this.developers = new List<string>();
-            this.global_rating = -1;
+            this.global_rating = 0;
             this.coverpath = "";
             this.cover = null;
             this.summary = "";
