@@ -36,6 +36,7 @@ namespace VideoGameLibraryManager
         IView form3 = new Form3();
         private IView _gameLibraryView = new GameLibraryView();
         private IGameLibraryController _libraryController;
+        private IView _addGameView = new AddGameFormView();
 
         public MenuFormView()
         {
@@ -51,8 +52,8 @@ namespace VideoGameLibraryManager
 
         private void addGameButton_Click(object sender, EventArgs e)
         {
-            (_addGameFormView as Form).MakeContainerable();
-            formNavigationStack1.SetRoot(_addGameFormView);
+            (_addGameView as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(_addGameView);
         }
 
         private void libraryButton_Click(object sender, EventArgs e)
