@@ -154,6 +154,9 @@
     <EmbeddedResource Include="AddGame\AddGameFormView.resx">
       <DependentUpon>AddGameFormView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Home\Views\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Library\BriefGameInfoBox.resx">
       <DependentUpon>BriefGameInfoBox.cs</DependentUpon>
     </EmbeddedResource>

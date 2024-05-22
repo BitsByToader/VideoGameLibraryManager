@@ -28,14 +28,12 @@ using ExtensionMethods;
 using VideoGameLibraryManager.AddGame;
 using VideoGameLibraryManager.Library;
 using VideoGameLibraryManager.Library.Models;
+using VideoGameLibraryManager.Home.Controllers;
 
 namespace VideoGameLibraryManager
 {
     public partial class MenuFormView : Form
     {
-        IView form3 = new Form3();
-        private IView _gameLibraryView = new GameLibraryView();
-        private IGameLibraryController _libraryController;
         private IView _addGameView = new AddGameFormView();
 
         public MenuFormView()
@@ -46,8 +44,10 @@ namespace VideoGameLibraryManager
 
         private void homeButton_Click(object sender, EventArgs e)
         {
-            (form3 as Form).MakeContainerable();
-            formNavigationStack1.SetRoot(form3);
+            IHomeController _addGameController = new HomeController();
+            IView view = _addGameController.GetView();
+            (view as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(view);
         }
 
         private void addGameButton_Click(object sender, EventArgs e)
@@ -58,7 +58,8 @@ namespace VideoGameLibraryManager
 
         private void libraryButton_Click(object sender, EventArgs e)
         {
-            _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel());
+            IView _gameLibraryView = new GameLibraryView();
+            IGameLibraryController _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel());
             (_gameLibraryView as IGameLibraryView).SetController(ref _libraryController);
 
             (_gameLibraryView as Form).MakeContainerable();
