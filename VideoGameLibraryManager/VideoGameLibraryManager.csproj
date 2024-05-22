@@ -84,6 +84,17 @@
     <Compile Include="AddGame\AddGameFormView.Designer.cs">
       <DependentUpon>AddGameFormView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\Controllers\HomeController.cs" />
+    <Compile Include="Home\Controllers\IHomeController.cs" />
+    <Compile Include="Home\Models\HomeModel.cs" />
+    <Compile Include="Home\Models\IHomeModel.cs" />
+    <Compile Include="Home\Views\HomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\Views\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Views\IHomeView.cs" />
     <Compile Include="Library\BriefGameInfoBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
