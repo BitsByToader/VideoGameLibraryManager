@@ -25,17 +25,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
 using Helpers;
+using VideoGameLibraryManager.Library;
+using LibraryCommons;
 
 namespace VideoGameLibraryManager
 {
-    public partial class GameDisplayFormView : Form, IView
+    public partial class GameLibraryView : Form, IGameLibraryView
     {
         private FormNavigationStack _parent;
-        // TODO: De setat aici style-ul in functie de ce are combobox-ul implicit
-        private GameSorter _sorter = new GameSorter();
         private IViewCollection _viewCollection;
+        private IGameLibraryController _controller;
 
-        public GameDisplayFormView()
+        public GameLibraryView()
         {
             InitializeComponent();
         }
@@ -57,11 +58,7 @@ namespace VideoGameLibraryManager
 
         void IView.WillAppear()
         {
-            _sorter.SetSortStyle(new SortByName());
-            GridGameDisplayFromView view = new GridGameDisplayFromView();
-            view.SetSorter(ref _sorter);
-            gameDisplayViewContainer.ChangeView(view);
-            _viewCollection = view;
+            _controller.SetDisplayType(DisplayType.Grid);
         }
 
         void IView.WillBeAddedToParent()
@@ -85,11 +82,7 @@ namespace VideoGameLibraryManager
             gridViewButton.BackColor = Color.LightBlue;
             listViewButton.BackColor = Color.White;
 
-
-            GridGameDisplayFromView view = new GridGameDisplayFromView(); // TODO: eventual sorter in constructor si devine one-liner
-            view.SetSorter(ref _sorter);
-            gameDisplayViewContainer.ChangeView(view);
-            _viewCollection = view;
+            _controller.SetDisplayType(DisplayType.Grid);
         }
 
         private void listViewButton_Click(object sender, EventArgs e)
@@ -97,26 +90,41 @@ namespace VideoGameLibraryManager
             listViewButton.BackColor = Color.LightBlue;
             gridViewButton.BackColor = Color.White;
 
-            ListGameDisplayFormView view = new ListGameDisplayFormView();
-            view.SetSorter(ref _sorter);
-            gameDisplayViewContainer.ChangeView(view);
-            _viewCollection = view;
+            _controller.SetDisplayType(DisplayType.List);
+
         }
 
         private void sortStyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (sortStyleComboBox.SelectedIndex)
             {
-                case 0: _sorter.SetSortStyle(new SortByRating()); break;
-                case 1: _sorter.SetSortStyle(new SortByName()); break;
-                case 2: _sorter.SetSortStyle(new SortByPublisher()); break;
-                case 3: _sorter.SetSortStyle(new SortByPlaytime()); break;
-                case 4: _sorter.SetSortStyle(new SortByGenre()); break;
+                case 0: _controller.SetSortStyle(new SortByRating()); break;
+                case 1: _controller.SetSortStyle(new SortByName()); break;
+                case 2: _controller.SetSortStyle(new SortByPublisher()); break;
+                case 3: _controller.SetSortStyle(new SortByPlaytime()); break;
+                case 4: _controller.SetSortStyle(new SortByGenre()); break;
 
-                default: _sorter.SetSortStyle(new SortByName()); break;
+                default: _controller.SetSortStyle(new SortByName()); break;
             }
 
-            _viewCollection.RefreshViews();
+            //_viewCollection.RefreshViews<Game>(_controller.GetGames());
+            _controller.SetDisplayType(_controller.GetDisplayType());   
+        }
+
+        public void ChangeView(DisplayType type)
+        {
+            switch (type)
+            {
+                case DisplayType.Grid: _viewCollection = new GridGameDisplayFormView(_controller.GetGames()); break;
+                case DisplayType.List: _viewCollection = new ListGameDisplayFormView(_controller.GetGames()); break;
+            }
+
+            gameDisplayViewContainer.ChangeView(_viewCollection as IView);
+        }
+
+        public void SetController(ref IGameLibraryController controller)
+        {
+            _controller = controller;
         }
     }
 }

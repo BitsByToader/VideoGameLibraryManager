@@ -1,6 +1,6 @@
 ﻿namespace VideoGameLibraryManager
 {
-    partial class GridGameDisplayFromView
+    partial class GridGameDisplayFormView
     {
         /// <summary>
         /// Required designer variable.

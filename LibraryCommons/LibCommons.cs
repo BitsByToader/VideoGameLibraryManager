@@ -232,6 +232,26 @@ namespace LibraryCommons
             this.favorite = favorite;
         }
 
+        public Game(Game game)
+        {
+            this.id = game.id;
+            this.id_igdb = game.id_igdb;
+            this.executable_path = game.executable_path;
+            this.platforms = game.platforms;
+            this.playtime = game.playtime;
+            this.personal_rating = game.personal_rating;
+            this.name = game.name;
+            this.publisher = game.publisher;
+            this.genre = game.genre;
+            this.developers = game.developers;
+            this.global_rating = game.global_rating;
+            this.coverpath = game.coverpath;
+            this.cover = game.cover;
+            this.summary = game.summary;
+            this.website = game.website;
+            this.favorite = game.favorite;
+        }
+
         public Game()
         {
             this.id = -1;

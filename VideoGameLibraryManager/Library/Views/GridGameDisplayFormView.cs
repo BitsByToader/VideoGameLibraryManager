@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:        ListGameDisplayFormView.cs                                          *
+*  File:        GridGameDisplayFormView.cs                                          *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description:                                                                     *
@@ -14,6 +14,8 @@
 *                                                                                   *
 ************************************************************************************/
 
+using Helpers;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,27 +25,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VideoGameLibraryManager.Library;
 using WFFramework;
-using Helpers;
-using LibraryCommons;
 
 namespace VideoGameLibraryManager
 {
-    public partial class ListGameDisplayFormView : ListViewCollection, IView
+    public partial class GridGameDisplayFormView : GridViewCollection, IView
     {
         private IViewContainer _parent;
         private List<Game> _games;
-        private GameSorter _gameSorter = new GameSorter();
-        
-        public ListGameDisplayFormView()
+
+        public GridGameDisplayFormView(List<Game> games)
         {
             InitializeComponent();
-            InitGames();
-        }
 
-        public void SetSorter(ref  GameSorter sorter)
-        {
-            _gameSorter = sorter;
+            _games = games;
         }
 
         public void AddToParent(IViewContainer parent)
@@ -63,55 +59,49 @@ namespace VideoGameLibraryManager
 
         public void WillAppear()
         {
-            InitGames();
-            RefreshViews();
+            this.RefreshViews();
         }
 
         public void WillBeAddedToParent()
         {
-            
+
         }
 
         public void WillBeRemovedFromParent()
         {
-            
+            _games.Clear(); 
         }
 
         public void WillDisappear()
         {
-        }
-
-        public override int Count()
-        {
-            return _games.Count;
+            RefreshViews();
         }
 
         public override void RefreshViews()
         {
-            InitGames();
             base.RefreshViews();
+        }
+
+        public override void RefreshViews<T>(List<T> data)
+        {
+            _games = data as List<Game>;
+            this.RefreshViews();
+        }
+
+        public override int Count()
+        {
+            return _games.Count();
         }
 
         public override IView ViewAt(int index)
         {
             Game game = _games[index];
 
-            DetailedGameInfoBox detailedGameInfoBox = new DetailedGameInfoBox();
+            BriefGameInfoBox userControl = new BriefGameInfoBox();
+            userControl.GameImage = game.cover;
+            userControl.GameName = game.name;
 
-            detailedGameInfoBox.GameGenre = String.Join(", ", game.genre);
-            detailedGameInfoBox.GameImage = game.cover;
-            detailedGameInfoBox.GameName = game.name;
-            detailedGameInfoBox.GamePlaytime = game.playtime.ToString();
-            detailedGameInfoBox.GameRating = game.global_rating.ToString();
-
-            return detailedGameInfoBox;
-        }
-
-        private void InitGames()
-        {
-            // TODO: Change this...
-            _games = GameLibraryDb.GetInstance("user_library.db").GetAllGames();
-            _games = _gameSorter.Sort(_games);
+            return userControl;
         }
     }
 }
