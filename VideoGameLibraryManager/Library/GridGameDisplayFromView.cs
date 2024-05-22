@@ -98,8 +98,8 @@ namespace VideoGameLibraryManager
             Game game = _games[index];
 
             BriefGameInfoBox userControl = new BriefGameInfoBox();
-            DB_Helper _Helper = DB_Helper.GetHelper();
-            userControl.GameImage = _Helper.ConvertBitmapToImage(game.cover);
+            ;
+            userControl.GameImage = DB_Helper.ConvertBitmapToImage(game.cover);
             userControl.GameName = game.name;
 
             return userControl;

@@ -28,34 +28,30 @@ namespace LibraryCommons
 
     public class DB_Helper
     {
-        public static string ResourcePath;
-        private static DB_Helper _Helper = null;
-        /// <summary>
-        /// Singleton pattern constructor
-        /// </summary>
-        private DB_Helper()
+        public static string ResourcePath="";
+
+        public static void SetResourcePath(string RPath="")
         {
-            //ResourcePath = current folder
-            ResourcePath = Directory.GetCurrentDirectory();
-            string coverPhotosFolder = Path.Combine(ResourcePath, "Resources", "Covers");
-            if (!Directory.Exists(coverPhotosFolder))
+            if(RPath == "")
             {
-                Directory.CreateDirectory(coverPhotosFolder);
-                Console.WriteLine("Created folder: " + coverPhotosFolder);
+                ResourcePath = Directory.GetCurrentDirectory();
+                string coverPhotosFolder = Path.Combine(ResourcePath, "Resources", "Covers");
+                if (!Directory.Exists(coverPhotosFolder))
+                {
+                    Directory.CreateDirectory(coverPhotosFolder);
+                    Console.WriteLine("Created folder: " + coverPhotosFolder);
+                }
+                ResourcePath = coverPhotosFolder;
             }
-            ResourcePath = coverPhotosFolder;
-        }
-        /// <summary>
-        /// Singleton pattern method to get the instance of the DB_Helper
-        /// </summary>
-        /// <returns> The instance of the DB_Helper </returns>
-        public static DB_Helper GetHelper()
-        {
-            if (_Helper == null)
+            else
             {
-                _Helper = new DB_Helper();
+                if (!Directory.Exists(RPath))
+                {
+                    Directory.CreateDirectory(RPath);
+                    Console.WriteLine("Created folder: " + RPath);
+                    ResourcePath = RPath;
+                }
             }
-            return _Helper;
         }
         /// <summary>
         /// Function to save a bitmap as a PNG file
@@ -64,7 +60,7 @@ namespace LibraryCommons
         /// <param name="fileName"> The name of the file </param>
         /// <returns> The path of the saved file </returns>
         /// <exception cref="ArgumentNullException"> Thrown when the bitmap or file name is null </exception>
-        public string SaveBitmapAsPng(Bitmap bitmap, string fileName)
+        public static string SaveBitmapAsPng(Bitmap bitmap, string fileName)
         {
             if(bitmap == null)
             {
@@ -74,9 +70,9 @@ namespace LibraryCommons
             {
                 throw new ArgumentNullException("File name is null.");
             }
-            if(_Helper == null)
+            if(ResourcePath == "")
             {
-                throw new ArgumentNullException("DB_Helper is null.");
+                SetResourcePath();
             }
             Bitmap bitmap1 = new Bitmap(bitmap);
             string filePath = Path.Combine(ResourcePath, fileName + ".png");
@@ -90,15 +86,15 @@ namespace LibraryCommons
         /// <returns> The loaded bitmap </returns>
         /// <exception cref="ArgumentNullException"> Thrown when the file name is null </exception>
         /// <exception cref="FileNotFoundException"> Thrown when the file is not found </exception>
-        public Bitmap LoadBitmapFromPng(string fileName)
+        public static Bitmap LoadBitmapFromPng(string fileName)
         {
             if (fileName == null)
             {
                 throw new ArgumentNullException("File name is null.");
             }
-            if (_Helper == null)
+            if (ResourcePath == "")
             {
-                throw new ArgumentNullException("DB_Helper is null.");
+                SetResourcePath();
             }
             string filePath = "";
             // if fileName is a whole VALID path, then use it
@@ -125,16 +121,17 @@ namespace LibraryCommons
         /// <param name="bitmap"> The bitmap to convert </param>
         /// <returns> The converted image </returns>
         /// <exception cref="ArgumentNullException"> Thrown when the bitmap is null </exception>
-        public Image ConvertBitmapToImage(Bitmap bitmap)
+        public static Image ConvertBitmapToImage(Bitmap bitmap)
         {
             if (bitmap == null)
             {
                 throw new ArgumentNullException("Bitmap is null.");
             }
-            if (_Helper == null)
+            if (ResourcePath == "")
             {
-                throw new ArgumentNullException("DB_Helper is null.");
+                SetResourcePath();
             }
+
             Image image = Image.FromHbitmap(bitmap.GetHbitmap());
             Console.WriteLine("Converted bitmap to Image.");
             return image;
@@ -145,15 +142,15 @@ namespace LibraryCommons
         /// <param name="coverPath"> The path of the file </param>
         /// <returns> The converted image </returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public Image ConvertBitmapToImage(string coverPath)
+        public static Image ConvertBitmapToImage(string coverPath)
         {
             if (coverPath == null)
             {
                 throw new ArgumentNullException("Cover path is null.");
             }
-            if (_Helper == null)
+            if (ResourcePath == "")
             {
-                throw new ArgumentNullException("DB_Helper is null.");
+                SetResourcePath();
             }
 
             Bitmap bitmap = LoadBitmapFromPng(coverPath);

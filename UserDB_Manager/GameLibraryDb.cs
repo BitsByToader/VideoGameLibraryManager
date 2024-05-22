@@ -167,6 +167,7 @@ public class GameLibraryDb: SessionInterface
 
                 command.Parameters.AddWithValue("@global_rating", game.global_rating);
                 command.Parameters.AddWithValue("@personal_rating", game.personal_rating);
+                game.coverpath = DB_Helper.SaveBitmapAsPng(game.cover, game.name+"_"+game.id_igdb);
                 command.Parameters.AddWithValue("@coverpath", game.coverpath);
                 command.Parameters.AddWithValue("@summary", game.summary);
                 command.Parameters.AddWithValue("@website", game.website);
@@ -223,10 +224,9 @@ public class GameLibraryDb: SessionInterface
                         {
                             //convert image to Bitmap
 
-                            DB_Helper DBHelper = DB_Helper.GetHelper();
                             try
                             {
-                                game.cover = DBHelper.LoadBitmapFromPng(game.coverpath);
+                                game.cover = DB_Helper.LoadBitmapFromPng(game.coverpath);
                             }
                             catch(Exception)
                             {
@@ -296,6 +296,7 @@ public class GameLibraryDb: SessionInterface
                             website = reader.GetString(13),
                             favorite = reader.GetBoolean(14)
                         };
+                        tempGame.cover = DB_Helper.LoadBitmapFromPng(tempGame.coverpath);
                         game = tempGame;
                         return game;
                     }
