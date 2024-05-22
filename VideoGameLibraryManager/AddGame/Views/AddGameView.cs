@@ -149,6 +149,7 @@ namespace VideoGameLibraryManager.AddGame
                 comboBoxSearchGames.Items.AddRange(result.Split('\n'));
             else
                 comboBoxSearchGames.Items.Add(result);
+            comboBoxSearchGames.DroppedDown = true;
         }
 
         public void UpdateFieldsUsingGame(Game game)
