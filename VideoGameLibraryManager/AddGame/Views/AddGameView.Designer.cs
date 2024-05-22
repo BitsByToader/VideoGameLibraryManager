@@ -33,7 +33,6 @@
             this.buttonUploadLocalCover = new System.Windows.Forms.Button();
             this.labelSearchGames = new System.Windows.Forms.Label();
             this.buttonRetrieveGame = new System.Windows.Forms.Button();
-            this.buttonBack = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxPublisher = new System.Windows.Forms.TextBox();
@@ -61,7 +60,7 @@
             // comboBoxSearchGames
             // 
             this.comboBoxSearchGames.FormattingEnabled = true;
-            this.comboBoxSearchGames.Location = new System.Drawing.Point(168, 85);
+            this.comboBoxSearchGames.Location = new System.Drawing.Point(172, 34);
             this.comboBoxSearchGames.Name = "comboBoxSearchGames";
             this.comboBoxSearchGames.Size = new System.Drawing.Size(506, 33);
             this.comboBoxSearchGames.TabIndex = 0;
@@ -90,7 +89,7 @@
             // labelSearchGames
             // 
             this.labelSearchGames.AutoSize = true;
-            this.labelSearchGames.Location = new System.Drawing.Point(8, 85);
+            this.labelSearchGames.Location = new System.Drawing.Point(12, 34);
             this.labelSearchGames.Name = "labelSearchGames";
             this.labelSearchGames.Size = new System.Drawing.Size(154, 25);
             this.labelSearchGames.TabIndex = 3;
@@ -99,7 +98,7 @@
             // buttonRetrieveGame
             // 
             this.buttonRetrieveGame.Enabled = false;
-            this.buttonRetrieveGame.Location = new System.Drawing.Point(694, 150);
+            this.buttonRetrieveGame.Location = new System.Drawing.Point(698, 99);
             this.buttonRetrieveGame.Name = "buttonRetrieveGame";
             this.buttonRetrieveGame.Size = new System.Drawing.Size(223, 55);
             this.buttonRetrieveGame.TabIndex = 4;
@@ -107,20 +106,10 @@
             this.buttonRetrieveGame.UseVisualStyleBackColor = true;
             this.buttonRetrieveGame.Click += new System.EventHandler(this.buttonRetrieveGame_Click);
             // 
-            // buttonBack
-            // 
-            this.buttonBack.Location = new System.Drawing.Point(13, 12);
-            this.buttonBack.Name = "buttonBack";
-            this.buttonBack.Size = new System.Drawing.Size(149, 50);
-            this.buttonBack.TabIndex = 5;
-            this.buttonBack.Text = "< Back";
-            this.buttonBack.UseVisualStyleBackColor = true;
-            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-            // 
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(13, 174);
+            this.labelName.Location = new System.Drawing.Point(17, 123);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(68, 25);
             this.labelName.TabIndex = 6;
@@ -128,14 +117,14 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(188, 174);
+            this.textBoxName.Location = new System.Drawing.Point(192, 123);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(402, 31);
             this.textBoxName.TabIndex = 7;
             // 
             // textBoxPublisher
             // 
-            this.textBoxPublisher.Location = new System.Drawing.Point(188, 236);
+            this.textBoxPublisher.Location = new System.Drawing.Point(192, 185);
             this.textBoxPublisher.Name = "textBoxPublisher";
             this.textBoxPublisher.Size = new System.Drawing.Size(402, 31);
             this.textBoxPublisher.TabIndex = 9;
@@ -143,7 +132,7 @@
             // labelPublisher
             // 
             this.labelPublisher.AutoSize = true;
-            this.labelPublisher.Location = new System.Drawing.Point(12, 236);
+            this.labelPublisher.Location = new System.Drawing.Point(16, 185);
             this.labelPublisher.Name = "labelPublisher";
             this.labelPublisher.Size = new System.Drawing.Size(102, 25);
             this.labelPublisher.TabIndex = 8;
@@ -152,7 +141,7 @@
             // labelPlatforms
             // 
             this.labelPlatforms.AutoSize = true;
-            this.labelPlatforms.Location = new System.Drawing.Point(13, 292);
+            this.labelPlatforms.Location = new System.Drawing.Point(17, 241);
             this.labelPlatforms.Name = "labelPlatforms";
             this.labelPlatforms.Size = new System.Drawing.Size(102, 25);
             this.labelPlatforms.TabIndex = 10;
@@ -161,7 +150,7 @@
             // labelRating
             // 
             this.labelRating.AutoSize = true;
-            this.labelRating.Location = new System.Drawing.Point(13, 346);
+            this.labelRating.Location = new System.Drawing.Point(17, 295);
             this.labelRating.Name = "labelRating";
             this.labelRating.Size = new System.Drawing.Size(74, 25);
             this.labelRating.TabIndex = 11;
@@ -170,7 +159,7 @@
             // labelGenres
             // 
             this.labelGenres.AutoSize = true;
-            this.labelGenres.Location = new System.Drawing.Point(12, 391);
+            this.labelGenres.Location = new System.Drawing.Point(16, 340);
             this.labelGenres.Name = "labelGenres";
             this.labelGenres.Size = new System.Drawing.Size(82, 25);
             this.labelGenres.TabIndex = 12;
@@ -179,7 +168,7 @@
             // labelDevelopers
             // 
             this.labelDevelopers.AutoSize = true;
-            this.labelDevelopers.Location = new System.Drawing.Point(12, 435);
+            this.labelDevelopers.Location = new System.Drawing.Point(16, 384);
             this.labelDevelopers.Name = "labelDevelopers";
             this.labelDevelopers.Size = new System.Drawing.Size(121, 25);
             this.labelDevelopers.TabIndex = 13;
@@ -188,7 +177,7 @@
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(13, 582);
+            this.labelDescription.Location = new System.Drawing.Point(17, 531);
             this.labelDescription.Name = "labelDescription";
             this.labelDescription.Size = new System.Drawing.Size(120, 25);
             this.labelDescription.TabIndex = 14;
@@ -197,7 +186,7 @@
             // labelWebsite
             // 
             this.labelWebsite.AutoSize = true;
-            this.labelWebsite.Location = new System.Drawing.Point(13, 483);
+            this.labelWebsite.Location = new System.Drawing.Point(17, 432);
             this.labelWebsite.Name = "labelWebsite";
             this.labelWebsite.Size = new System.Drawing.Size(90, 25);
             this.labelWebsite.TabIndex = 15;
@@ -206,7 +195,7 @@
             // labelExecutablePath
             // 
             this.labelExecutablePath.AutoSize = true;
-            this.labelExecutablePath.Location = new System.Drawing.Point(13, 522);
+            this.labelExecutablePath.Location = new System.Drawing.Point(17, 471);
             this.labelExecutablePath.Name = "labelExecutablePath";
             this.labelExecutablePath.Size = new System.Drawing.Size(169, 25);
             this.labelExecutablePath.TabIndex = 16;
@@ -214,49 +203,49 @@
             // 
             // textBoxExecutablePath
             // 
-            this.textBoxExecutablePath.Location = new System.Drawing.Point(188, 522);
+            this.textBoxExecutablePath.Location = new System.Drawing.Point(192, 471);
             this.textBoxExecutablePath.Name = "textBoxExecutablePath";
             this.textBoxExecutablePath.Size = new System.Drawing.Size(402, 31);
             this.textBoxExecutablePath.TabIndex = 17;
             // 
             // textBoxWebsite
             // 
-            this.textBoxWebsite.Location = new System.Drawing.Point(188, 480);
+            this.textBoxWebsite.Location = new System.Drawing.Point(192, 429);
             this.textBoxWebsite.Name = "textBoxWebsite";
             this.textBoxWebsite.Size = new System.Drawing.Size(402, 31);
             this.textBoxWebsite.TabIndex = 18;
             // 
             // textBoxDevelopers
             // 
-            this.textBoxDevelopers.Location = new System.Drawing.Point(188, 435);
+            this.textBoxDevelopers.Location = new System.Drawing.Point(192, 384);
             this.textBoxDevelopers.Name = "textBoxDevelopers";
             this.textBoxDevelopers.Size = new System.Drawing.Size(402, 31);
             this.textBoxDevelopers.TabIndex = 19;
             // 
             // textBoxGenres
             // 
-            this.textBoxGenres.Location = new System.Drawing.Point(188, 391);
+            this.textBoxGenres.Location = new System.Drawing.Point(192, 340);
             this.textBoxGenres.Name = "textBoxGenres";
             this.textBoxGenres.Size = new System.Drawing.Size(402, 31);
             this.textBoxGenres.TabIndex = 20;
             // 
             // textBoxRating
             // 
-            this.textBoxRating.Location = new System.Drawing.Point(188, 346);
+            this.textBoxRating.Location = new System.Drawing.Point(192, 295);
             this.textBoxRating.Name = "textBoxRating";
             this.textBoxRating.Size = new System.Drawing.Size(402, 31);
             this.textBoxRating.TabIndex = 21;
             // 
             // textBoxPlatforms
             // 
-            this.textBoxPlatforms.Location = new System.Drawing.Point(188, 292);
+            this.textBoxPlatforms.Location = new System.Drawing.Point(192, 241);
             this.textBoxPlatforms.Name = "textBoxPlatforms";
             this.textBoxPlatforms.Size = new System.Drawing.Size(402, 31);
             this.textBoxPlatforms.TabIndex = 22;
             // 
             // richTextBoxDescription
             // 
-            this.richTextBoxDescription.Location = new System.Drawing.Point(188, 582);
+            this.richTextBoxDescription.Location = new System.Drawing.Point(192, 531);
             this.richTextBoxDescription.Name = "richTextBoxDescription";
             this.richTextBoxDescription.Size = new System.Drawing.Size(402, 137);
             this.richTextBoxDescription.TabIndex = 23;
@@ -274,7 +263,7 @@
             // 
             // buttonPickExecutable
             // 
-            this.buttonPickExecutable.Location = new System.Drawing.Point(615, 511);
+            this.buttonPickExecutable.Location = new System.Drawing.Point(619, 460);
             this.buttonPickExecutable.Name = "buttonPickExecutable";
             this.buttonPickExecutable.Size = new System.Drawing.Size(218, 52);
             this.buttonPickExecutable.TabIndex = 25;
@@ -285,7 +274,7 @@
             // buttonGameSuggestions
             // 
             this.buttonGameSuggestions.Enabled = false;
-            this.buttonGameSuggestions.Location = new System.Drawing.Point(694, 73);
+            this.buttonGameSuggestions.Location = new System.Drawing.Point(698, 22);
             this.buttonGameSuggestions.Name = "buttonGameSuggestions";
             this.buttonGameSuggestions.Size = new System.Drawing.Size(223, 55);
             this.buttonGameSuggestions.TabIndex = 26;
@@ -319,7 +308,6 @@
             this.Controls.Add(this.labelPublisher);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
-            this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonRetrieveGame);
             this.Controls.Add(this.labelSearchGames);
             this.Controls.Add(this.buttonUploadLocalCover);
@@ -340,7 +328,6 @@
         private System.Windows.Forms.Button buttonUploadLocalCover;
         private System.Windows.Forms.Label labelSearchGames;
         private System.Windows.Forms.Button buttonRetrieveGame;
-        private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxPublisher;

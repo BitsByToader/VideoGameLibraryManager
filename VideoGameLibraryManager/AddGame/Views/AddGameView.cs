@@ -117,11 +117,6 @@ namespace VideoGameLibraryManager.AddGame
             }
         }
 
-        private void buttonBack_Click(object sender, EventArgs e)
-        {
-            _parent.PopToRoot();
-        }
-
         private void buttonSaveGame_Click(object sender, EventArgs e)
         {
             Game gameToSave = new Game();
