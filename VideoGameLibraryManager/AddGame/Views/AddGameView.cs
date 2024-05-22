@@ -10,17 +10,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserDB_Manager;
+using VideoGameLibraryManager.AddGame;
 using WFFramework;
 
 namespace VideoGameLibraryManager.AddGame
 {
-    public partial class AddGameFormView : Form, IView
+    public partial class AddGameView : Form, IAddGameView
     {
         FormNavigationStack _parent = null;
         IGameAPI _gameAPI = IGDB_API.GetInstance("p5fnw9ncdtxnzhc0krntyxipfzr8h7", "lsx3tr1bazjawk7ahz7ipd4i6uphmy");
         SessionInterface _userDb = GameLibraryDb.GetInstance("user_library.db");
 
-        public AddGameFormView()
+        public AddGameView()
         {
             InitializeComponent();
         }

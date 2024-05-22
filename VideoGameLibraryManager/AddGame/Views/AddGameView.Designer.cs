@@ -1,6 +1,6 @@
 ﻿namespace VideoGameLibraryManager.AddGame
 {
-    partial class AddGameFormView
+    partial class AddGameView
     {
         /// <summary>
         /// Required designer variable.

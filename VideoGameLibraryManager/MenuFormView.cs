@@ -36,7 +36,7 @@ namespace VideoGameLibraryManager
         IView form3 = new Form3();
         private IView _gameLibraryView = new GameLibraryView();
         private IGameLibraryController _libraryController;
-        private IView _addGameView = new AddGameFormView();
+        private IView _addGameView = new AddGameView();
 
         public MenuFormView()
         {
