@@ -88,6 +88,17 @@
     <Compile Include="AddGame\Views\AddGameView.Designer.cs">
       <DependentUpon>AddGameView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\Controllers\HomeController.cs" />
+    <Compile Include="Home\Controllers\IHomeController.cs" />
+    <Compile Include="Home\Models\HomeModel.cs" />
+    <Compile Include="Home\Models\IHomeModel.cs" />
+    <Compile Include="Home\Views\HomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\Views\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Views\IHomeView.cs" />
     <Compile Include="AddGame\Views\IAddGameView.cs" />
     <Compile Include="Library\BriefGameInfoBox.cs">
       <SubType>UserControl</SubType>
@@ -147,6 +158,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddGame\Views\AddGameView.resx">
       <DependentUpon>AddGameView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\Views\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Library\BriefGameInfoBox.resx">
       <DependentUpon>BriefGameInfoBox.cs</DependentUpon>

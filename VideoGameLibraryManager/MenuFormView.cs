@@ -28,6 +28,7 @@ using ExtensionMethods;
 using VideoGameLibraryManager.AddGame;
 using VideoGameLibraryManager.Library;
 using VideoGameLibraryManager.Library.Models;
+using VideoGameLibraryManager.Home.Controllers;
 
 namespace VideoGameLibraryManager
 {
@@ -41,9 +42,11 @@ namespace VideoGameLibraryManager
 
         private void homeButton_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            (form3 as Form).MakeContainerable();
-            formNavigationStack1.SetRoot(form3);
+            IHomeController _addGameController = new HomeController();
+            IView view = _addGameController.GetView();
+            (view as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(view);
+
         }
 
         private void addGameButton_Click(object sender, EventArgs e)

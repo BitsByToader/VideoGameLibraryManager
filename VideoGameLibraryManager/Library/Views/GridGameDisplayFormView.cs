@@ -42,6 +42,11 @@ namespace VideoGameLibraryManager
             _games = games;
         }
 
+        public GridGameDisplayFormView()
+        {
+            InitializeComponent();
+        }
+
         public void AddToParent(IViewContainer parent)
         {
             _parent = parent;
