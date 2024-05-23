@@ -1,4 +1,5 @@
-﻿using LibraryCommons;
+﻿using Helpers;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace VideoGameLibraryManager.Home.Controllers
     {
         private IHomeModel _model;
         private IHomeView _view;
+        private long _totalPlaytime;
+
 
         public HomeController()
         {
@@ -26,9 +29,22 @@ namespace VideoGameLibraryManager.Home.Controllers
 
         public List<Game> GetMostPlayedGames() => _model.GetMostPlayedGames();
 
-        public long GetTotalPlaytime() => _model.GetTotalPlaytime();
+        public long GetTotalPlaytime() => _totalPlaytime;
 
         public IHomeView GetView() => _view;
+
+        public void RefreshData()
+        {
+            UpdateFavouriteGames();
+            UpdateMostPlayedGames();
+            UpdateFavouriteGenre();
+            UpdateTotalPlaytime();
+
+            _view.RefreshTotalPlaytime();
+            _view.RefreshFavouriteGenre();
+            _view.RefreshFavouriteGames();
+            _view.RefreshMostPlayedGames();
+        }
 
         public void UpdateFavouriteGames()
         {
@@ -47,7 +63,7 @@ namespace VideoGameLibraryManager.Home.Controllers
 
         public void UpdateTotalPlaytime()
         {
-            _model.UpdateTotalPlaytime();
+            _totalPlaytime =  _model.GetSortedGames(new SortByPlaytime()).Aggregate(0L, (acc, game) => acc + game.playtime);
         }
     }
 }

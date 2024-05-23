@@ -24,6 +24,8 @@ namespace VideoGameLibraryManager.Home.Controllers
 
         void UpdateFavouriteGenre();
 
+        void RefreshData();
+
         IHomeView GetView(); 
     }
 }

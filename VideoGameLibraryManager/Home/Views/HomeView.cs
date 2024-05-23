@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryCommons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,7 +48,7 @@ namespace VideoGameLibraryManager.Home.Views
 
         public void WillAppear()
         {
-            
+            _controller.RefreshData();
         }
 
         public void WillBeAddedToParent()
@@ -68,22 +69,22 @@ namespace VideoGameLibraryManager.Home.Views
 
         public void RefreshFavouriteGames()
         {
-            
+            favouriteGamesFormViewContainer.ChangeView(new GridGameDisplayFormView(_controller.GetFavouriteGames()));
         }
 
         public void RefreshMostPlayedGames()
         {
-            
+            mostPlayedGamesFormViewContainer.ChangeView(new GridGameDisplayFormView(_controller.GetMostPlayedGames()));
         }
 
         public void RefreshTotalPlaytime()
         {
-            
+            totalPlaytimeLabel.Text = "Total playtime : "  +_controller.GetTotalPlaytime().ToString();
         }
 
         public void RefreshFavouriteGenre()
         {
-            
+            favouriteGenreLabel.Text = "Favourite Genre: " + _controller.GetFavouriteGenre();
         }
     }
 }

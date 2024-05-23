@@ -13,13 +13,10 @@ namespace VideoGameLibraryManager.Home.Models
         List<Game> GetFavouriteGames();
         List<Game> GetMostPlayedGames();
 
-        long GetTotalPlaytime();
-
         string GetFavouriteGenre();
 
         void UpdateFavouriteGames();
         void UpdateMostPlayedGames();
-        void UpdateTotalPlaytime();
 
         void UpdateFavouriteGenre();
 
