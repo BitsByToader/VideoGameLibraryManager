@@ -33,14 +33,15 @@
             this.addGameButton = new System.Windows.Forms.Button();
             this.libraryButton = new System.Windows.Forms.Button();
             this.settingsButton = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // homeButton
             // 
-            this.homeButton.Location = new System.Drawing.Point(6, 7);
-            this.homeButton.Margin = new System.Windows.Forms.Padding(2);
+            this.homeButton.Location = new System.Drawing.Point(12, 13);
+            this.homeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.homeButton.Name = "homeButton";
-            this.homeButton.Size = new System.Drawing.Size(74, 29);
+            this.homeButton.Size = new System.Drawing.Size(148, 56);
             this.homeButton.TabIndex = 0;
             this.homeButton.Text = "Home";
             this.homeButton.UseVisualStyleBackColor = true;
@@ -55,22 +56,25 @@
             this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.formNavigationStack1.Location = new System.Drawing.Point(84, 6);
-            this.formNavigationStack1.Margin = new System.Windows.Forms.Padding(2);
+            this.formNavigationStack1.Location = new System.Drawing.Point(168, 79);
+            this.formNavigationStack1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.formNavigationStack1.Name = "formNavigationStack1";
             this.formNavigationStack1.RowCount = 1;
             this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.formNavigationStack1.Size = new System.Drawing.Size(546, 407);
+            this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.formNavigationStack1.Size = new System.Drawing.Size(1092, 716);
             this.formNavigationStack1.TabIndex = 2;
             // 
             // addGameButton
             // 
-            this.addGameButton.Location = new System.Drawing.Point(6, 41);
+            this.addGameButton.Location = new System.Drawing.Point(12, 79);
+            this.addGameButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.addGameButton.Name = "addGameButton";
-            this.addGameButton.Size = new System.Drawing.Size(74, 29);
+            this.addGameButton.Size = new System.Drawing.Size(148, 56);
             this.addGameButton.TabIndex = 3;
             this.addGameButton.Text = "Add Game";
             this.addGameButton.UseVisualStyleBackColor = true;
@@ -78,9 +82,10 @@
             // 
             // libraryButton
             // 
-            this.libraryButton.Location = new System.Drawing.Point(6, 76);
+            this.libraryButton.Location = new System.Drawing.Point(12, 146);
+            this.libraryButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.libraryButton.Name = "libraryButton";
-            this.libraryButton.Size = new System.Drawing.Size(74, 29);
+            this.libraryButton.Size = new System.Drawing.Size(148, 56);
             this.libraryButton.TabIndex = 4;
             this.libraryButton.Text = "Library";
             this.libraryButton.UseVisualStyleBackColor = true;
@@ -88,25 +93,37 @@
             // 
             // settingsButton
             // 
-            this.settingsButton.Location = new System.Drawing.Point(6, 111);
+            this.settingsButton.Location = new System.Drawing.Point(12, 213);
+            this.settingsButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(74, 29);
+            this.settingsButton.Size = new System.Drawing.Size(148, 56);
             this.settingsButton.TabIndex = 5;
             this.settingsButton.Text = "Settings";
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
+            // buttonBack
+            // 
+            this.buttonBack.Location = new System.Drawing.Point(1100, 13);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(160, 56);
+            this.buttonBack.TabIndex = 6;
+            this.buttonBack.Text = "< Back";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
             // MenuFormView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 419);
+            this.ClientSize = new System.Drawing.Size(1272, 806);
+            this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.libraryButton);
             this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.formNavigationStack1);
             this.Controls.Add(this.homeButton);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MenuFormView";
             this.Text = "Game Library";
             this.ResumeLayout(false);
@@ -120,6 +137,7 @@
         private System.Windows.Forms.Button addGameButton;
         private System.Windows.Forms.Button libraryButton;
         private System.Windows.Forms.Button settingsButton;
+        private System.Windows.Forms.Button buttonBack;
     }
 }
 

@@ -34,8 +34,6 @@ namespace VideoGameLibraryManager
 {
     public partial class MenuFormView : Form
     {
-        private IView _addGameView = new AddGameFormView();
-
         public MenuFormView()
         {
             InitializeComponent();
@@ -48,12 +46,15 @@ namespace VideoGameLibraryManager
             IView view = _addGameController.GetView();
             (view as Form).MakeContainerable();
             formNavigationStack1.SetRoot(view);
+
         }
 
         private void addGameButton_Click(object sender, EventArgs e)
         {
-            (_addGameView as Form).MakeContainerable();
-            formNavigationStack1.SetRoot(_addGameView);
+            IAddGameController _addGameController = new AddGameController();
+            IView view = _addGameController.GetView();
+            (view as Form).MakeContainerable();
+            formNavigationStack1.SetRoot(view);
         }
 
         private void libraryButton_Click(object sender, EventArgs e)
@@ -69,6 +70,11 @@ namespace VideoGameLibraryManager
         private void settingsButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            formNavigationStack1.PopView();
         }
     }
 }

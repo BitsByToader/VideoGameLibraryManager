@@ -98,6 +98,7 @@ namespace API_Manager
             if (game.involved_companies != null)
             {
                 newGame.publisher = game.involved_companies[0].ToString();
+                //newGame.publisher = game.companies[0].name;
             }
             if (game.genres != null)
             {
@@ -106,6 +107,7 @@ namespace API_Manager
             if (game.involved_companies != null)
             {
                 newGame.developers = game.involved_companies.Select(x => x.ToString()).ToList();
+                //newGame.developers = game.companies.Select(x => x.name).ToList();
             }
             newGame.global_rating = (int)game.rating;
             newGame.cover = task.Result;
