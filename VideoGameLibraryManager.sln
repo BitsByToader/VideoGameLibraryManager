@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoGameLibraryManager", "VideoGameLibraryManager\VideoGameLibraryManager.csproj", "{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGLMUnitTests", "VGLMUnitTests\VGLMUnitTests.csproj", "{FE07B36E-B71B-4ABA-B827-5FD39E3A5FA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BC58BD-EA73-49D9-BAED-4A3B39E3F682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE07B36E-B71B-4ABA-B827-5FD39E3A5FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE07B36E-B71B-4ABA-B827-5FD39E3A5FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE07B36E-B71B-4ABA-B827-5FD39E3A5FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE07B36E-B71B-4ABA-B827-5FD39E3A5FA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
