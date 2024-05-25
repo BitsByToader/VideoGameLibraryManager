@@ -1,4 +1,21 @@
-﻿using System;
+﻿/************************************************************************************
+*                                                                                   *
+*  File:        FormNavigationStack                                                 *
+*  Copyright:   (c) 2024, Ifrim Tudor                                               *
+*  E-mail:      tudor-nicolae.ifrim@student.tuiasi.ro                               *
+*  Description: Provides an interface for a type of container which stores IViews   *
+*               arbitrarily.                                                        *
+*                                                                                   *
+*                                                                                   *
+*  This code and information is provided "as is" without warranty of                *
+*  any kind, either expressed or implied, including but not limited                 *
+*  to the implied warranties of merchantability or fitness for a                    *
+*  particular purpose. You are free to use this source code in your                 *
+*  applications as long as the original copyright notice is included.               *
+*                                                                                   *
+************************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,13 +35,6 @@ namespace WFFramework
         /// Instructs the collection view that the dataset has changed and needs to redraw its contents.
         /// </summary>
         void RefreshViews();
-
-        /// <summary>
-        /// Provides refreshed data to the collection view, than redraws its contents.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="data"></param>
-        void RefreshViews<T>(List<T> data);
 
         /// <summary>
         /// Accessor for the collection to retrieve a view at the specified index.

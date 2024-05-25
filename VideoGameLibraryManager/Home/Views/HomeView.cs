@@ -41,7 +41,7 @@ namespace VideoGameLibraryManager.Home.Views
             return _parent;
         }
 
-        public void removeFromParent()
+        public void RemoveFromParent()
         {
             _parent = null;
         }

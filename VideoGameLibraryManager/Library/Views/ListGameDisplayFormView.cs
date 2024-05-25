@@ -56,7 +56,7 @@ namespace VideoGameLibraryManager
             return _parent;
         }
 
-        public void removeFromParent()
+        public void RemoveFromParent()
         {
             _parent = null;
         }
@@ -88,12 +88,6 @@ namespace VideoGameLibraryManager
         public override void RefreshViews()
         {
             base.RefreshViews();
-        }
-
-        public override void RefreshViews<T>(List<T> data)
-        {
-            _games = data as List<Game>;
-            this.RefreshViews();
         }
 
         public override IView ViewAt(int index)
