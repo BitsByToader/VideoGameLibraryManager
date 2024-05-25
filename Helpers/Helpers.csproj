@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisplayType.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GameSorter\GameSorter.cs" />
     <Compile Include="GameSorter\Sorters\ISortStyle.cs" />

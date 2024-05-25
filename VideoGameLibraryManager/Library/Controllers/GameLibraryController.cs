@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoGameLibraryManager.Library.Models;
+using VideoGameLibraryManager.Models;
 using WFFramework;
 
 namespace VideoGameLibraryManager.Library
 {
-    internal class GameLibraryController : IGameLibraryController
+    public class GameLibraryController : IGameLibraryController
     {
         private IGameLibraryView _view;
         private IGameLibraryModel _model;

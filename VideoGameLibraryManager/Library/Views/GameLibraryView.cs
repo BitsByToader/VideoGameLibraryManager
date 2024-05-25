@@ -27,6 +27,7 @@ using WFFramework;
 using Helpers;
 using VideoGameLibraryManager.Library;
 using LibraryCommons;
+using VideoGameLibraryManager.Models;
 
 namespace VideoGameLibraryManager
 {
