@@ -136,7 +136,7 @@ namespace VideoGameLibraryManager
 
         public void GameClicked(int index)
         {
-            _controller.NavigateToGameView(_controller.GetGames()[index]);
+            _controller.NavigateToGameView(index);
         }
     }
 }

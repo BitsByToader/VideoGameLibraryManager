@@ -44,9 +44,9 @@ namespace VideoGameLibraryManager.Library
             _model.SortGames();
         }
 
-        public void NavigateToGameView(Game game)
+        public void NavigateToGameView(int index)
         {
-            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), game);
+            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), _model.GetAllGames()[index]);
             ((Form)viewGameController.GetView()).MakeContainerable();
             _model.GetParent().PushView(viewGameController.GetView());
         }
