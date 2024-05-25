@@ -105,7 +105,6 @@ namespace VideoGameLibraryManager
             BriefGameInfoBox userControl = new BriefGameInfoBox();
             userControl.GameImage = game.cover;
             userControl.GameName = game.name;
-
             return userControl;
         }
     }
