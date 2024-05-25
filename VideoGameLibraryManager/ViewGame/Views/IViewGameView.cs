@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WFFramework;
 
 namespace VideoGameLibraryManager.ViewGame.Views
 {
-    public interface IViewGameView
+    public interface IViewGameView: IView
     {
         void DisplayGame(Game game);
         void DisplayError(string message);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExtensionMethods;
 
 namespace WFFramework
 {
@@ -30,7 +31,17 @@ namespace WFFramework
             for (int i = 0; i < this.Count(); i++ )
             {
                 IView view = this.ViewAt(i);
-                this.Controls.Add((Control)view);
+
+                Control correspondingControl = (Control)view; // force views to be an implementation of Control. This limitation makes sense since this implementation of
+                                                              // IViewCollection is meant to be used for Windows Forms.
+
+                int local = i; // Create local variable captured inside the loop for the closure below.
+                               // Otherwise, the index used in the closure will be update along with the loop.
+                               // This means that we'll get the last index for all clicked views.
+
+                correspondingControl.AddGlobalClick(delegate { ClickedViewAt(local); });
+
+                this.Controls.Add(correspondingControl);
             }
         }
 
@@ -40,5 +51,7 @@ namespace WFFramework
         }
 
         public abstract IView ViewAt(int index);
+
+        public abstract void ClickedViewAt(int index);
     }
 }

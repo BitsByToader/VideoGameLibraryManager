@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoGameLibraryManager.ViewGame.Models;
 using VideoGameLibraryManager.ViewGame.Views;
+using WFFramework;
 
 namespace VideoGameLibraryManager.ViewGame
 {
@@ -14,10 +15,13 @@ namespace VideoGameLibraryManager.ViewGame
         private IViewGameModel _model;
         private IViewGameView _view;
 
-        public ViewGameController(IViewGameModel model, IViewGameView view)
+        public ViewGameController(IViewContainer parent, Game game)
         {
-            _model = model;
-            _view = view;
+            _model = new ViewGameModel();
+            _model.SetGame(game);
+            // fortam ca acest view sa fie copil al unui navigation stack, altfel consideram ca nu are parinte
+            _model.SetParent(parent as FormNavigationStack); 
+            _view = new ViewGameView();
         }
 
         public IViewGameView GetView()

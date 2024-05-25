@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryCommons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WFFramework;
 
 namespace VideoGameLibraryManager.ViewGame.Views
 {
-    public partial class ViewGameView : Form
+    public partial class ViewGameView : Form, IViewGameView
     {
+        private FormNavigationStack _parent;
+
         public ViewGameView()
         {
             InitializeComponent();
@@ -50,6 +54,56 @@ namespace VideoGameLibraryManager.ViewGame.Views
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void DisplayGame(Game game)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayError(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ConfirmDeletion(bool success)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddToParent(IViewContainer parent)
+        {
+            _parent = (FormNavigationStack)parent;
+        }
+
+        public void removeFromParent()
+        {
+            _parent = null;
+        }
+
+        public IViewContainer GetParentContainer()
+        {
+            return _parent;
+        }
+
+        public void WillAppear()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void WillDisappear()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void WillBeAddedToParent()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void WillBeRemovedFromParent()
+        {
+            //throw new NotImplementedException();
         }
     }
 }
