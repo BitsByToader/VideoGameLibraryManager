@@ -5,8 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VideoGameLibraryManager.Home.Models;
 using VideoGameLibraryManager.Home.Views;
+using VideoGameLibraryManager.ViewGame;
+using WFFramework;
+using ExtensionMethods;
+
 
 namespace VideoGameLibraryManager.Home.Controllers
 {
@@ -15,11 +20,13 @@ namespace VideoGameLibraryManager.Home.Controllers
         private IHomeModel _model;
         private IHomeView _view;
         private long _totalPlaytime;
+        private GameListType _gameListType;
 
 
-        public HomeController() //TODO: Controller needs parent formnavigationstack also. Keep it in model and use it for navigation.
+        public HomeController(IViewContainer parent) 
         {
             _model = new HomeModel();
+            _model.SetParent(parent as FormNavigationStack);
             _view = new HomeView(this);
         }
 
@@ -66,6 +73,24 @@ namespace VideoGameLibraryManager.Home.Controllers
             _totalPlaytime =  _model.GetSortedGames(new SortByPlaytime()).Aggregate(0L, (acc, game) => acc + game.playtime);
         }
 
-        //TODO: Handle navigation in a method here.
+        public void NavigateToGameView(int index)
+        {
+            List<Game> games = _model.GetFavouriteGames();
+
+            switch(_gameListType)
+            {
+                case GameListType.MostPlayed: games = _model.GetMostPlayedGames(); break;
+                case GameListType.Favourite: games = _model.GetFavouriteGames(); break;
+            }
+
+            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), games[index]);
+            ((Form)viewGameController.GetView()).MakeContainerable();
+            _model.GetParent().PushView(viewGameController.GetView());
+        }
+
+        public void SetGamesToSelect(GameListType type)
+        {
+            _gameListType = type;
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoGameLibraryManager.Home.Controllers;
+using VideoGameLibraryManager.Home.Models;
 using WFFramework;
 
 namespace VideoGameLibraryManager.Home.Views
@@ -24,6 +25,9 @@ namespace VideoGameLibraryManager.Home.Views
             _controller = controller;
             totalPlaytimeLabel.Text = "";
             favouriteGenreLabel.Text = "";
+
+            mostPlayedGamesFormViewContainer.Click += (sender, e) => _controller.SetGamesToSelect(GameListType.MostPlayed);
+            favouriteGamesFormViewContainer.Click += (sender, e) => _controller.SetGamesToSelect(GameListType.Favourite);
         }
 
         public HomeView()
@@ -69,12 +73,16 @@ namespace VideoGameLibraryManager.Home.Views
 
         public void RefreshFavouriteGames()
         {
-            favouriteGamesFormViewContainer.ChangeView(new GridGameDisplayFormView(_controller.GetFavouriteGames()));
+            GridGameDisplayFormView grid = new GridGameDisplayFormView(_controller.GetFavouriteGames());
+            grid.ClickHandler = GameClickAt;
+            favouriteGamesFormViewContainer.ChangeView(grid);
         }
 
         public void RefreshMostPlayedGames()
         {
-            mostPlayedGamesFormViewContainer.ChangeView(new GridGameDisplayFormView(_controller.GetMostPlayedGames()));
+            GridGameDisplayFormView grid = new GridGameDisplayFormView(_controller.GetMostPlayedGames());
+            grid.ClickHandler = GameClickAt;
+            mostPlayedGamesFormViewContainer.ChangeView(grid);
         }
 
         public void RefreshTotalPlaytime()
@@ -89,9 +97,9 @@ namespace VideoGameLibraryManager.Home.Views
 
         public void GameClickAt(int index)
         {
-            //TODO: Navigate to game view here.
-            // Send index over to controller.
-            // Controller will select game.
+            _controller.NavigateToGameView(index);
         }
+
+       
     }
 }

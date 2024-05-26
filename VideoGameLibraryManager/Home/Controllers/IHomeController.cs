@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VideoGameLibraryManager.Home.Models;
 using VideoGameLibraryManager.Home.Views;
 
 namespace VideoGameLibraryManager.Home.Controllers
@@ -26,6 +27,10 @@ namespace VideoGameLibraryManager.Home.Controllers
 
         void RefreshData();
 
-        IHomeView GetView(); 
+        IHomeView GetView();
+
+        void NavigateToGameView(int index);
+
+        void SetGamesToSelect(GameListType type);
     }
 }

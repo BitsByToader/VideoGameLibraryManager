@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="Home\Controllers\HomeController.cs" />
     <Compile Include="Home\Controllers\IHomeController.cs" />
+    <Compile Include="Home\Models\GameListType.cs" />
     <Compile Include="Home\Models\HomeModel.cs" />
     <Compile Include="Home\Models\IHomeModel.cs" />
     <Compile Include="Home\Views\HomeView.cs">

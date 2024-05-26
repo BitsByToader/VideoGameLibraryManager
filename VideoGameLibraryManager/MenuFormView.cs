@@ -42,7 +42,7 @@ namespace VideoGameLibraryManager
 
         private void homeButton_Click(object sender, EventArgs e)
         {
-            IHomeController _addGameController = new HomeController();
+            IHomeController _addGameController = new HomeController(formNavigationStack1);
             IView view = _addGameController.GetView();
             (view as Form).MakeContainerable();
             formNavigationStack1.SetRoot(view);
