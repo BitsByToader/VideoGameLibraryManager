@@ -278,7 +278,7 @@ namespace LibraryCommons
         public int id { get; set; }
         public int game_id { get; set; }
         public string todo { get; set; }
-        private bool done { get; set; }
+        public bool done { get; set; }
         public GameTODO()
         {
             this.id = -1;

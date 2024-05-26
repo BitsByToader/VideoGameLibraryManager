@@ -13,17 +13,17 @@ namespace VideoGameLibraryManager.ViewGame.Models
         private FormNavigationStack _parent;
         private Game _game; // populated during lifetime
 
-        public void DeleteGame(string name)
+        public void DeleteGame(int id)
         {
             throw new NotImplementedException();
-        }
+        } 
 
         public Game GetGame()
         {
             return _game;
         }
 
-        public void SetGame(Game game)
+        public void SetGame(ref Game game)
         {
             _game = game;
         }

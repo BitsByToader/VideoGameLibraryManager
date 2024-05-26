@@ -11,8 +11,8 @@ namespace VideoGameLibraryManager.ViewGame.Models
     public interface IViewGameModel
     {
         Game GetGame();
-        void SetGame(Game game);
-        void DeleteGame(string name);
+        void SetGame(ref Game game);
+        void DeleteGame(int id);
         void SetParent(FormNavigationStack parent);
         FormNavigationStack GetParent();
     }

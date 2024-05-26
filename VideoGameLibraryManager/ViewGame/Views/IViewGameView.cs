@@ -10,7 +10,7 @@ namespace VideoGameLibraryManager.ViewGame.Views
 {
     public interface IViewGameView: IView
     {
-        void DisplayGame(Game game);
+        void DisplayGame(ref Game game);
         void DisplayError(string message);
         void ConfirmDeletion(bool success);
     }

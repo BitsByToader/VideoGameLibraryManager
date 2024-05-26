@@ -64,7 +64,8 @@ namespace LibraryCommons
         {
             if(bitmap == null)
             {
-                throw new ArgumentNullException("Bitmap is null.");
+                //throw new ArgumentNullException("Bitmap is null.");
+                bitmap = new Bitmap(1, 1);
             }
             if (fileName == null)
             {

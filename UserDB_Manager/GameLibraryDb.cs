@@ -18,6 +18,7 @@ using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -97,7 +98,8 @@ public class GameLibraryDb: SessionInterface
                 CREATE TABLE IF NOT EXISTS todos (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     game_id INTEGER,
-                    todo TEXT
+                    todo TEXT,
+                    done BOOLEAN DEFAULT 0
                 );
             ";
                 command.ExecuteNonQuery();
@@ -129,7 +131,14 @@ public class GameLibraryDb: SessionInterface
                 string platform = "";
                 foreach (var item in game.platforms)
                 {
-                    platform += item + ", ";
+                    if (item.EndsWith(" ") || item.EndsWith(","))
+                    {
+                        platform += item;
+                    }
+                    else
+                    {
+                        platform += item + ", ";
+                    }
                 }
                 command.Parameters.AddWithValue("@platform", platform);
                 command.Parameters.AddWithValue("@playtime", game.playtime);
@@ -140,8 +149,15 @@ public class GameLibraryDb: SessionInterface
                 if(game.genre != null)
                 {
                     foreach (var item in game.genre)
-                    {
-                        genre += item+ ", ";
+                    { 
+                        if(item.EndsWith(" ") || item.EndsWith(","))
+                        {
+                            genre += item;
+                        }
+                        else
+                        {
+                            genre += item + ", ";
+                        }
                     }   
                 }
                 else
@@ -155,7 +171,14 @@ public class GameLibraryDb: SessionInterface
                    
                     foreach (var item in game.developers)
                     {
-                        developer += item + ", ";
+                        if (item.EndsWith(" ") || item.EndsWith(","))
+                        {
+                            developer += item;
+                        }
+                        else
+                        {
+                            developer += item + ", ";
+                        }
                     }
                 }
                 else
@@ -349,7 +372,14 @@ public class GameLibraryDb: SessionInterface
                 string platform = "";
                 foreach (var item in currentGame.platforms)
                 {
-                    platform += item + ", ";
+                    if (item.EndsWith(" ") || item.EndsWith(","))
+                    {
+                        platform += item;
+                    }
+                    else
+                    {
+                        platform += item + ", ";
+                    }
                 }
                 command.Parameters.AddWithValue("@platform", platform);
                 command.Parameters.AddWithValue("@playtime", currentGame.playtime);
@@ -361,7 +391,14 @@ public class GameLibraryDb: SessionInterface
                 {
                     foreach (var item in currentGame.genre)
                     {
-                        genre += item + ", ";
+                        if (item.EndsWith(" ") || item.EndsWith(","))
+                        {
+                            genre += item;
+                        }
+                        else
+                        {
+                            genre += item + ", ";
+                        }
                     }
                 }
                 else
@@ -374,7 +411,14 @@ public class GameLibraryDb: SessionInterface
                     string developer = "";
                     foreach (var item in currentGame.developers)
                     {
-                        developer += item + ", ";
+                        if (item.EndsWith(" ") || item.EndsWith(","))
+                        {
+                            developer += item;
+                        }
+                        else
+                        {
+                            developer += item + ", ";
+                        }
                     }
                     command.Parameters.AddWithValue("@developer", developer);
                 }
@@ -442,7 +486,14 @@ public class GameLibraryDb: SessionInterface
                 string platform = "";
                 foreach (var item in updatedGame.platforms)
                 {
-                    platform += item + ", ";
+                    if (item.EndsWith(" ") || item.EndsWith(","))
+                    {
+                        platform += item;
+                    }
+                    else
+                    {
+                        platform += item + ", ";
+                    }
                 }
                 command.Parameters.AddWithValue("@platform", platform);
                 command.Parameters.AddWithValue("@playtime", updatedGame.playtime);
@@ -454,7 +505,14 @@ public class GameLibraryDb: SessionInterface
                 {
                     foreach (var item in updatedGame.genre)
                     {
-                        genre += item + ", ";
+                        if (item.EndsWith(" ") || item.EndsWith(","))
+                        {
+                            genre += item;
+                        }
+                        else
+                        {
+                            genre += item + ", ";
+                        }
                     }
                 }
                 else
@@ -467,7 +525,14 @@ public class GameLibraryDb: SessionInterface
                     string developer = "";
                     foreach (var item in updatedGame.developers)
                     {
-                        developer += item + ", ";
+                        if (item.EndsWith(" ") || item.EndsWith(","))
+                        {
+                            developer += item;
+                        }
+                        else
+                        {
+                            developer += item + ", ";
+                        }
                     }
                     command.Parameters.AddWithValue("@developer", developer);
                 }
@@ -552,9 +617,9 @@ public class GameLibraryDb: SessionInterface
     /// </summary>
     /// <param name="gameId"> The id of the game </param>
     /// <returns> List of todos </returns>
-    public List<string> GetTodos(int gameId)
+    public List<GameTODO> GetTodos(int gameId)
     {
-        List<string> todos = new List<string>();
+        List<GameTODO> todos = new List<GameTODO>();
 
         using (var connection = new SQLiteConnection(_connectionString))
         {
@@ -562,14 +627,22 @@ public class GameLibraryDb: SessionInterface
 
             using (var command = new SQLiteCommand(connection))
             {
-                command.CommandText = "SELECT todo FROM todos WHERE game_id = @game_id";
+                command.CommandText = "SELECT * FROM todos WHERE game_id = @game_id";
                 command.Parameters.AddWithValue("@game_id", gameId);
 
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        todos.Add(reader.GetString(0));
+                        GameTODO todo = new GameTODO
+                        {
+                            id = reader.GetInt32(0),
+                            game_id = reader.GetInt32(1),
+                            todo = reader.GetString(2),
+                            done = reader.GetBoolean(3)
+                        };
+
+                        todos.Add(todo);
                     }
                 }
             }
@@ -620,8 +693,106 @@ public class GameLibraryDb: SessionInterface
         }
     }
 
+    public void RemoveAllTodos(int gameId)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
 
-   
-    
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "DELETE FROM todos WHERE game_id = @gameId";
+                command.Parameters.AddWithValue("@gameId", gameId);
 
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    /// <summary>
+    /// Marks a todo as done
+    /// </summary>
+    /// <param name="todoId"> id of the todo</param>
+    public void markAsDone(int todoId)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "UPDATE todos SET done = 1 WHERE id = @todoId";
+                command.Parameters.AddWithValue("@todoId", todoId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public void markAsUndone(int todoId)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "UPDATE todos SET done = 0 WHERE id = @todoId";
+                command.Parameters.AddWithValue("@todoId", todoId);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public void UpdateRating(int id, int value)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                command.CommandText = "UPDATE games SET personal_rating = @value WHERE id = @id";
+                command.Parameters.AddWithValue("@value", value);
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public void MarkWithIdAndString(int id, string str, bool state)
+    {
+        using (var connection = new SQLiteConnection(_connectionString))
+        {
+            connection.Open();
+
+            using (var command = new SQLiteCommand(connection))
+            {
+                List<GameTODO> gameTODOs = GetTodos(id);
+                int searchedID = -1;
+                foreach (var item in gameTODOs)
+                {
+                    if (item.todo == str)
+                    {
+                        searchedID = item.id;
+                    }
+                }
+
+                if (searchedID != -1)
+                {
+                    if (state)
+                    {
+                        command.CommandText = "UPDATE todos SET done = 1 WHERE id = @id";
+                    }
+                    else
+                    {
+                        command.CommandText = "UPDATE todos SET done = 0 WHERE id = @id";
+                    }
+                    command.Parameters.AddWithValue("@id", searchedID);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+    }
 }
