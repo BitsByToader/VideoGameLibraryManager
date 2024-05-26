@@ -41,6 +41,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.addToDo = new System.Windows.Forms.Button();
             this.weblabel = new System.Windows.Forms.Label();
+            this.TotalPlaytime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGameCover)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PersonalRating)).BeginInit();
             this.SuspendLayout();
@@ -181,11 +182,21 @@
             this.weblabel.TabIndex = 14;
             this.weblabel.UseMnemonic = false;
             // 
+            // TotalPlaytime
+            // 
+            this.TotalPlaytime.AutoSize = true;
+            this.TotalPlaytime.Location = new System.Drawing.Point(406, 255);
+            this.TotalPlaytime.Name = "TotalPlaytime";
+            this.TotalPlaytime.Size = new System.Drawing.Size(79, 13);
+            this.TotalPlaytime.TabIndex = 15;
+            this.TotalPlaytime.Text = "Total Playtime: ";
+            // 
             // ViewGameView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(673, 393);
+            this.Controls.Add(this.TotalPlaytime);
             this.Controls.Add(this.weblabel);
             this.Controls.Add(this.addToDo);
             this.Controls.Add(this.checkBox1);
@@ -224,5 +235,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button addToDo;
         private System.Windows.Forms.Label weblabel;
+        private System.Windows.Forms.Label TotalPlaytime;
     }
 }

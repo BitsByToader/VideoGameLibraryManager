@@ -231,12 +231,20 @@ public class GameLibraryDb: SessionInterface
                         game.id_igdb = reader.GetInt32(1);
                         game.executable_path = reader.GetString(2);
                         game.platforms = reader.GetString(3).Split(',').ToList();
+                        //Remove null or empty strings
+                        game.platforms.RemoveAll(x => string.IsNullOrEmpty(x));
+                        //Remove spaces from the beginning and end of the strings
+                        game.platforms = game.platforms.Select(x => x.Trim()).ToList();
                         game.playtime = reader.GetInt32(4);
                         game.personal_rating = reader.GetInt32(5);
                         game.name = reader.GetString(6);
                         game.publisher = reader.GetString(7);
                         game.genre = reader.GetString(8).Split(',').ToList();
+                        game.genre.RemoveAll(x => string.IsNullOrEmpty(x));
+                        game.genre = game.genre.Select(x => x.Trim()).ToList();
                         game.developers = reader.GetString(9).Split(',').ToList();
+                        game.developers.RemoveAll(x => string.IsNullOrEmpty(x));
+                        game.developers = game.developers.Select(x => x.Trim()).ToList();
                         game.global_rating = reader.GetInt32(10);
                         game.coverpath = reader.GetString(11);
                         game.summary = reader.GetString(12);

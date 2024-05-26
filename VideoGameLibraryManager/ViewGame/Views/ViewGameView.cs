@@ -177,6 +177,7 @@ namespace VideoGameLibraryManager.ViewGame.Views
             {
                 weblabel.Text+=game.website;
             }
+            TotalPlaytime.Text = "Total Playtime: " + TimeSpan.FromMilliseconds(game.playtime).ToString();
             pictureBoxGameCover.Image = game.cover;
             GameTitle.Text = game.name;
             overallRating.Text = "Overall Rating: " + game.global_rating;
