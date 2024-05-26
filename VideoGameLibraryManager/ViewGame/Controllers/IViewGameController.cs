@@ -14,7 +14,7 @@ namespace VideoGameLibraryManager.ViewGame
         IViewGameView GetView();
         void RetrieveGame();
         void UpdateGame(Game game);
-        void DeleteGame(int id);
+        void DeleteGame();
         void AddToDo(string todo);
         List<GameTODO> GetTodos(int id);
         void UpdateRating(int id, int value);

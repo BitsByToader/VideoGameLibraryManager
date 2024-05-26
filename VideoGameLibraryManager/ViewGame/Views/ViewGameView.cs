@@ -1,8 +1,24 @@
-﻿using LibraryCommons;
+﻿/************************************************************************************
+*                                                                                   *
+*  File:        ViewGameView.cs                                                     *
+*  Copyright:   (c) 2024, Darie Alexandru                                           *
+*  E-mail:      alexandru.darie@student.tuiasi.ro                                   *
+*  Description: View File for the View Game Form.                                   *
+*                                                                                   *
+*                                                                                   *
+*  This code and information is provided "as is" without warranty of                *
+*  any kind, either expressed or implied, including but not limited                 *
+*  to the implied warranties of merchantability or fitness for a                    *
+*  particular purpose. You are free to use this source code in your                 *
+*  applications as long as the original copyright notice is included.               *
+*                                                                                   *
+************************************************************************************/
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,11 +36,15 @@ namespace VideoGameLibraryManager.ViewGame.Views
         private Game _game;
         private bool _editMode = false;
         private bool isDragging = false;
-
+        private NotifyIcon notifyIcon;
         public ViewGameView(IViewGameController controller)
         {
             _controller = controller;
             InitializeComponent();
+            notifyIcon = new NotifyIcon();
+            notifyIcon.Icon = SystemIcons.Application;
+            notifyIcon.Visible = false;
+            notifyIcon.DoubleClick += (sender, args) => this.Show();
         }
 
         private void playButton_Click(object sender, EventArgs e)
@@ -47,11 +67,36 @@ namespace VideoGameLibraryManager.ViewGame.Views
                     {
                         try
                         {
-                            System.Diagnostics.Process.Start(_game.executable_path);
+                            Process gameProcess = Process.Start(_game.executable_path);
+
+                            foreach (Form form in Application.OpenForms)
+                            {
+                                form.Hide();
+                            }
+
+                            DateTime startTime = DateTime.Now;
+
+                            gameProcess.WaitForExit();
+
+                            TimeSpan elapsedTime = DateTime.Now - startTime;
+
+                            foreach (Form form in Application.OpenForms)
+                            {
+                                form.Show();
+                            }
+
+ 
+                            //MessageBox.Show("You played for " + elapsedTime.ToString());
+                            _game.playtime += (int)elapsedTime.TotalMilliseconds;
+                            _controller.UpdateGame(_game);
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Could not start the game. " + ex.Message);
+                            foreach (Form form in Application.OpenForms)
+                            {
+                                form.Show();
+                            }
                         }
                     }
                 }
@@ -109,9 +154,14 @@ namespace VideoGameLibraryManager.ViewGame.Views
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            
+            _game.favorite = checkBox1.Checked;
+            _controller.UpdateGame(_game);
         }
 
+        /// <summary>
+        /// Function to display the game in the view
+        /// </summary>
+        /// <param name="game"> The game to be displayed</param>
         public void DisplayGame(ref Game game)
         {
             List<GameTODO> todos=_controller.GetTodos(game.id);
@@ -135,14 +185,29 @@ namespace VideoGameLibraryManager.ViewGame.Views
             PersonalRating.Value = game.personal_rating;
         }
 
+        /// <summary>
+        /// This function displays an error message
+        /// </summary>
+        /// <param name="message"> The error message to be displayed</param>
         public void DisplayError(string message)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(message);
         }
-
+        /// <summary>
+        /// This function confirms the deletion of a game.
+        /// </summary>
+        /// <param name="success"> A boolean value that indicates if the deletion was successful.</param>
         public void ConfirmDeletion(bool success)
         {
-            throw new NotImplementedException();
+            if (success)
+            {
+                MessageBox.Show("Game deleted successfully");
+                _parent.PopView();
+            }
+            else
+            {
+                MessageBox.Show("Game could not be deleted");
+            }
         }
 
         public void AddToParent(IViewContainer parent)
@@ -214,7 +279,7 @@ namespace VideoGameLibraryManager.ViewGame.Views
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            _controller.DeleteGame(_game.id);
+            _controller.DeleteGame();
         }
 
         private void PersonalRating_MouseUp(object sender, MouseEventArgs e)

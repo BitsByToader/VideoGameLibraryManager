@@ -1,6 +1,7 @@
 ﻿using LibraryCommons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +16,12 @@ namespace VideoGameLibraryManager.ViewGame
     public class ViewGameController : IViewGameController
     {
         private IViewGameModel _model;
-        private IGameLibraryModel gameLibraryModel;
+        private IGameLibraryModel _gameLibraryModel;
         private IViewGameView _view;
 
         public ViewGameController(IViewContainer parent, ref IGameLibraryModel glm, ref Game game)
         {
-            gameLibraryModel = glm;
+            _gameLibraryModel = glm;
             _model = new ViewGameModel();
             _model.SetGame(ref game);
             // fortam ca acest view sa fie copil al unui navigation stack, altfel consideram ca nu are parinte
@@ -55,7 +56,7 @@ namespace VideoGameLibraryManager.ViewGame
                 try
                 {
                     GameLibraryDb.GetInstance("").UpdateGame(game.id, ref game);
-                    gameLibraryModel.RefreshData();
+                    _gameLibraryModel.RefreshData();
                 }
                 catch(Exception ex)
                 {
@@ -71,12 +72,16 @@ namespace VideoGameLibraryManager.ViewGame
         {
             GameLibraryDb.GetInstance("").AddTodo(_model.GetGame().id,todo);
         }
-        public void DeleteGame(int id)
+        public void DeleteGame()
         {
             try
             {
-                _model.DeleteGame(id);
+                //_model.DeleteGame(id);
+                var game = _model.GetGame();
+                GameLibraryDb.GetInstance("").RemoveGame(ref game);
+                _gameLibraryModel.RefreshData();
                 _view.ConfirmDeletion(true);
+
             }
             catch (Exception ex)
             {

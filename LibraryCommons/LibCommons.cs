@@ -1,9 +1,9 @@
 ﻿/**************************************************************************
  *                                                                        *
- *  File:        DatabaseManager                                          *
+ *  File:        LibCommons.cs                                            *
  *  Copyright:   (c) 2024, Darie Alexandru                                *
  *  E-mail:      alexandru.darie@student.tuiasi.ro                        *
- *  Description: Namespace for full control over a database via methods.  *
+ *  Description: A file holding all the classes and enums for DBS.        *
  *                                                                        *
  *                                                                        *
  *  This code and information is provided "as is" without warranty of     *
