@@ -96,12 +96,12 @@ namespace VideoGameLibraryManager.Home.Views
             favouriteGenreLabel.Text = "Favourite Genre: " + _controller.GetFavouriteGenre();
         }
 
-        public void FavouriteGameClickAt(int index)
+        private void FavouriteGameClickAt(int index)
         {
             _controller.NavigateFromFavouriteToGameView(index);
         }
 
-        public void MostPlayedGameClickAt(int index)
+        private void MostPlayedGameClickAt(int index)
         {
             _controller.NavigateFromMostPlayedToGameView(index);
         }
