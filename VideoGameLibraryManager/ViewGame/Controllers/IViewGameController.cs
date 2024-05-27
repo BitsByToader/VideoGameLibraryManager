@@ -12,8 +12,12 @@ namespace VideoGameLibraryManager.ViewGame
     public interface IViewGameController
     {
         IViewGameView GetView();
-        void RetrieveGame(string name);
+        void RetrieveGame();
         void UpdateGame(Game game);
-        void DeleteGame(string name);
+        void DeleteGame();
+        void AddToDo(string todo);
+        List<GameTODO> GetTodos(int id);
+        void UpdateRating(int id, int value);
+        void UpdateToDoStatus(string v1, bool v2);
     }
 }

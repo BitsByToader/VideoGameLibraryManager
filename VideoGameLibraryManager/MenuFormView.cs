@@ -76,5 +76,10 @@ namespace VideoGameLibraryManager
         {
             formNavigationStack1.PopView();
         }
+
+        private void MenuFormView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

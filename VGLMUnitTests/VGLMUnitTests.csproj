@@ -47,13 +47,25 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ABS_Database_UnitTests.cs" />
+    <Compile Include="Database_UnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
+      <Project>{2D92EFAC-49EF-4E44-932B-FE844B01215F}</Project>
+      <Name>LibraryCommons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserDB_Manager\SessionDB_Manager.csproj">
+      <Project>{0627D170-991B-42B3-BFE7-A415CC24394F}</Project>
+      <Name>SessionDB_Manager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
