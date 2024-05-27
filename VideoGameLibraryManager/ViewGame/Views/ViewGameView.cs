@@ -300,5 +300,10 @@ namespace VideoGameLibraryManager.ViewGame.Views
         {
             _controller.UpdateToDoStatus(ToDos.Items[e.Index].ToString(), e.NewValue == CheckState.Checked);
         }
+
+        public void RemoveFromParent()
+        {
+            //stub
+        }
     }
 }

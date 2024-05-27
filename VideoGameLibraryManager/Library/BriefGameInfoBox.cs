@@ -59,7 +59,7 @@ namespace Helpers
             throw new NotImplementedException();
         }
 
-        public void removeFromParent()
+        public void RemoveFromParent()
         {
             throw new NotImplementedException();
         }
