@@ -51,7 +51,7 @@ namespace VideoGameLibraryManager
             return _parent;
         }
 
-        void IView.removeFromParent()
+        void IView.RemoveFromParent()
         {
             _parent = null;
         }
