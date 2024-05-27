@@ -60,27 +60,30 @@
             // comboBoxSearchGames
             // 
             this.comboBoxSearchGames.FormattingEnabled = true;
-            this.comboBoxSearchGames.Location = new System.Drawing.Point(172, 34);
+            this.comboBoxSearchGames.Location = new System.Drawing.Point(86, 18);
+            this.comboBoxSearchGames.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxSearchGames.Name = "comboBoxSearchGames";
-            this.comboBoxSearchGames.Size = new System.Drawing.Size(506, 33);
+            this.comboBoxSearchGames.Size = new System.Drawing.Size(255, 21);
             this.comboBoxSearchGames.TabIndex = 0;
             this.comboBoxSearchGames.SelectedValueChanged += new System.EventHandler(this.comboBoxSearchGames_SelectedValueChanged);
             this.comboBoxSearchGames.TextChanged += new System.EventHandler(this.comboBoxSearchGames_TextChanged);
             // 
             // pictureBoxGameCover
             // 
-            this.pictureBoxGameCover.Location = new System.Drawing.Point(988, 12);
+            this.pictureBoxGameCover.Location = new System.Drawing.Point(494, 6);
+            this.pictureBoxGameCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBoxGameCover.Name = "pictureBoxGameCover";
-            this.pictureBoxGameCover.Size = new System.Drawing.Size(349, 465);
+            this.pictureBoxGameCover.Size = new System.Drawing.Size(174, 242);
             this.pictureBoxGameCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxGameCover.TabIndex = 1;
             this.pictureBoxGameCover.TabStop = false;
             // 
             // buttonUploadLocalCover
             // 
-            this.buttonUploadLocalCover.Location = new System.Drawing.Point(1057, 497);
+            this.buttonUploadLocalCover.Location = new System.Drawing.Point(528, 258);
+            this.buttonUploadLocalCover.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonUploadLocalCover.Name = "buttonUploadLocalCover";
-            this.buttonUploadLocalCover.Size = new System.Drawing.Size(222, 74);
+            this.buttonUploadLocalCover.Size = new System.Drawing.Size(111, 38);
             this.buttonUploadLocalCover.TabIndex = 2;
             this.buttonUploadLocalCover.Text = "Upload from disk...";
             this.buttonUploadLocalCover.UseVisualStyleBackColor = true;
@@ -89,18 +92,20 @@
             // labelSearchGames
             // 
             this.labelSearchGames.AutoSize = true;
-            this.labelSearchGames.Location = new System.Drawing.Point(12, 34);
+            this.labelSearchGames.Location = new System.Drawing.Point(6, 18);
+            this.labelSearchGames.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSearchGames.Name = "labelSearchGames";
-            this.labelSearchGames.Size = new System.Drawing.Size(154, 25);
+            this.labelSearchGames.Size = new System.Drawing.Size(77, 13);
             this.labelSearchGames.TabIndex = 3;
             this.labelSearchGames.Text = "Search Online:";
             // 
             // buttonRetrieveGame
             // 
             this.buttonRetrieveGame.Enabled = false;
-            this.buttonRetrieveGame.Location = new System.Drawing.Point(698, 99);
+            this.buttonRetrieveGame.Location = new System.Drawing.Point(349, 51);
+            this.buttonRetrieveGame.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonRetrieveGame.Name = "buttonRetrieveGame";
-            this.buttonRetrieveGame.Size = new System.Drawing.Size(223, 55);
+            this.buttonRetrieveGame.Size = new System.Drawing.Size(112, 29);
             this.buttonRetrieveGame.TabIndex = 4;
             this.buttonRetrieveGame.Text = "Retrieve Game";
             this.buttonRetrieveGame.UseVisualStyleBackColor = true;
@@ -109,153 +114,172 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(17, 123);
+            this.labelName.Location = new System.Drawing.Point(8, 64);
+            this.labelName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(68, 25);
+            this.labelName.Size = new System.Drawing.Size(35, 13);
             this.labelName.TabIndex = 6;
             this.labelName.Text = "Name";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(192, 123);
+            this.textBoxName.Location = new System.Drawing.Point(96, 64);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(402, 31);
+            this.textBoxName.Size = new System.Drawing.Size(203, 20);
             this.textBoxName.TabIndex = 7;
             // 
             // textBoxPublisher
             // 
-            this.textBoxPublisher.Location = new System.Drawing.Point(192, 185);
+            this.textBoxPublisher.Location = new System.Drawing.Point(96, 96);
+            this.textBoxPublisher.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxPublisher.Name = "textBoxPublisher";
-            this.textBoxPublisher.Size = new System.Drawing.Size(402, 31);
+            this.textBoxPublisher.Size = new System.Drawing.Size(203, 20);
             this.textBoxPublisher.TabIndex = 9;
             // 
             // labelPublisher
             // 
             this.labelPublisher.AutoSize = true;
-            this.labelPublisher.Location = new System.Drawing.Point(16, 185);
+            this.labelPublisher.Location = new System.Drawing.Point(8, 96);
+            this.labelPublisher.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPublisher.Name = "labelPublisher";
-            this.labelPublisher.Size = new System.Drawing.Size(102, 25);
+            this.labelPublisher.Size = new System.Drawing.Size(50, 13);
             this.labelPublisher.TabIndex = 8;
             this.labelPublisher.Text = "Publisher";
             // 
             // labelPlatforms
             // 
             this.labelPlatforms.AutoSize = true;
-            this.labelPlatforms.Location = new System.Drawing.Point(17, 241);
+            this.labelPlatforms.Location = new System.Drawing.Point(8, 125);
+            this.labelPlatforms.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelPlatforms.Name = "labelPlatforms";
-            this.labelPlatforms.Size = new System.Drawing.Size(102, 25);
+            this.labelPlatforms.Size = new System.Drawing.Size(50, 13);
             this.labelPlatforms.TabIndex = 10;
             this.labelPlatforms.Text = "Platforms";
             // 
             // labelRating
             // 
             this.labelRating.AutoSize = true;
-            this.labelRating.Location = new System.Drawing.Point(17, 295);
+            this.labelRating.Location = new System.Drawing.Point(8, 153);
+            this.labelRating.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelRating.Name = "labelRating";
-            this.labelRating.Size = new System.Drawing.Size(74, 25);
+            this.labelRating.Size = new System.Drawing.Size(38, 13);
             this.labelRating.TabIndex = 11;
             this.labelRating.Text = "Rating";
             // 
             // labelGenres
             // 
             this.labelGenres.AutoSize = true;
-            this.labelGenres.Location = new System.Drawing.Point(16, 340);
+            this.labelGenres.Location = new System.Drawing.Point(8, 177);
+            this.labelGenres.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGenres.Name = "labelGenres";
-            this.labelGenres.Size = new System.Drawing.Size(82, 25);
+            this.labelGenres.Size = new System.Drawing.Size(41, 13);
             this.labelGenres.TabIndex = 12;
             this.labelGenres.Text = "Genres";
             // 
             // labelDevelopers
             // 
             this.labelDevelopers.AutoSize = true;
-            this.labelDevelopers.Location = new System.Drawing.Point(16, 384);
+            this.labelDevelopers.Location = new System.Drawing.Point(8, 200);
+            this.labelDevelopers.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDevelopers.Name = "labelDevelopers";
-            this.labelDevelopers.Size = new System.Drawing.Size(121, 25);
+            this.labelDevelopers.Size = new System.Drawing.Size(61, 13);
             this.labelDevelopers.TabIndex = 13;
             this.labelDevelopers.Text = "Developers";
             // 
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(17, 531);
+            this.labelDescription.Location = new System.Drawing.Point(8, 276);
+            this.labelDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(120, 25);
+            this.labelDescription.Size = new System.Drawing.Size(60, 13);
             this.labelDescription.TabIndex = 14;
             this.labelDescription.Text = "Description";
             // 
             // labelWebsite
             // 
             this.labelWebsite.AutoSize = true;
-            this.labelWebsite.Location = new System.Drawing.Point(17, 432);
+            this.labelWebsite.Location = new System.Drawing.Point(8, 225);
+            this.labelWebsite.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelWebsite.Name = "labelWebsite";
-            this.labelWebsite.Size = new System.Drawing.Size(90, 25);
+            this.labelWebsite.Size = new System.Drawing.Size(46, 13);
             this.labelWebsite.TabIndex = 15;
             this.labelWebsite.Text = "Website";
             // 
             // labelExecutablePath
             // 
             this.labelExecutablePath.AutoSize = true;
-            this.labelExecutablePath.Location = new System.Drawing.Point(17, 471);
+            this.labelExecutablePath.Location = new System.Drawing.Point(8, 245);
+            this.labelExecutablePath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelExecutablePath.Name = "labelExecutablePath";
-            this.labelExecutablePath.Size = new System.Drawing.Size(169, 25);
+            this.labelExecutablePath.Size = new System.Drawing.Size(85, 13);
             this.labelExecutablePath.TabIndex = 16;
             this.labelExecutablePath.Text = "Executable Path";
             // 
             // textBoxExecutablePath
             // 
-            this.textBoxExecutablePath.Location = new System.Drawing.Point(192, 471);
+            this.textBoxExecutablePath.Location = new System.Drawing.Point(96, 245);
+            this.textBoxExecutablePath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxExecutablePath.Name = "textBoxExecutablePath";
-            this.textBoxExecutablePath.Size = new System.Drawing.Size(402, 31);
+            this.textBoxExecutablePath.Size = new System.Drawing.Size(203, 20);
             this.textBoxExecutablePath.TabIndex = 17;
             // 
             // textBoxWebsite
             // 
-            this.textBoxWebsite.Location = new System.Drawing.Point(192, 429);
+            this.textBoxWebsite.Location = new System.Drawing.Point(96, 223);
+            this.textBoxWebsite.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxWebsite.Name = "textBoxWebsite";
-            this.textBoxWebsite.Size = new System.Drawing.Size(402, 31);
+            this.textBoxWebsite.Size = new System.Drawing.Size(203, 20);
             this.textBoxWebsite.TabIndex = 18;
             // 
             // textBoxDevelopers
             // 
-            this.textBoxDevelopers.Location = new System.Drawing.Point(192, 384);
+            this.textBoxDevelopers.Location = new System.Drawing.Point(96, 200);
+            this.textBoxDevelopers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxDevelopers.Name = "textBoxDevelopers";
-            this.textBoxDevelopers.Size = new System.Drawing.Size(402, 31);
+            this.textBoxDevelopers.Size = new System.Drawing.Size(203, 20);
             this.textBoxDevelopers.TabIndex = 19;
             // 
             // textBoxGenres
             // 
-            this.textBoxGenres.Location = new System.Drawing.Point(192, 340);
+            this.textBoxGenres.Location = new System.Drawing.Point(96, 177);
+            this.textBoxGenres.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxGenres.Name = "textBoxGenres";
-            this.textBoxGenres.Size = new System.Drawing.Size(402, 31);
+            this.textBoxGenres.Size = new System.Drawing.Size(203, 20);
             this.textBoxGenres.TabIndex = 20;
             // 
             // textBoxRating
             // 
-            this.textBoxRating.Location = new System.Drawing.Point(192, 295);
+            this.textBoxRating.Location = new System.Drawing.Point(96, 153);
+            this.textBoxRating.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxRating.Name = "textBoxRating";
-            this.textBoxRating.Size = new System.Drawing.Size(402, 31);
+            this.textBoxRating.Size = new System.Drawing.Size(203, 20);
             this.textBoxRating.TabIndex = 21;
             // 
             // textBoxPlatforms
             // 
-            this.textBoxPlatforms.Location = new System.Drawing.Point(192, 241);
+            this.textBoxPlatforms.Location = new System.Drawing.Point(96, 125);
+            this.textBoxPlatforms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxPlatforms.Name = "textBoxPlatforms";
-            this.textBoxPlatforms.Size = new System.Drawing.Size(402, 31);
+            this.textBoxPlatforms.Size = new System.Drawing.Size(203, 20);
             this.textBoxPlatforms.TabIndex = 22;
             // 
             // richTextBoxDescription
             // 
-            this.richTextBoxDescription.Location = new System.Drawing.Point(192, 531);
+            this.richTextBoxDescription.Location = new System.Drawing.Point(96, 276);
+            this.richTextBoxDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richTextBoxDescription.Name = "richTextBoxDescription";
-            this.richTextBoxDescription.Size = new System.Drawing.Size(402, 137);
+            this.richTextBoxDescription.Size = new System.Drawing.Size(203, 73);
             this.richTextBoxDescription.TabIndex = 23;
             this.richTextBoxDescription.Text = "";
             // 
             // buttonSaveGame
             // 
-            this.buttonSaveGame.Location = new System.Drawing.Point(1154, 677);
+            this.buttonSaveGame.Location = new System.Drawing.Point(577, 352);
+            this.buttonSaveGame.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonSaveGame.Name = "buttonSaveGame";
-            this.buttonSaveGame.Size = new System.Drawing.Size(183, 66);
+            this.buttonSaveGame.Size = new System.Drawing.Size(92, 34);
             this.buttonSaveGame.TabIndex = 24;
             this.buttonSaveGame.Text = "Save Game";
             this.buttonSaveGame.UseVisualStyleBackColor = true;
@@ -263,9 +287,10 @@
             // 
             // buttonPickExecutable
             // 
-            this.buttonPickExecutable.Location = new System.Drawing.Point(619, 460);
+            this.buttonPickExecutable.Location = new System.Drawing.Point(310, 239);
+            this.buttonPickExecutable.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonPickExecutable.Name = "buttonPickExecutable";
-            this.buttonPickExecutable.Size = new System.Drawing.Size(218, 52);
+            this.buttonPickExecutable.Size = new System.Drawing.Size(109, 27);
             this.buttonPickExecutable.TabIndex = 25;
             this.buttonPickExecutable.Text = "Select Executable";
             this.buttonPickExecutable.UseVisualStyleBackColor = true;
@@ -274,9 +299,10 @@
             // buttonGameSuggestions
             // 
             this.buttonGameSuggestions.Enabled = false;
-            this.buttonGameSuggestions.Location = new System.Drawing.Point(698, 22);
+            this.buttonGameSuggestions.Location = new System.Drawing.Point(349, 11);
+            this.buttonGameSuggestions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonGameSuggestions.Name = "buttonGameSuggestions";
-            this.buttonGameSuggestions.Size = new System.Drawing.Size(223, 55);
+            this.buttonGameSuggestions.Size = new System.Drawing.Size(112, 29);
             this.buttonGameSuggestions.TabIndex = 26;
             this.buttonGameSuggestions.Text = "Game Suggestions";
             this.buttonGameSuggestions.UseVisualStyleBackColor = true;
@@ -284,9 +310,9 @@
             // 
             // AddGameView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1349, 755);
+            this.ClientSize = new System.Drawing.Size(674, 393);
             this.Controls.Add(this.buttonGameSuggestions);
             this.Controls.Add(this.buttonPickExecutable);
             this.Controls.Add(this.buttonSaveGame);
@@ -313,6 +339,7 @@
             this.Controls.Add(this.buttonUploadLocalCover);
             this.Controls.Add(this.pictureBoxGameCover);
             this.Controls.Add(this.comboBoxSearchGames);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddGameView";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGameCover)).EndInit();

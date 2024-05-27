@@ -99,8 +99,15 @@ namespace VideoGameLibraryManager
             BriefGameInfoBox userControl = new BriefGameInfoBox();
             userControl.GameImage = game.cover;
             userControl.GameName = game.name;
-
             return userControl;
         }
+
+        public override void ClickedViewAt(int index)
+        {
+            ClickHandler(index);
+        }
+
+        public delegate void GameClickHandler(int index);
+        public GameClickHandler ClickHandler { get; set; }
     }
 }

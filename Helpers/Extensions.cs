@@ -42,5 +42,24 @@ namespace ExtensionMethods
                 f.FormBorderStyle = FormBorderStyle.None;
             }
         }
+
+        public delegate void ClickHandler();
+
+        public static void AddGlobalClick(this Control c, ClickHandler clickHandler)
+        {
+            foreach (Control control in c.Controls)
+            {
+                if (control != null)
+                {
+                    control.Click += (sender, arg) => {
+                        clickHandler();
+                    };
+                    if (control.HasChildren)
+                    {
+                        control.AddGlobalClick(clickHandler);
+                    }
+                }
+            }
+        }
     }
 }

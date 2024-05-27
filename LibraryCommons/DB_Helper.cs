@@ -1,6 +1,6 @@
 ﻿/**************************************************************************
  *                                                                        *
- *  File:        DatabaseManager                                          *
+ *  File:        DB_Helper.cs                                             *
  *  Copyright:   (c) 2024, Darie Alexandru                                *
  *  E-mail:      alexandru.darie@student.tuiasi.ro                        *
  *  Description: A helper that helps you converting, downloading, etc     *
@@ -64,7 +64,8 @@ namespace LibraryCommons
         {
             if(bitmap == null)
             {
-                throw new ArgumentNullException("Bitmap is null.");
+                //throw new ArgumentNullException("Bitmap is null.");
+                bitmap = new Bitmap(1, 1);
             }
             if (fileName == null)
             {

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LibraryCommons;
 using UserDB_Manager;
+using WFFramework;
 
 namespace VideoGameLibraryManager.Library.Models
 {
@@ -16,6 +17,7 @@ namespace VideoGameLibraryManager.Library.Models
         private GameSorter _sorter = new GameSorter();
         private ISortStyle _sortStyle;
         private DisplayType _libraryDisplayType;
+        private FormNavigationStack _parent;
 
         public GameLibraryModel()
         {
@@ -66,6 +68,16 @@ namespace VideoGameLibraryManager.Library.Models
                 case DisplayType.Grid: return DisplayType.Grid;
                 default: return DisplayType.Grid;
             }
+        }
+
+        public void SetParent(FormNavigationStack parent)
+        {
+            _parent = parent;
+        }
+
+        public FormNavigationStack GetParent()
+        {
+            return _parent;
         }
     }
 }

@@ -78,10 +78,12 @@
             this.mostPlayedGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mostPlayedGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mostPlayedGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.mostPlayedGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mostPlayedGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.mostPlayedGamesFormViewContainer.Location = new System.Drawing.Point(12, 255);
             this.mostPlayedGamesFormViewContainer.Name = "mostPlayedGamesFormViewContainer";
             this.mostPlayedGamesFormViewContainer.RowCount = 1;
+            this.mostPlayedGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mostPlayedGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mostPlayedGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mostPlayedGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -94,10 +96,12 @@
             this.favouriteGamesFormViewContainer.ColumnCount = 1;
             this.favouriteGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.favouriteGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.favouriteGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.favouriteGamesFormViewContainer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.favouriteGamesFormViewContainer.Location = new System.Drawing.Point(12, 48);
             this.favouriteGamesFormViewContainer.Name = "favouriteGamesFormViewContainer";
             this.favouriteGamesFormViewContainer.RowCount = 1;
+            this.favouriteGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.favouriteGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.favouriteGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.favouriteGamesFormViewContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));

@@ -11,7 +11,7 @@ namespace VideoGameLibraryManager.Library
 {
     public interface IGameLibraryView: IView
     {
-        void ChangeView(DisplayType type);
+        void ChangeView();
         void SetController(ref IGameLibraryController controller);
     }
 }
