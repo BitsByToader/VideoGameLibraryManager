@@ -30,6 +30,7 @@ public class GameLibraryDb: SessionInterface
     private static readonly object _lock = new object();
     private readonly string _connectionString;
 
+
     /// <summary>
     /// Constructor for the GameLibraryDb
     /// </summary>
@@ -38,6 +39,11 @@ public class GameLibraryDb: SessionInterface
     {
         _connectionString = $"Data Source={dbPath}";
         InitializeDatabase();
+    }
+
+    public void DeleteInstance()
+    {
+        _instance = null;
     }
 
     /// <summary>
@@ -114,6 +120,10 @@ public class GameLibraryDb: SessionInterface
     /// <returns> 0 if ok, others if nothing updated </returns>
     public void AddGame(ref Game game)
     {
+        if(game == null)
+        {
+            throw new ArgumentNullException("Game is null");
+        }
         using (var connection = new SQLiteConnection(_connectionString))
         {
             connection.Open();
@@ -140,6 +150,11 @@ public class GameLibraryDb: SessionInterface
                         platform += item + ", ";
                     }
                 }
+                decimal index = platform.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    platform = platform.Remove((int)index, 2);
+                }
                 command.Parameters.AddWithValue("@platform", platform);
                 command.Parameters.AddWithValue("@playtime", game.playtime);
                 command.Parameters.AddWithValue("@personal_rating", game.personal_rating);
@@ -164,6 +179,11 @@ public class GameLibraryDb: SessionInterface
                 {
                     genre = "Unknown";
                 }
+                index = genre.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    genre = genre.Remove((int)index, 2);
+                }
                 command.Parameters.AddWithValue("@genre", genre);
                 string developer = "";
                 if (game.developers != null)
@@ -184,6 +204,11 @@ public class GameLibraryDb: SessionInterface
                 else
                 {
                     developer = "Unknown";
+                }
+                index = developer.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    developer = developer.Remove((int)index, 2);
                 }
                 command.Parameters.AddWithValue("@developer", developer);
                 
@@ -291,19 +316,20 @@ public class GameLibraryDb: SessionInterface
 
             using (var command = new SQLiteCommand(connection))
             {
-                if (game.id != null)
+                if (game.id != null && game.id != -1)
                 {
                     command.CommandText = "SELECT * FROM games WHERE id = @id";
+                    command.Parameters.AddWithValue("@id", game.id);
                 }
                 else if (game.name != null)
                 {
                     command.CommandText = "SELECT * FROM games WHERE name = @name";
+                    command.Parameters.AddWithValue("@name", game.name);
                 }
                 else
                 {
                     throw new Exception("No id or name specified");
                 }
-                command.Parameters.AddWithValue("@id", game.id);
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -346,11 +372,18 @@ public class GameLibraryDb: SessionInterface
     /// <exception cref="NoRowsUpdatedException"> Thrown if the function does not update any rows </exception>
     public void UpdateGame(ref Game currentGame,ref Game updatedGame)
     {
+        if (currentGame == null || updatedGame == null)
+        {
+            throw new ArgumentNullException("One of the parameters is null.");
+        }
         using (var connection = new SQLiteConnection(_connectionString))
         {
             connection.Open();
-            currentGame.LocalUpdateWithDifferences(ref updatedGame);
-
+            bool isUpdated = currentGame.LocalUpdateWithDifferences(ref updatedGame);
+            if(!isUpdated)
+            {
+                throw new NoRowsUpdatedException("No update was made");
+            }
             using (var command = new SQLiteCommand(connection))
             {
 
@@ -378,6 +411,7 @@ public class GameLibraryDb: SessionInterface
                 command.Parameters.AddWithValue("@id_igdb", currentGame.id_igdb);
                 command.Parameters.AddWithValue("@executable_path", currentGame.executable_path);
                 string platform = "";
+                
                 foreach (var item in currentGame.platforms)
                 {
                     if (item.EndsWith(" ") || item.EndsWith(","))
@@ -388,6 +422,12 @@ public class GameLibraryDb: SessionInterface
                     {
                         platform += item + ", ";
                     }
+                }
+                //Iterate through the platforms and delete each comma-space
+                decimal index = platform.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    platform = platform.Remove((int)index, 2);
                 }
                 command.Parameters.AddWithValue("@platform", platform);
                 command.Parameters.AddWithValue("@playtime", currentGame.playtime);
@@ -413,10 +453,16 @@ public class GameLibraryDb: SessionInterface
                 {
                     genre = "Unknown";
                 }
+                index = genre.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    genre = genre.Remove((int)index, 2);
+                }
                 command.Parameters.AddWithValue("@genre", genre);
+
+                string developer = "";
                 if (currentGame.developers != null)
                 {
-                    string developer = "";
                     foreach (var item in currentGame.developers)
                     {
                         if (item.EndsWith(" ") || item.EndsWith(","))
@@ -433,6 +479,11 @@ public class GameLibraryDb: SessionInterface
                 else
                 {
                     command.Parameters.AddWithValue("@developer", "-");
+                }
+                index = developer.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    developer = developer.Remove((int)index, 2);
                 }
                 command.Parameters.AddWithValue("@global_rating", currentGame.global_rating);
                 command.Parameters.AddWithValue("@personal_rating", currentGame.personal_rating);
@@ -503,6 +554,12 @@ public class GameLibraryDb: SessionInterface
                         platform += item + ", ";
                     }
                 }
+                decimal index = platform.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    platform = platform.Remove((int)index, 2);
+                }
+
                 command.Parameters.AddWithValue("@platform", platform);
                 command.Parameters.AddWithValue("@playtime", updatedGame.playtime);
                 command.Parameters.AddWithValue("@personal_rating", updatedGame.personal_rating);
@@ -528,9 +585,9 @@ public class GameLibraryDb: SessionInterface
                     genre = "Unknown";
                 }
                 command.Parameters.AddWithValue("@genre", genre);
+                string developer = "";
                 if (updatedGame.developers != null)
                 {
-                    string developer = "";
                     foreach (var item in updatedGame.developers)
                     {
                         if (item.EndsWith(" ") || item.EndsWith(","))
@@ -547,6 +604,11 @@ public class GameLibraryDb: SessionInterface
                 else
                 {
                     command.Parameters.AddWithValue("@developer", "-");
+                }
+                index = developer.LastIndexOf(", ");
+                if (index != -1)
+                {
+                    developer = developer.Remove((int)index, 2);
                 }
                 command.Parameters.AddWithValue("@global_rating", updatedGame.global_rating);
                 command.Parameters.AddWithValue("@personal_rating", updatedGame.personal_rating);

@@ -133,83 +133,97 @@ namespace LibraryCommons
         /// <param name="ignoreID"> If true, the ID will not be updated </param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"> Thrown when the game is null </exception>
-        public Game LocalUpdateWithDifferences(ref Game game, bool ignoreID = true)
+        public bool LocalUpdateWithDifferences(ref Game game, bool ignoreID = true)
         {
             if (this is null || game is null)
             {
                 throw new ArgumentNullException();
             }
-
+            bool updated = false;
             if (this.id_igdb != null && this.id_igdb != game.id_igdb && ignoreID == false)
             {
                 this.id_igdb = game.id_igdb;
+                updated = true;
             }
 
             if (this.executable_path != null && this.executable_path != game.executable_path && game.executable_path != "" && game.executable_path != null)
             {
                 this.executable_path = game.executable_path;
+                updated = true;
             }
 
             if (this.platforms != null && game.platforms != null && !this.platforms.SequenceEqual(game.platforms) && game.platforms.Count > 0)
             {
                 this.platforms = new List<string>(game.platforms);
+                updated = true;
             }
 
             if (this.playtime != null && this.playtime != game.playtime && game.playtime != -1)
             {
                 this.playtime = game.playtime;
+                updated = true;
             }
 
             if (this.personal_rating != null && this.personal_rating != game.personal_rating && game.personal_rating != -1)
             {
                 this.personal_rating = game.personal_rating;
+                updated = true;
             }
 
             if (this.name != null && this.name != game.name && (game.name != null || game.name != ""))
             {
                 this.name = game.name;
+                updated = true;
             }
 
             if (this.publisher != null && this.publisher != game.publisher && game.publisher != null && game.publisher != "")
             {
                 this.publisher = game.publisher;
+                updated = true;
             }
 
             if (this.genre != null && game.genre != null && !this.genre.SequenceEqual(game.genre) && game.genre.Count > 0)
             {
                 this.genre = new List<string>(game.genre);
+                updated = true;
             }
 
             if (this.developers != null && game.developers != null && !this.developers.SequenceEqual(game.developers) && game.developers.Count > 0)
             {
                 this.developers = new List<string>(game.developers);
+                updated = true;
             }
 
             if (this.global_rating != null && this.global_rating != game.global_rating && game.global_rating != -1)
             {
                 this.global_rating = game.global_rating;
+                updated = true;
             }
 
             if (this.coverpath != null && this.coverpath != game.coverpath && game.coverpath != null && game.coverpath != "")
             {
                 this.coverpath = game.coverpath;
+                updated = true;
             }
 
             if (this.summary != null && this.summary != game.summary && game.summary != null && game.summary != "")
             {
                 this.summary = game.summary;
+                updated = true;
             }
 
             if (this.website != null && this.website != game.website && game.website != null && game.website != "")
             {
                 this.website = game.website;
+                updated = true;
             }
 
             if (this.favorite != null && this.favorite != game.favorite)
             {
                 this.favorite = game.favorite;
+                updated = true;
             }
-            return this; // used in special cases
+            return updated; // used in special cases
         }
 
         public Game(int id, int id_igdb, string executable_path, List<string> platforms, int playtime, int personal_rating, string name, string publisher, List<string> genre, List<string> developers, int global_rating, string coverpath, Bitmap cover, string summary, string website, bool favorite)
