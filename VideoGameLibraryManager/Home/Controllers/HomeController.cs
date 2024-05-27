@@ -1,4 +1,20 @@
-﻿using Helpers;
+﻿/************************************************************************************
+*                                                                                   *
+*  File:        HomeController.cs                                                   *
+*  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
+*  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
+*  Description: implementation on IHomeController interface                         *
+*                                                                                   *
+*                                                                                   *
+*  This code and information is provided "as is" without warranty of                *
+*  any kind, either expressed or implied, including but not limited                 *
+*  to the implied warranties of merchantability or fitness for a                    *
+*  particular purpose. You are free to use this source code in your                 *
+*  applications as long as the original copyright notice is included.               *
+*                                                                                   *
+************************************************************************************/
+
+using Helpers;
 using LibraryCommons;
 using System;
 using System.Collections.Generic;
@@ -69,6 +85,9 @@ namespace VideoGameLibraryManager.Home.Controllers
             _model.UpdateMostPlayedGames();
         }
 
+        /// <summary>
+        /// uses a reduce method for calculating total playtime
+        /// </summary>
         public void UpdateTotalPlaytime()
         {
             _totalPlaytime =  _model.GetSortedGames(new SortByPlaytime()).Aggregate(0L, (acc, game) => acc + game.playtime);

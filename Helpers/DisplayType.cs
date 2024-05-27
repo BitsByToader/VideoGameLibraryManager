@@ -1,6 +1,6 @@
 ﻿/************************************************************************************
 *                                                                                   *
-*  File:        DisplayType                                                         *
+*  File:        DisplayType.cs                                                      *
 *  Copyright:   (c) 2024, Andrei-Marian Cristina                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
 *  Description: Enumeration for display types.                                      *
