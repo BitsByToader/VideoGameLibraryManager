@@ -51,6 +51,8 @@ namespace VideoGameLibraryManager.Library.Models
         public void RefreshData()
         {
             _games = _userDB.GetAllGames();
+            SortGames();
+
         }
 
         public ISortStyle GetSortStyle() => _sortStyle;
