@@ -107,7 +107,6 @@ namespace VideoGameLibraryManager
                 default: _controller.SetSortStyle(new SortByName()); break;
             }
 
-            //_viewCollection.RefreshViews<Game>(_controller.GetGames());
             _controller.SetDisplayType(_controller.GetDisplayType());   
         }
 
@@ -115,8 +114,16 @@ namespace VideoGameLibraryManager
         {
             switch (type)
             {
-                case DisplayType.Grid: _viewCollection = new GridGameDisplayFormView(_controller.GetGames()); break;
-                case DisplayType.List: _viewCollection = new ListGameDisplayFormView(_controller.GetGames()); break;
+                case DisplayType.Grid: 
+                    GridGameDisplayFormView grid = new GridGameDisplayFormView(_controller.GetGames());
+                    grid.ClickHandler = GameClicked;
+                    _viewCollection = grid;
+                    break;
+                case DisplayType.List: 
+                    ListGameDisplayFormView list = new ListGameDisplayFormView(_controller.GetGames());
+                    list.ClickHandler = GameClicked;
+                    _viewCollection = list;
+                    break;
             }
 
             gameDisplayViewContainer.ChangeView(_viewCollection as IView);
@@ -125,6 +132,11 @@ namespace VideoGameLibraryManager
         public void SetController(ref IGameLibraryController controller)
         {
             _controller = controller;
+        }
+
+        public void GameClicked(int index)
+        {
+            _controller.NavigateToGameView(index);
         }
     }
 }

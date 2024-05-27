@@ -110,5 +110,13 @@ namespace VideoGameLibraryManager
 
             return detailedGameInfoBox;
         }
+
+        public override void ClickedViewAt(int index)
+        {
+            ClickHandler(index);
+        }
+
+        public delegate void GameClickHandler(int index);
+        public GameClickHandler ClickHandler { get; set; }
     }
 }

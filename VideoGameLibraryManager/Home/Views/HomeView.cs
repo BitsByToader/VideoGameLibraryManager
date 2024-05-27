@@ -86,5 +86,12 @@ namespace VideoGameLibraryManager.Home.Views
         {
             favouriteGenreLabel.Text = "Favourite Genre: " + _controller.GetFavouriteGenre();
         }
+
+        public void GameClickAt(int index)
+        {
+            //TODO: Navigate to game view here.
+            // Send index over to controller.
+            // Controller will select game.
+        }
     }
 }

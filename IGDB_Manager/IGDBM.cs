@@ -1,6 +1,6 @@
 ﻿/**************************************************************************
  *                                                                        *
- *  File:        DatabaseManager                                          *
+ *  File:        IGDBM.cs                                                 *
  *  Copyright:   (c) 2024, Darie Alexandru                                *
  *  E-mail:      alexandru.darie@student.tuiasi.ro                        *
  *  Description: Namespace for full control over a database via methods.  *

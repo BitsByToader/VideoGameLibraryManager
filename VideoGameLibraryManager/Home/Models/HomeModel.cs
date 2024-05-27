@@ -58,7 +58,7 @@ namespace VideoGameLibraryManager.Home.Models
         {
             _favouriteGenre = GetSortedGames(new SortByGenre())
                 .SelectMany(game => game.genre)
-                .Where(genre => genre != " ")
+                .Where(genre => genre != "")
                 .GroupBy(genre => genre)
                 .Select(group => new { Genre = group.Key, Count = group.Count() })
                 .ToList()

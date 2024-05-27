@@ -17,7 +17,7 @@ namespace VideoGameLibraryManager.Home.Controllers
         private long _totalPlaytime;
 
 
-        public HomeController()
+        public HomeController() //TODO: Controller needs parent formnavigationstack also. Keep it in model and use it for navigation.
         {
             _model = new HomeModel();
             _view = new HomeView(this);
@@ -65,5 +65,7 @@ namespace VideoGameLibraryManager.Home.Controllers
         {
             _totalPlaytime =  _model.GetSortedGames(new SortByPlaytime()).Aggregate(0L, (acc, game) => acc + game.playtime);
         }
+
+        //TODO: Handle navigation in a method here.
     }
 }
