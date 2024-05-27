@@ -106,9 +106,17 @@ namespace VideoGameLibraryManager
             detailedGameInfoBox.GameImage = game.cover;
             detailedGameInfoBox.GameName = game.name;
             detailedGameInfoBox.GamePlaytime = game.playtime.ToString();
-            detailedGameInfoBox.GameRating = game.global_rating.ToString();
+            detailedGameInfoBox.GameRating = game.personal_rating.ToString();
 
             return detailedGameInfoBox;
         }
+
+        public override void ClickedViewAt(int index)
+        {
+            ClickHandler(index);
+        }
+
+        public delegate void GameClickHandler(int index);
+        public GameClickHandler ClickHandler { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace VideoGameLibraryManager
 
         private void homeButton_Click(object sender, EventArgs e)
         {
-            IHomeController _addGameController = new HomeController();
+            IHomeController _addGameController = new HomeController(formNavigationStack1);
             IView view = _addGameController.GetView();
             (view as Form).MakeContainerable();
             formNavigationStack1.SetRoot(view);
@@ -60,7 +60,7 @@ namespace VideoGameLibraryManager
         private void libraryButton_Click(object sender, EventArgs e)
         {
             IView _gameLibraryView = new GameLibraryView();
-            IGameLibraryController _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel());
+            IGameLibraryController _libraryController = new GameLibraryController(ref _gameLibraryView, new GameLibraryModel(), formNavigationStack1);
             (_gameLibraryView as IGameLibraryView).SetController(ref _libraryController);
 
             (_gameLibraryView as Form).MakeContainerable();
@@ -75,6 +75,11 @@ namespace VideoGameLibraryManager
         private void buttonBack_Click(object sender, EventArgs e)
         {
             formNavigationStack1.PopView();
+        }
+
+        private void MenuFormView_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

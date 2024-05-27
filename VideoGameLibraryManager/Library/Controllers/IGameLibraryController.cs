@@ -22,5 +22,6 @@ namespace VideoGameLibraryManager.Library
         /// </summary>
         /// <returns>lsit of all games</returns>
         List<Game> GetGames();
+        void NavigateToGameView(int index);
     }
 }

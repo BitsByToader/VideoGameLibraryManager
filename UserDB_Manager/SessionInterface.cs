@@ -1,9 +1,9 @@
 /**************************************************************************
  *                                                                        *
- *  File:        DatabaseManager                                          *
+ *  File:        SessionInterface.cs                                      *
  *  Copyright:   (c) 2024, Darie Alexandru                                *
  *  E-mail:      alexandru.darie@student.tuiasi.ro                        *
- *  Description: Namespace for full control over a database via methods.  *
+ *  Description: Interface for full control over a database via methods.  *
  *                                                                        *
  *                                                                        *
  *  This code and information is provided "as is" without warranty of     *

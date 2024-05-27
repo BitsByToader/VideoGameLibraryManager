@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WFFramework;
 
 namespace VideoGameLibraryManager.Home.Models
 {
@@ -22,6 +23,7 @@ namespace VideoGameLibraryManager.Home.Models
 
         List<Game> GetSortedGames(ISortStyle style);
 
-
+        void SetParent(FormNavigationStack parent);
+        FormNavigationStack GetParent();
     }
 }
