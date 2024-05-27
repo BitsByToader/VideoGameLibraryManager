@@ -13,7 +13,7 @@ using WFFramework;
 
 namespace VideoGameLibraryManager.Library
 {
-    internal class GameLibraryController : IGameLibraryController
+    public class GameLibraryController : IGameLibraryController
     {
         private IGameLibraryView _view;
         private IGameLibraryModel _model;

@@ -10,7 +10,7 @@ using WFFramework;
 
 namespace VideoGameLibraryManager.Library.Models
 {
-    internal class GameLibraryModel : IGameLibraryModel
+    public class GameLibraryModel : IGameLibraryModel
     {
         private List<Game> _games;
         private SessionInterface _userDB = GameLibraryDb.GetInstance("user_library.db");
