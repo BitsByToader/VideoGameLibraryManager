@@ -24,6 +24,9 @@ using System.Windows.Forms;
 
 namespace WFFramework
 {
+    /// <summary>
+    /// Provides an implementation for a collection of views based on Windows Forms Table Layout Panel.
+    /// </summary>
     public abstract class ListViewCollection : TableLayoutPanel, IViewCollection
     {
         public ListViewCollection(): base()

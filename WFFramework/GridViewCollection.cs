@@ -24,6 +24,9 @@ using System.Windows.Forms;
 
 namespace WFFramework
 {
+    /// <summary>
+    /// Provides an implementation for a collection of views using a Windows forms Flow Layout Panel.
+    /// </summary>
     public abstract class GridViewCollection : FlowLayoutPanel, IViewCollection
     {
         public GridViewCollection(): base()
