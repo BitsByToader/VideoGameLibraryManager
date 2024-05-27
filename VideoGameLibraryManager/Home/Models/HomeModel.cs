@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserDB_Manager;
+using WFFramework;
 
 namespace VideoGameLibraryManager.Home.Models
 {
@@ -16,6 +17,8 @@ namespace VideoGameLibraryManager.Home.Models
         private List<Game> _mostPlayedGames;
         private string _favouriteGenre;
         private SessionInterface _database = GameLibraryDb.GetInstance("user_library.db");
+        private FormNavigationStack _parent;
+
 
         public HomeModel()
         {
@@ -65,5 +68,12 @@ namespace VideoGameLibraryManager.Home.Models
                 .OrderByDescending(g => g.Count)
                 .FirstOrDefault()?.Genre;
         }
+
+        public void SetParent(FormNavigationStack parent)
+        {
+            _parent = parent;
+        }
+
+        public FormNavigationStack GetParent() => _parent;
     }
 }

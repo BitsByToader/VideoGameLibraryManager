@@ -47,15 +47,18 @@ namespace VideoGameLibraryManager.Library
         public void NavigateToGameView(int index)
         {
             Game game = _model.GetAllGames()[index];
-            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), ref _model, ref game);
+            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), game);
             ((Form)viewGameController.GetView()).MakeContainerable();
             _model.GetParent().PushView(viewGameController.GetView());
-            viewGameController.RetrieveGame();
         }
 
         public ISortStyle GetSortStyle() => _model.GetSortStyle();
         public DisplayType GetDisplayType() => _model.GetDisplayType();
 
-        public List<Game> GetGames() => _model.GetAllGames();
+        public List<Game> GetGames()
+        {
+            _model.RefreshData();
+            return _model.GetAllGames();
+        }
     }
 }

@@ -16,17 +16,17 @@ namespace VideoGameLibraryManager.ViewGame
     public class ViewGameController : IViewGameController
     {
         private IViewGameModel _model;
-        private IGameLibraryModel _gameLibraryModel;
         private IViewGameView _view;
 
-        public ViewGameController(IViewContainer parent, ref IGameLibraryModel glm, ref Game game)
+        public ViewGameController(IViewContainer parent, Game game)
         {
-            _gameLibraryModel = glm;
+            //_gameLibraryModel = glm;
             _model = new ViewGameModel();
             _model.SetGame(ref game);
             // fortam ca acest view sa fie copil al unui navigation stack, altfel consideram ca nu are parinte
             _model.SetParent(parent as FormNavigationStack); 
             _view = new ViewGameView(this);
+            RetrieveGame();
         }
 
         public IViewGameView GetView()
@@ -56,7 +56,6 @@ namespace VideoGameLibraryManager.ViewGame
                 try
                 {
                     GameLibraryDb.GetInstance("").UpdateGame(game.id, ref game);
-                    _gameLibraryModel.RefreshData();
                 }
                 catch(Exception ex)
                 {
@@ -79,7 +78,6 @@ namespace VideoGameLibraryManager.ViewGame
                 //_model.DeleteGame(id);
                 var game = _model.GetGame();
                 GameLibraryDb.GetInstance("").RemoveGame(ref game);
-                _gameLibraryModel.RefreshData();
                 _view.ConfirmDeletion(true);
 
             }

@@ -1,4 +1,5 @@
-﻿using LibraryCommons;
+﻿using ExtensionMethods;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoGameLibraryManager.Home.Controllers;
+using VideoGameLibraryManager.Home.Models;
 using WFFramework;
 
 namespace VideoGameLibraryManager.Home.Views
@@ -24,6 +26,9 @@ namespace VideoGameLibraryManager.Home.Views
             _controller = controller;
             totalPlaytimeLabel.Text = "";
             favouriteGenreLabel.Text = "";
+
+            mostPlayedGamesFormViewContainer.Click += (sender, e) => _controller.SetGamesToSelect(GameListType.MostPlayed);
+            favouriteGamesFormViewContainer.Click += (sender, e) => _controller.SetGamesToSelect(GameListType.Favourite);
         }
 
         public HomeView()
@@ -69,12 +74,16 @@ namespace VideoGameLibraryManager.Home.Views
 
         public void RefreshFavouriteGames()
         {
-            favouriteGamesFormViewContainer.ChangeView(new GridGameDisplayFormView(_controller.GetFavouriteGames()));
+            GridGameDisplayFormView grid = new GridGameDisplayFormView(_controller.GetFavouriteGames());
+            grid.ClickHandler = FavouriteGameClickAt;
+            favouriteGamesFormViewContainer.ChangeView(grid);
         }
 
         public void RefreshMostPlayedGames()
         {
-            mostPlayedGamesFormViewContainer.ChangeView(new GridGameDisplayFormView(_controller.GetMostPlayedGames()));
+            GridGameDisplayFormView grid = new GridGameDisplayFormView(_controller.GetMostPlayedGames());
+            grid.ClickHandler = MostPlayedGameClickAt;
+            mostPlayedGamesFormViewContainer.ChangeView(grid);
         }
 
         public void RefreshTotalPlaytime()
@@ -87,11 +96,14 @@ namespace VideoGameLibraryManager.Home.Views
             favouriteGenreLabel.Text = "Favourite Genre: " + _controller.GetFavouriteGenre();
         }
 
-        public void GameClickAt(int index)
+        private void FavouriteGameClickAt(int index)
         {
-            //TODO: Navigate to game view here.
-            // Send index over to controller.
-            // Controller will select game.
+            _controller.NavigateFromFavouriteToGameView(index);
+        }
+
+        private void MostPlayedGameClickAt(int index)
+        {
+            _controller.NavigateFromMostPlayedToGameView(index);
         }
     }
 }

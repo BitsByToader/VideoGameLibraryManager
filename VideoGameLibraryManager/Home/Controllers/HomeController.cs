@@ -5,8 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VideoGameLibraryManager.Home.Models;
 using VideoGameLibraryManager.Home.Views;
+using VideoGameLibraryManager.ViewGame;
+using WFFramework;
+using ExtensionMethods;
+using System.Security.Cryptography;
+
 
 namespace VideoGameLibraryManager.Home.Controllers
 {
@@ -15,11 +21,13 @@ namespace VideoGameLibraryManager.Home.Controllers
         private IHomeModel _model;
         private IHomeView _view;
         private long _totalPlaytime;
+        private GameListType _gameListType;
 
 
-        public HomeController() //TODO: Controller needs parent formnavigationstack also. Keep it in model and use it for navigation.
+        public HomeController(IViewContainer parent) 
         {
             _model = new HomeModel();
+            _model.SetParent(parent as FormNavigationStack);
             _view = new HomeView(this);
         }
 
@@ -66,6 +74,28 @@ namespace VideoGameLibraryManager.Home.Controllers
             _totalPlaytime =  _model.GetSortedGames(new SortByPlaytime()).Aggregate(0L, (acc, game) => acc + game.playtime);
         }
 
-        //TODO: Handle navigation in a method here.
+        public void NavigateFromFavouriteToGameView(int index)
+        {
+            Game game = _model.GetFavouriteGames()[index];
+            NavigateToGameView(game);
+        }
+
+        public void NavigateFromMostPlayedToGameView(int index)
+        {
+            Game game = _model.GetMostPlayedGames()[index];
+            NavigateToGameView(game);
+        }
+
+        private void NavigateToGameView(Game game)
+        {
+            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), game);
+            ((Form)viewGameController.GetView()).MakeContainerable();
+            _model.GetParent().PushView(viewGameController.GetView());
+        }
+
+        public void SetGamesToSelect(GameListType type)
+        {
+            _gameListType = type;
+        }
     }
 }
