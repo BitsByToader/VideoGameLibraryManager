@@ -11,6 +11,7 @@ using VideoGameLibraryManager.Home.Views;
 using VideoGameLibraryManager.ViewGame;
 using WFFramework;
 using ExtensionMethods;
+using System.Security.Cryptography;
 
 
 namespace VideoGameLibraryManager.Home.Controllers
@@ -73,17 +74,21 @@ namespace VideoGameLibraryManager.Home.Controllers
             _totalPlaytime =  _model.GetSortedGames(new SortByPlaytime()).Aggregate(0L, (acc, game) => acc + game.playtime);
         }
 
-        public void NavigateToGameView(int index)
+        public void NavigateFromFavouriteToGameView(int index)
         {
-            List<Game> games = _model.GetFavouriteGames();
+            Game game = _model.GetFavouriteGames()[index];
+            NavigateToGameView(game);
+        }
 
-            switch(_gameListType)
-            {
-                case GameListType.MostPlayed: games = _model.GetMostPlayedGames(); break;
-                case GameListType.Favourite: games = _model.GetFavouriteGames(); break;
-            }
+        public void NavigateFromMostPlayedToGameView(int index)
+        {
+            Game game = _model.GetMostPlayedGames()[index];
+            NavigateToGameView(game);
+        }
 
-            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), games[index]);
+        private void NavigateToGameView(Game game)
+        {
+            IViewGameController viewGameController = new ViewGameController(_model.GetParent(), game);
             ((Form)viewGameController.GetView()).MakeContainerable();
             _model.GetParent().PushView(viewGameController.GetView());
         }

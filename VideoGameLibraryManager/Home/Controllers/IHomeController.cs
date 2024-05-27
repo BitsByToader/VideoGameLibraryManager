@@ -29,8 +29,8 @@ namespace VideoGameLibraryManager.Home.Controllers
 
         IHomeView GetView();
 
-        void NavigateToGameView(int index);
-
         void SetGamesToSelect(GameListType type);
+        void NavigateFromMostPlayedToGameView(int index);
+        void NavigateFromFavouriteToGameView(int index);
     }
 }

@@ -1,4 +1,5 @@
-﻿using LibraryCommons;
+﻿using ExtensionMethods;
+using LibraryCommons;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,14 +75,14 @@ namespace VideoGameLibraryManager.Home.Views
         public void RefreshFavouriteGames()
         {
             GridGameDisplayFormView grid = new GridGameDisplayFormView(_controller.GetFavouriteGames());
-            grid.ClickHandler = GameClickAt;
+            grid.ClickHandler = FavouriteGameClickAt;
             favouriteGamesFormViewContainer.ChangeView(grid);
         }
 
         public void RefreshMostPlayedGames()
         {
             GridGameDisplayFormView grid = new GridGameDisplayFormView(_controller.GetMostPlayedGames());
-            grid.ClickHandler = GameClickAt;
+            grid.ClickHandler = MostPlayedGameClickAt;
             mostPlayedGamesFormViewContainer.ChangeView(grid);
         }
 
@@ -95,11 +96,14 @@ namespace VideoGameLibraryManager.Home.Views
             favouriteGenreLabel.Text = "Favourite Genre: " + _controller.GetFavouriteGenre();
         }
 
-        public void GameClickAt(int index)
+        public void FavouriteGameClickAt(int index)
         {
-            _controller.NavigateToGameView(index);
+            _controller.NavigateFromFavouriteToGameView(index);
         }
 
-       
+        public void MostPlayedGameClickAt(int index)
+        {
+            _controller.NavigateFromMostPlayedToGameView(index);
+        }
     }
 }
