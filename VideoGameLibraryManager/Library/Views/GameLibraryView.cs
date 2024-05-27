@@ -58,7 +58,7 @@ namespace VideoGameLibraryManager
 
         void IView.WillAppear()
         {
-            _controller.SetDisplayType(DisplayType.Grid);
+            ChangeView();
         }
 
         void IView.WillBeAddedToParent()
@@ -110,8 +110,10 @@ namespace VideoGameLibraryManager
             _controller.SetDisplayType(_controller.GetDisplayType());   
         }
 
-        public void ChangeView(DisplayType type)
+        public void ChangeView()
         {
+            DisplayType type = _controller.GetDisplayType();
+
             switch (type)
             {
                 case DisplayType.Grid: 

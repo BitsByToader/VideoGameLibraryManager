@@ -29,8 +29,7 @@ namespace VideoGameLibraryManager.Library
         public void SetDisplayType(DisplayType type)
         {
             _model.SetDisplayType(type);
-
-            _view.ChangeView(type);
+            _view.ChangeView();
         }
 
         public void SetSortStyle(ISortStyle style)
