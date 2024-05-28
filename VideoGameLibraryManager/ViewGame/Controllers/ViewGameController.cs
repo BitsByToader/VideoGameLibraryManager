@@ -140,7 +140,7 @@ namespace VideoGameLibraryManager.ViewGame
         /// <param name="check"></param>
         public void UpdateToDoStatus(string todo, bool check)
         {
-            GameLibraryDb.GetInstance("").MarkWithIdAndString(_model.GetGame().id, v1,v2);
+            GameLibraryDb.GetInstance("").MarkWithIdAndString(_model.GetGame().id, todo,check);
         }
     }
 }
