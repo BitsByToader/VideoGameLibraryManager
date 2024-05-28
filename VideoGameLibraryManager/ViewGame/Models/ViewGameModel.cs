@@ -23,6 +23,9 @@ using WFFramework;
 
 namespace VideoGameLibraryManager.ViewGame.Models
 {
+    /// <summary>
+    /// The model for the view game form
+    /// </summary>
     public class ViewGameModel : IViewGameModel
     {
         private FormNavigationStack _parent;

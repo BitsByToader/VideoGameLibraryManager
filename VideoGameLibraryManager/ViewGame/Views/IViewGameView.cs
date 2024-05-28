@@ -23,6 +23,9 @@ using WFFramework;
 
 namespace VideoGameLibraryManager.ViewGame.Views
 {
+    /// <summary>
+    /// Interface for the view of the game view
+    /// </summary>
     public interface IViewGameView: IView
     {
         /// <summary>

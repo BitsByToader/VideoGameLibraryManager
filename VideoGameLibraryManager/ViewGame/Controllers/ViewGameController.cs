@@ -13,11 +13,19 @@ using WFFramework;
 
 namespace VideoGameLibraryManager.ViewGame
 {
+    /// <summary>
+    /// The controller for the ViewGame view.
+    /// </summary>
     public class ViewGameController : IViewGameController
     {
         private IViewGameModel _model;
         private IViewGameView _view;
 
+        /// <summary>
+        /// Constructor for the ViewGameController.
+        /// </summary>
+        /// <param name="parent"> The parent view container. </param>
+        /// <param name="game"> The game to be viewed. </param>
         public ViewGameController(IViewContainer parent, Game game)
         {
             //_gameLibraryModel = glm;
@@ -29,11 +37,18 @@ namespace VideoGameLibraryManager.ViewGame
             RetrieveGame();
         }
 
+        /// <summary>
+        /// Fetches the view the controller is managing.
+        /// </summary>
+        /// <returns> The view. </returns>
         public IViewGameView GetView()
         {
             return _view;
         }
 
+        /// <summary>
+        /// Retrieves the game from the database.
+        /// </summary>
         public void RetrieveGame()
         {
             try
@@ -47,6 +62,10 @@ namespace VideoGameLibraryManager.ViewGame
             }
         }
 
+        /// <summary>
+        /// Updates the game in the view and the database.
+        /// </summary>
+        /// <param name="game"> The game to update. </param>
         public void UpdateGame(Game game)
         {
             try
@@ -67,10 +86,17 @@ namespace VideoGameLibraryManager.ViewGame
                 _view.DisplayError(ex.Message);
             }
         }
+        /// <summary>
+        /// Adds a todo to the game.
+        /// </summary>
+        /// <param name="todo">The TODO to be added</param>
         public void AddToDo(string todo)
         {
             GameLibraryDb.GetInstance("").AddTodo(_model.GetGame().id,todo);
         }
+        /// <summary>
+        /// Deletes the game from the database.
+        /// </summary>
         public void DeleteGame()
         {
             try
@@ -87,17 +113,32 @@ namespace VideoGameLibraryManager.ViewGame
             }
         }
 
+        /// <summary>
+        /// Gets the todos for the game.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<GameTODO> GetTodos(int id)
         {
             return GameLibraryDb.GetInstance("").GetTodos(id);
         }
 
+        /// <summary>
+        /// Updates the rating of the game in the view and the database.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
         public void UpdateRating(int id, int value)
         {
             GameLibraryDb.GetInstance("").UpdateRating(id, value);
         }
 
-        public void UpdateToDoStatus(string v1, bool v2)
+        /// <summary>
+        /// Updates the status of the todo.
+        /// </summary>
+        /// <param name="todo"></param>
+        /// <param name="check"></param>
+        public void UpdateToDoStatus(string todo, bool check)
         {
             GameLibraryDb.GetInstance("").MarkWithIdAndString(_model.GetGame().id, v1,v2);
         }

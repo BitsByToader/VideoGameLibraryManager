@@ -24,6 +24,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using UserDB_Manager;
 
+/// <summary>
+/// Class that allows for full control over a database (SQL) via methods.
+/// </summary>
 public class GameLibraryDb: SessionInterface
 {
     private static GameLibraryDb _instance;

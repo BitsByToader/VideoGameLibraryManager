@@ -8,6 +8,9 @@ using LibraryCommons;
 
 namespace API_Manager
 {
+    /// <summary>
+    /// Interface for the Game API to allow for fetching game data.
+    /// </summary>
     public interface IGameAPI
     {
         /// <summary>

@@ -41,7 +41,9 @@ namespace API_Manager
                                                                                     in case one of u need it -Alex
     ========================================================================================================================*/
 
-   
+   /// <summary>
+   /// Class that manages the IGDB API providing methods to search for games and get game information.
+   /// </summary>
     public class IGDB_API : IGameAPI
     {
 

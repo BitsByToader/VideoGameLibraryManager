@@ -25,11 +25,17 @@ using System.Threading.Tasks;
 
 namespace LibraryCommons
 {
-
+    /// <summary>
+    /// A helper class that helps you convert, download, get resources, etc.
+    /// </summary>
     public class DB_Helper
     {
         public static string ResourcePath="";
 
+        /// <summary>
+        /// Function to set the resource path
+        /// </summary>
+        /// <param name="RPath"> The path of the resources </param>
         public static void SetResourcePath(string RPath="")
         {
             if(RPath == "")

@@ -22,6 +22,9 @@ using System.Threading.Tasks;
 
 namespace LibraryCommons
 {
+    /// <summary>
+    /// Class that holds the data for a game from the IGDB API.
+    /// </summary>
     public class GameIGDB
     {
         //https://api-docs.igdb.com/#game
@@ -42,34 +45,51 @@ namespace LibraryCommons
         public List<WebsiteIGDB> websites { get; set; }  // Game's websites
     }
     #region CLASSES FOR GAMEIGDB
+    /// <summary>
+    /// Class that holds the data for a cover image from the IGDB API.
+    /// </summary>
     public class CoverIGDB
     {
         public int id { get; set; }
         public string url { get; set; }
     }
+    /// <summary>
+    /// Class that holds the data for a company from the IGDB API.
+    /// </summary>
     public class InvolvedCompany
     {
         public int id { get; set; }
         public CompanyIGDB company { get; set; } // This is now a CompanyIGDB object
     }
 
-
+    /// <summary>
+    /// Class that holds the data for a company from the IGDB API.
+    /// </summary>
     public class CompanyIGDB
     {
         public int id { get; set; } // Added id field to match the IGDB API response
         public string name { get; set; }
     }
 
+    /// <summary>
+    /// Class that holds the data for a genre from the IGDB API.
+    /// </summary>
     public class GenreIGDB
     {
         public int id { get; set; }
         public string name { get; set; }
     }
+    /// <summary>
+    /// Class that holds the data for a platform from the IGDB API.
+    /// </summary>
     public class PlatformIGDB
     {
         public string abbreviation { get; set; }
         public PlatformCategory category { get; set; }
     }
+    /// <summary>
+    /// Class that holds the data for a website from the IGDB API.
+    /// </summary>
     public class WebsiteIGDB
     {
         public string url { get; set; }
@@ -77,6 +97,9 @@ namespace LibraryCommons
     }
     #endregion
     #region Enums
+    /// <summary>
+    /// Enum for the platform category.
+    /// </summary>
     public enum PlatformCategory
     {
         Console = 1,
@@ -86,6 +109,10 @@ namespace LibraryCommons
         PortableConsole = 5,
         Computer = 6
     }
+
+    /// <summary>
+    /// Enum for the website category.
+    /// </summary>
     public enum WebsiteCategory
     {
         Official = 1,
@@ -107,6 +134,9 @@ namespace LibraryCommons
         Discord = 18
     }
     #endregion
+    /// <summary>
+    /// Class that holds the data for a game from the local database.
+    /// </summary>
     public class Game
     {
         public int id { get; set; }
@@ -226,6 +256,25 @@ namespace LibraryCommons
             return updated; // used in special cases
         }
 
+        /// <summary>
+        /// Constructor for the Game class
+        /// </summary>
+        /// <param name="id"> The ID of the game </param>
+        /// <param name="id_igdb"> The ID of the game in the IGDB API </param>
+        /// <param name="executable_path"> The path to the executable </param>
+        /// <param name="platforms"> The platforms the game is available on </param>
+        /// <param name="playtime"> The playtime in miliseconds </param>
+        /// <param name="personal_rating"> The personal rating of the game </param>
+        /// <param name="name"> The name of the game </param>
+        /// <param name="publisher"> The publisher of the game </param>
+        /// <param name="genre"> The genre of the game </param>
+        /// <param name="developers"> The developers of the game </param> 
+        /// <param name="global_rating"> The global rating of the game </param>
+        /// <param name="coverpath"> The path to the cover image </param>
+        /// <param name="cover"> The cover image </param>
+        /// <param name="summary"> The summary of the game </param>
+        /// <param name="website"> The website of the game </param>
+        /// <param name="favorite"> The favorite status of the game </param>
         public Game(int id, int id_igdb, string executable_path, List<string> platforms, int playtime, int personal_rating, string name, string publisher, List<string> genre, List<string> developers, int global_rating, string coverpath, Bitmap cover, string summary, string website, bool favorite)
         {
             this.id = id;
@@ -265,7 +314,9 @@ namespace LibraryCommons
             this.website = game.website;
             this.favorite = game.favorite;
         }
-
+        /// <summary>
+        /// Constructor for the Game class. Initializes all fields to default values (-1, "", null, 0, false).
+        /// </summary>
         public Game()
         {
             this.id = -1;
@@ -287,12 +338,18 @@ namespace LibraryCommons
         }
     }
 
+    /// <summary>
+    /// Class that holds the data for a game's TODO list.
+    /// </summary>
     public class GameTODO
     {
         public int id { get; set; }
         public int game_id { get; set; }
         public string todo { get; set; }
         public bool done { get; set; }
+        /// <summary>
+        /// Constructor for the GameTODO class
+        /// </summary>
         public GameTODO()
         {
             this.id = -1;
@@ -300,6 +357,13 @@ namespace LibraryCommons
             this.todo = "";
             this.done = false;
         }
+        /// <summary>
+        /// GameTODO constructor.
+        /// </summary>
+        /// <param name="id"> Id of the TODO </param>
+        /// <param name="game_id"> The game's ID coresponding to the todo </param>
+        /// <param name="todo"> The TODO as strong </param>
+        /// <param name="done"> Completion status </param>
         public GameTODO(int id, int game_id, string todo, bool done)
         {
             this.id = id;
@@ -308,10 +372,18 @@ namespace LibraryCommons
             this.done = done;
         }
 
+        /// <summary>
+        /// Toggles the done status of the TODO.
+        /// </summary>
         public void toggleDone()
         {
             done = !done;
         }
+
+        /// <summary>
+        /// Checks if the TODO is done.
+        /// </summary>
+        /// <returns> TODO's completion status </returns>
         public bool isDone()
         {
             return done;

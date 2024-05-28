@@ -23,6 +23,9 @@ using System.Threading.Tasks;
 
 namespace UserDB_Manager
 {
+    /// <summary>
+    /// Class that allows full control over a database (MEM) via methods
+    /// </summary>
     public class GameLibraryMemDB : SessionInterface
     {
         private List<Game> _games;
@@ -224,6 +227,9 @@ namespace UserDB_Manager
 
         }
 
+        /// <summary>
+        /// Delete the instance of the GameLibraryMemDB
+        /// </summary>
         public void DeleteInstance()
         {
             _games.Clear();
