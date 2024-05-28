@@ -4,20 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserDB_Manager;
 
 namespace VGLMUnitTests
 {
     [TestClass]
-    public class Database_UnitTests: ABS_Database_UnitTests
+    public class MemDatabase_UnitTests : ABS_Database_UnitTests
     {
-        static string name = "test_base";
-        static int index = 0;
         [TestInitialize]
         public override void Init()
         {
-            _databaseName = name + index + ".db";
-            _session = GameLibraryDb.GetInstance(_databaseName);
-            index++;
+            _session = GameLibraryMemDB.GetInstance();
         }
     }
 }

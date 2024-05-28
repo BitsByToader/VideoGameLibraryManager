@@ -177,10 +177,15 @@ namespace UserDB_Manager
                 throw new ArgumentNullException("One of the parrameters is null.");
             }
 
+
             int idx = _games.IndexOf(currentGame);
             if (idx != -1)
             {
-                _games[idx].LocalUpdateWithDifferences(ref updatedGame);
+                bool isUpdated=_games[idx].LocalUpdateWithDifferences(ref updatedGame);
+                if (!isUpdated)
+                {
+                    throw new NoRowsUpdatedException("No rows were updated");
+                }
             }
             else
             {
@@ -217,6 +222,11 @@ namespace UserDB_Manager
                 }
             }
 
+        }
+
+        public void DeleteInstance()
+        {
+            _games.Clear();
         }
     }
 }

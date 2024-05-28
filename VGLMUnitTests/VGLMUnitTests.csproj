@@ -53,21 +53,24 @@
   <ItemGroup>
     <Compile Include="ABS_Database_UnitTests.cs" />
     <Compile Include="Database_UnitTests.cs" />
+    <Compile Include="IGDB_UnitTest.cs" />
+    <Compile Include="MemDatabase_UnitTests.cs" />
     <Compile Include="FormGameLibraryControllerUnitTest.cs" />
     <Compile Include="GameLibraryControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IGDB_Manager\IGDB_Manager.csproj">
+      <Project>{ADEC45ED-550C-4951-B226-C8E8D7046D6E}</Project>
+      <Name>IGDB_Manager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Helpers\Helpers.csproj">
       <Project>{a6d61b9b-5297-4032-ab76-bac07f8e5c46}</Project>
       <Name>Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IGDB_Manager\IGDB_Manager.csproj">
-      <Project>{adec45ed-550c-4951-b226-c8e8d7046d6e}</Project>
-      <Name>IGDB_Manager</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
       <Project>{2D92EFAC-49EF-4E44-932B-FE844B01215F}</Project>

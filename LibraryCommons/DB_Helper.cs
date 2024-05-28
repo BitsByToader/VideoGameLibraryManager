@@ -77,7 +77,10 @@ namespace LibraryCommons
             }
             Bitmap bitmap1 = new Bitmap(bitmap);
             string filePath = Path.Combine(ResourcePath, fileName + ".png");
-            bitmap1.Save(filePath, ImageFormat.Png);
+            if(!File.Exists(filePath))
+            {
+                bitmap1.Save(filePath, ImageFormat.Png);
+            }
             return filePath;
         }
         /// <summary>

@@ -59,5 +59,10 @@ namespace UserDB_Manager
         /// <param name="game"> The game to be retrieved </param>
         /// <returns> The game </returns>
         Game GetGame(ref Game game);
+
+        /// <summary>
+        /// Used for testing purposes
+        /// </summary>
+        void DeleteInstance();
     }
 }

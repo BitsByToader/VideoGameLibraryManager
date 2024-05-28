@@ -23,9 +23,10 @@ using System.IO;
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Text.Json;
 using LibraryCommons;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.CompilerServices.Unsafe;
 
 namespace API_Manager
 {
@@ -143,7 +144,7 @@ namespace API_Manager
                 client.DefaultRequestHeaders.Add("Client-ID", _clientId);
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_accessToken}");
 
-                string body = $"fields name, cover.url; search \"{query}\";";
+                string body = $"fields name; search \"{query}\";";
                 StringContent content = new StringContent(body, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await client.PostAsync("https://api.igdb.com/v4/games", content);
@@ -151,7 +152,8 @@ namespace API_Manager
                 if (response.IsSuccessStatusCode)
                 {
                     string responseBody = await response.Content.ReadAsStringAsync();
-                    var games = JsonSerializer.Deserialize<GameIGDB[]>(responseBody);
+                    
+                    var games = System.Text.Json.JsonSerializer.Deserialize<GameIGDB[]>(responseBody);
                     if (appendID)
                     {
                         return string.Join("\n", games.Select
