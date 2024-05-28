@@ -67,5 +67,10 @@ namespace WFFramework
         public abstract IView ViewAt(int index);
 
         public abstract void ClickedViewAt(int index);
+
+        public void RefreshViews<T>(List<T> data)
+        {
+            
+        }
     }
 }

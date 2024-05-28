@@ -3,7 +3,7 @@
 *  File:        GridGameDisplayFormView.cs                                          *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
-*  Description:                                                                     *
+*  Description: provides a way of showing controls grid style                       *
 *                                                                                   *
 *                                                                                   *
 *  This code and information is provided "as is" without warranty of                *

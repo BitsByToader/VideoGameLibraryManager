@@ -3,7 +3,7 @@
 *  File:        BriefGameInfoBox.cs                                                 *
 *  Copyright:   (c) 2024, Cristina Andrei Marian                                    *
 *  E-mail:      andrei-marian.cristina@student.tuiasi.ro                            *
-*  Description:                                                                     *
+*  Description: custom user control that provides a brief info about a game         *                                                                    
 *                                                                                   *
 *                                                                                   *
 *  This code and information is provided "as is" without warranty of                *
