@@ -25,7 +25,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WFFramework;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace VideoGameLibraryManager.ViewGame.Views
 {
@@ -300,6 +299,11 @@ namespace VideoGameLibraryManager.ViewGame.Views
         private void ToDos_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             _controller.UpdateToDoStatus(ToDos.Items[e.Index].ToString(), e.NewValue == CheckState.Checked);
+        }
+
+        public void RemoveFromParent()
+        {
+            //stub
         }
     }
 }

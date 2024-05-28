@@ -48,12 +48,15 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ABS_Database_UnitTests.cs" />
     <Compile Include="Database_UnitTests.cs" />
     <Compile Include="IGDB_UnitTest.cs" />
     <Compile Include="MemDatabase_UnitTests.cs" />
+    <Compile Include="FormGameLibraryControllerUnitTest.cs" />
+    <Compile Include="GameLibraryControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +68,10 @@
       <Project>{ADEC45ED-550C-4951-B226-C8E8D7046D6E}</Project>
       <Name>IGDB_Manager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Helpers\Helpers.csproj">
+      <Project>{a6d61b9b-5297-4032-ab76-bac07f8e5c46}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibraryCommons\LibraryCommons.csproj">
       <Project>{2D92EFAC-49EF-4E44-932B-FE844B01215F}</Project>
       <Name>LibraryCommons</Name>
@@ -72,6 +79,14 @@
     <ProjectReference Include="..\UserDB_Manager\SessionDB_Manager.csproj">
       <Project>{0627D170-991B-42B3-BFE7-A415CC24394F}</Project>
       <Name>SessionDB_Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VideoGameLibraryManager\VideoGameLibraryManager.csproj">
+      <Project>{e5bc58bd-ea73-49d9-baed-4a3b39e3f682}</Project>
+      <Name>VideoGameLibraryManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WFFramework\WFFramework.csproj">
+      <Project>{74d6dd38-ffb5-405e-a700-b44dede8ace7}</Project>
+      <Name>WFFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

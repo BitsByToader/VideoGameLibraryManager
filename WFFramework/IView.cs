@@ -32,14 +32,16 @@ namespace WFFramework
     {
         /// <summary>
         /// Adds this view to the parent's (a container) hierarchy. Ideally, an implementing class will also store this parent for bookkeeping and other View State related tasks.
+        /// Not available in C# 7.3, but this method should be internal as only the parent (container) should call this method.
         /// </summary>
         /// <param name="parent"></param>
         void AddToParent(IViewContainer parent);
-        
+
         /// <summary>
         /// Removes this view from the parent's hierarchy.
+        /// Not available in C# 7.3, but this method should be internal as only the parent (container) should call this method.
         /// </summary>
-        void removeFromParent();
+        void RemoveFromParent();
         
         /// <summary>
         /// Retrieves the direct parent of this view.

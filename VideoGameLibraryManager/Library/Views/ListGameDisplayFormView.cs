@@ -56,7 +56,7 @@ namespace VideoGameLibraryManager
             return _parent;
         }
 
-        public void removeFromParent()
+        public void RemoveFromParent()
         {
             _parent = null;
         }
@@ -90,12 +90,6 @@ namespace VideoGameLibraryManager
             base.RefreshViews();
         }
 
-        public override void RefreshViews<T>(List<T> data)
-        {
-            _games = data as List<Game>;
-            this.RefreshViews();
-        }
-
         public override IView ViewAt(int index)
         {
             Game game = _games[index];
@@ -106,7 +100,7 @@ namespace VideoGameLibraryManager
             detailedGameInfoBox.GameImage = game.cover;
             detailedGameInfoBox.GameName = game.name;
             detailedGameInfoBox.GamePlaytime = game.playtime.ToString();
-            detailedGameInfoBox.GameRating = game.global_rating.ToString();
+            detailedGameInfoBox.GameRating = game.personal_rating.ToString();
 
             return detailedGameInfoBox;
         }
