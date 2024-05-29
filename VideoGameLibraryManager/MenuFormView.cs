@@ -67,9 +67,10 @@ namespace VideoGameLibraryManager
             formNavigationStack1.SetRoot(_gameLibraryView);
         }
 
-        private void settingsButton_Click(object sender, EventArgs e)
+        private void HelpButton_Click(object sender, EventArgs e)
         {
-
+            //Load the .chm file "C:\Projects\IP\ProiectIP_GIT\LASTLAST\VideoGameLibraryManager\Docs\VideoGameLibraryManager.chm"
+            Help.ShowHelp(this, @"..\..\..\..\VideoGameLibraryManager\Docs\VideoGameLibraryManager.chm");
         }
 
         private void buttonBack_Click(object sender, EventArgs e)

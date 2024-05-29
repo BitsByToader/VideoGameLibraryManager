@@ -32,7 +32,7 @@
             this.homeButton = new System.Windows.Forms.Button();
             this.addGameButton = new System.Windows.Forms.Button();
             this.libraryButton = new System.Windows.Forms.Button();
-            this.settingsButton = new System.Windows.Forms.Button();
+            this.HelpButton = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.formNavigationStack1 = new WFFramework.FormNavigationStack();
             this.SuspendLayout();
@@ -68,15 +68,15 @@
             this.libraryButton.UseVisualStyleBackColor = true;
             this.libraryButton.Click += new System.EventHandler(this.libraryButton_Click);
             // 
-            // settingsButton
+            // HelpButton
             // 
-            this.settingsButton.Location = new System.Drawing.Point(6, 111);
-            this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(74, 29);
-            this.settingsButton.TabIndex = 5;
-            this.settingsButton.Text = "Settings";
-            this.settingsButton.UseVisualStyleBackColor = true;
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            this.HelpButton.Location = new System.Drawing.Point(6, 111);
+            this.HelpButton.Name = "HelpButton";
+            this.HelpButton.Size = new System.Drawing.Size(74, 29);
+            this.HelpButton.TabIndex = 5;
+            this.HelpButton.Text = "Help";
+            this.HelpButton.UseVisualStyleBackColor = true;
+            this.HelpButton.Click += new System.EventHandler(this.HelpButton_Click);
             // 
             // buttonBack
             // 
@@ -101,11 +101,13 @@
             this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.formNavigationStack1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.formNavigationStack1.Location = new System.Drawing.Point(84, 41);
             this.formNavigationStack1.Margin = new System.Windows.Forms.Padding(2);
             this.formNavigationStack1.Name = "formNavigationStack1";
             this.formNavigationStack1.RowCount = 1;
+            this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.formNavigationStack1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -121,7 +123,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(887, 532);
             this.Controls.Add(this.buttonBack);
-            this.Controls.Add(this.settingsButton);
+            this.Controls.Add(this.HelpButton);
             this.Controls.Add(this.libraryButton);
             this.Controls.Add(this.addGameButton);
             this.Controls.Add(this.formNavigationStack1);
@@ -141,7 +143,7 @@
         private WFFramework.FormNavigationStack formNavigationStack1;
         private System.Windows.Forms.Button addGameButton;
         private System.Windows.Forms.Button libraryButton;
-        private System.Windows.Forms.Button settingsButton;
+        private System.Windows.Forms.Button HelpButton;
         private System.Windows.Forms.Button buttonBack;
     }
 }
